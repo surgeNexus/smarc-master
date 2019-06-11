@@ -1,0 +1,31 @@
+<% include ./partials/header %>
+
+<div class="container well form-center">
+    <h1>Sign Up!</h1>
+    <form action="/register" method="POST">
+    <div class="form-group">
+        <input type="text" name="firstName" placeholder="First Name">
+    </div>
+    <div class="form-group">
+        <input type="text" name="lastName" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Email Address">
+    </div>
+    <div class="form-group">
+        <input type="tel" name="phone" placeholder="Phone Number">
+    </div>
+    <div class="form-group">
+        <input type="text" name="username" placeholder="Callsign">
+    </div>
+    <div class="form-group">
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <input type="text" name="profileImage" placeholder="Profile Image URL">
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
+</form>
+<% include ./partials/footer %>

@@ -1,0 +1,78 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.initial {
+    width: 100%
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form {
+    display: inline;
+}
+
+.form-center {
+    padding: auto;
+    padding-top: 20px;
+    margin: auto;
+    text-align: center;
+    font-size: 120%
+}
+
+.text-right {
+    text-align: right;
+}
+
+.picture-center {
+    padding: 50px 0;
+    /* padding-top: 20px;
+    padding-left: 21%; */
+
+    
+}
+
+.picture-center > div {
+    text-align: center;
+}
+.picture-center > div img {
+    max-width: 250px;
+}
+
+.form-media {
+    padding-top: 20px
+}
+
+.user-show-market {
+    padding-top: 100px;
+    padding-left: 60px
+}
+
+.table th, .table td { 
+    border-top: none !important; 
+}
+
+ul {
+    list-style: none;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../images/smtn2.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.customimg {
+    width: 100%;
+    height: auto;
+}
