@@ -1,22 +1,17 @@
 <% include ../partials/header %>
 
-<div class="container form-center">
-<h1>A Memorial for our passed brothers and sisters</h1>
-<hr>
-<% campground.comments.forEach(function(comment){ %>
-    <div class="row">
-        <div class="col-md-12">
-            <h3> <%= comment.text %> </h3>
-            <span class="pull-right"></span>
-            <p>
-                
-            </p>
-        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-            </form>
-        <% } %>
-        </div>
+<div class="container">
+    <div class="title-center">
+        <h1>Silent Key Memorial</h1>
+        <hr>
     </div>
-<% }) %>
+    <% campground.comments.forEach(function(comment){ %>
+        <div class="row form-center">
+                <h4>
+                    <%= comment.text %> 
+                </h4>
+        </div>
+    <% }) %>
 </div>
 
 <% include ../partials/footer %>

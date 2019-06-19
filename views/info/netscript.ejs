@@ -1,5 +1,75 @@
 <% include ../partials/header %>
+<div class="container form-media">
+    <div class="row">
+            <div class="col-md-8 form-media well well-lg">
+                <h1 class="title-center">Smoky Mountain Amateur Radio Club</h1>
+                <h2 class="title-center">(SMARC: Net Control Station Procedure)</h2>
+                <hr>
+                <div>
+                    <p>
+                        This is (call sign) calling the SMARC (W4OLB - 146.544 Mhz toned to 100 Mhz)
+                        is this frequency in use? <em>PAUSE</em> I am your Net Control Station(NCS) 
+                        for this session and my name is (name).
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This net is currently activated as an open net to all SMARC members and hams 
+                        who are interested in promoting the hobby. This is (callsign) standing by for 
+                        EMERGENCY TRAFFIC. 
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Are there any announcements to come before the net? Come now with your first name and call sign.
+                        (Take the list and decide when the announcements will be made). Also ask if there are questions.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Are there any health items about SMARC members to come before the net? Please come now with your 
+                        first name and call sign. <em>PAUSE</em>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        At this time all SMARC members and others please stand by for check-ins. Please wait for the 
+                        previous station to be recognized before checking in. We will begin our check-ins with HAND HELD radios, 
+                        MOBILE OPERATORS, and stations operating on emergency power. As originally stated this net is open to all 
+                        licensed amateur operators.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This is (call sign) your net control station. Please come now with your fist name, call sign, location, and let us know if you are a member of SMARC. <em>PAUSE FOR CHECKINS</em>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This is (call sign) your NCS of SMARC taking check-ins from any and all stations. Please come with 
+                        your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
+                        by the FCC and follow ALL FCC RULES.
+                    </p>
+                </div>
+            </div>
+            <h1 class="title-center">Net Control Station Schedule</h1>
+            <hr>
+                <div class="col-md-4 title-center">
+                        <% campground.comments.forEach(function(comment){ %>
+                    <h4>
+                        Date: <%= comment.title %>
+                    </h4>
+                    <p>
+                        Name: <%= comment.text %>
+                    </p>
+                    <hr>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div
 
-
+    
 
 <% include ../partials/footer %>

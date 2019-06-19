@@ -7,6 +7,8 @@ var Campground = require("../models/campground");
 var Comment = require("../models/comment")
 var middleware = require("../middleware");
 
+
+
 router.get("/officers", function(req, res){
     res.render("info/officers")
 })
@@ -34,7 +36,15 @@ router.get("/sk", function(req, res){
 });
 
 router.get("/netscript", function(req, res){
-    res.render("info/netscript");
+    Campground.findById('5d03f57d7210b5078f3bb09d').populate("comments").exec(function(err, foundCampground){
+        if(err){
+            console.log(err);
+            req.flash("error", "Item not found");
+            res.redirect("back");
+        } else {
+            res.render("info/netscript", {campground: foundCampground});
+        }
+    })
 });
 
 

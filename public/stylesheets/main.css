@@ -64,15 +64,28 @@ ul {
 
 .jumbotron {
     margin-bottom: 0px;
-    background-image: url(../images/smtn2.jpg);
+    background-image: url(../images/SMARC-web-banner-v1-unsquished.png);
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
+    width: 1168px auto;
+    height: 236px;
 }
 
 .customimg {
     width: 100%;
     height: auto;
+}
+
+.title-center {
+    padding: auto;
+    padding-top: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.well-blue{
+    background-color: #80b8de;
 }

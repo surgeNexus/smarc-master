@@ -7,10 +7,10 @@ var express          = require("express"),
     methodOverride   = require("method-override"),
     flash            = require("connect-flash"),
     moment           = require("moment"),
+    nodemailer       = require("nodemailer"),
     Campground       = require("./models/campground"),
     Comment          = require("./models/comment"),
     User             = require("./models/user"),
-    seedDB           = require("./seeds")
     roles            = require("roles")
 
 
@@ -20,7 +20,8 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/radiomarket"),
     indexRoutes      = require("./routes/index"),
     homeRoutes       = require("./routes/home"),
-    infoRoutes       = require("./routes/info");
+    infoRoutes       = require("./routes/info"),
+    contactRoutes    = require("./routes/contact");
     
 
 mongoose.connect("mongodb://localhost:27017/smarc");
@@ -59,6 +60,7 @@ app.use("/radiomarket", campgroundRoutes);
 app.use("/radiomarket/:id/comments", commentRoutes);
 app.use("/home", homeRoutes);
 app.use("/info", infoRoutes);
+app.use("/contact", contactRoutes)
 
 
 app.listen(3000, function(){

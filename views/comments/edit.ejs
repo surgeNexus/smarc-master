@@ -5,8 +5,9 @@
         <div style="width: 30%; margin: 25px auto;">
             <form action="/radiomarket/<%= campground_id %>/comments/<%=comment._id %>?_method=PUT" method="POST">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
+                    <input class="form-control" type="text" name="comment[title]" placeholder="Title">
                 </div>
+                <textarea class="form-control" type="text" name="comment[text]" rows="4" cols="50"></textarea>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit!</button>
                 </div>
