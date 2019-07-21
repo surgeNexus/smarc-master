@@ -1,0 +1,30 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Net Control Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/info/netscript/netscriptcollection/new">New NCS Entry</a>
+        <% if(!currentUser){ %>
+            <a href="/login">login</a>
+        <% } else { %>
+            <a href="/logout">logout</a>
+        <% } %>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundNet.forEach(function(net){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= net.date %></h4>
+                       <h5><%= net.name %></h5>
+                       <h5><%= net.callsign %></h5>
+                   </div>
+                   <p>
+                       <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

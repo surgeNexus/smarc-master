@@ -1,17 +1,22 @@
 <% include ../partials/header %>
 
 <div class="container">
-    <div class="title-center">
         <h1>Silent Key Memorial</h1>
-        <hr>
-    </div>
-    <% campground.comments.forEach(function(comment){ %>
-        <div class="row form-center">
-                <h4>
-                    <%= comment.text %> 
-                </h4>
-        </div>
-    <% }) %>
-</div>
+        <div class="row text-center well well-lg" style="display:flex; flex-wrap: wrap;">
+           <% foundSk.forEach(function(sk){ %>
+               <div class="col-md-3 col-sm-6">
+                   <div class="thumbnail">
+                      <div class="caption">
+                          <h4><%= sk.name %></h4>
+                          <h5><%= sk.callsign %></h5>
+                          <div>
+                                <img src="<%= sk.picture %>" class="">
+                          </div>
+                      </div>
+                   </div>
+               </div>
+           <% }); %>
+       </div>
+   </div>
 
 <% include ../partials/footer %>

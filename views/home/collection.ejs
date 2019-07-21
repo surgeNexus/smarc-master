@@ -1,0 +1,28 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Home Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/home/new">New Home Entry</a>
+        <% if(!currentUser){ %>
+            <a href="/login">login</a>
+        <% } else { %>
+            <a href="/logout">logout</a>
+        <% } %>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundHomes.forEach(function(home){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= home.title %></h4>
+                   </div>
+                   <p>
+                       <a href="/home/<%= home._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

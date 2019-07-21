@@ -1,0 +1,31 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Net Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/netsched/new">New Net Entry</a>
+        <% if(!currentUser){ %>
+            <a href="/login">login</a>
+        <% } else { %>
+            <a href="/logout">logout</a>
+        <% } %>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundNets.forEach(function(nets){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= nets.net %></h4>
+                       <p><%= nets.day %></p>
+                       <p><%= nets.time %></p>
+                       <p><%= nets.freq %></p>
+                   </div>
+                   <p>
+                       <a href="/netsched/<%= nets._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

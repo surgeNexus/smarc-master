@@ -9,58 +9,13 @@ var middleware = require("../middleware");
 
 
 
-router.get("/officers", function(req, res){
-    res.render("info/officers")
-})
+// router.get('/newsletter', function (req, res) {
+//     var filePath = "./public/files/pdf/august.pdf";
 
-router.get('/newsletter', function (req, res) {
-    var filePath = "./public/files/pdf/august.pdf";
-
-    fs.readFile(filePath , function (err,data){
-        res.contentType("application/pdf");
-        res.send(data);
-    });
-});
-
-router.get("/sk", function(req, res){
-    //find the campground with provided ID
-    Campground.findById('5d002be72de55450b7e4283d').populate("comments").exec(function(err, foundCampground){
-        if(err || !foundCampground){
-            req.flash("error", "Item not found");
-            res.redirect("back");
-        } else {
-            //render show template with that campground
-            res.render("info/sk", {campground: foundCampground});
-        }
-    });
-});
-
-router.get("/netscript", function(req, res){
-    Campground.findById('5d03f57d7210b5078f3bb09d').populate("comments").exec(function(err, foundCampground){
-        if(err){
-            console.log(err);
-            req.flash("error", "Item not found");
-            res.redirect("back");
-        } else {
-            res.render("info/netscript", {campground: foundCampground});
-        }
-    })
-});
-
-
-// To change ID, create "campground", copy id from url of show page, insert after findbyid
-
-router.get("/minutes", function(req, res){
-    //find the campground with provided ID
-    Campground.findById('5d0024bde6bffe4f7599bfed').populate("comments").exec(function(err, foundCampground){
-        if(err || !foundCampground){
-            req.flash("error", "Item not found");
-            res.redirect("back");
-        } else {
-            //render show template with that campground
-            res.render("info/minutes", {campground: foundCampground});
-        }
-    });
-});
+//     fs.readFile(filePath , function (err,data){
+//         res.contentType("application/pdf");
+//         res.send(data);
+//     });
+// });
 
 module.exports = router;

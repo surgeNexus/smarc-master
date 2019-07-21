@@ -8,6 +8,7 @@ var netschedSchema = mongoose.Schema({
     tone: String,
     altFreq: String,
     altTone: String,
+    externalLink: String,
 });
 
 module.exports = mongoose.model("Netsched", netschedSchema);

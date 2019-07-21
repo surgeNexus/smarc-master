@@ -1,0 +1,50 @@
+<% include ../partials/adminheader %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Edit Net</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/netsched/<%= foundNet._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <h4>Net Name</h4>
+                    <input class="form-control" type="text" name="net" value="<%= foundNet.net %>">
+                </div>
+                <div class="form-group">
+                    <h4>Link to Net/Club Page(Optional)DO NOT ADD HTTP://</h4>
+                    <input class="form-control" type="text" name="externalLink" value="<%= foundNet.externalLink %>">
+                </div>
+                <div class="form-group">
+                    <h4>Day</h4>
+                    <input class="form-control" type="text" name="day" value="<%= foundNet.day %>">
+                </div>
+                <div class="form-group">
+                    <h4>Time</h4>
+                    <input class="form-control" type="text" name="time" value="<%= foundNet.time %>">
+                </div>
+                <div class="form-group">
+                    <h4>Frequency</h4>
+                    <input class="form-control" type="text" name="freq" value="<%= foundNet.freq %>">
+                </div>
+                <div class="form-group">
+                    <h4>Tone</h4>
+                    <input class="form-control" type="text" name="tone" value=" <%= foundNet.tone %>">
+                </div>
+                <div class="form-group">
+                    <h4>Alternate Frequency</h4>
+                    <input class="form-control" type="text" name="altFreq" value="<%= foundNet.altFreq %>">
+                </div>
+                <div class="form-group">
+                    <h4>Alternate Tone</h4>
+                    <input class="form-control" type="text" name="altTone" value="<%= foundNet.altTone %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <form id="delete-form" action="/netsched/<%= foundNet.id %>?_method=DELETE" method="POST">
+                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+            </form>
+            <a href="/netsched/netschedcollection">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/adminfooter %>

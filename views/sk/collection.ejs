@@ -1,0 +1,28 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Silent Key Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/info/sk/skcollection/new">New SK Entry</a>
+        <% if(!currentUser){ %>
+            <a href="/login">login</a>
+        <% } else { %>
+            <a href="/logout">logout</a>
+        <% } %>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundSk.forEach(function(sk){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= sk.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/info/sk/skcollection/<%= sk._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

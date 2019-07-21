@@ -1,0 +1,22 @@
+<% include ../partials/adminheader %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">New Meeting Log</h1>
+        <hr>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/info/minutes/" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="date" placeholder="Date">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="text" name="minutes" rows="4" cols="50"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/info/minutes/minutescollection">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/adminfooter %>

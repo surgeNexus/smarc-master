@@ -14,115 +14,18 @@
                 <th>Alt Tone (Hz)</th>
             </tr>
         </thead>
+        <% foundNets.forEach(function(nets){ %>
         <tbody>
             <tr>
-                <td>East TN APRS Net</td>
-                <td>Sunday</td>
-                <td>8:00 P.M.</td>
-                <td>146.940</td>
-                <th>118.8</th>
-                <td>N/A</td>
-                <td>N/A</td>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
             </tr>
-            <tr class="info">
-                <td>Union County ARES</td>
-                <td>Sunday</td>
-                <td>8:45 P.M.</td>
-                <td>145.230</td>
-                <th>N/A</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>RACK 6 Meter Net</td>
-                <td>Sunday</td>
-                <td>9:00 P.M.</td>
-                <td>53.770</td>
-                <th>N/A</th>
-                <td>53.250</td>
-                <td>N/A</td>
-            </tr>
-            <tr class="info">
-                <td>METERS 10 Meter Net</td>
-                <td>Sunday</td>
-                <td>10:00 P.M.</td>
-                <td>28.420 USB, Alt</td>
-                <th>N/A</th>
-                <td>146.940</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>TN State ARES</td>
-                <td>Monday</td>
-                <td>7:30 P.M.</td>
-                <td>3.980 LSB</td>
-                <th>N/A</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr  class="info">
-                <td>SCERS and Sevier County Ares</td>
-                <td>Monday</td>
-                <td>7:30 P.M.</td>
-                <td>145.47</td>
-                <th>118.8</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>Roane County ARC</td>
-                <td>Monday</td>
-                <td>9:00 P.M.</td>
-                <td>147.015</td>
-                <th>N/A</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr class="info">
-                <td>Sevier County Skywarn</td>
-                <td>Tuesday</td>
-                <td>8:30 P.M.</td>
-                <td>443.225</td>
-                <th>N/A</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>METERS Traffic</td>
-                <td>Wednesday</td>
-                <td>8:15 P.M.</td>
-                <td>147.300</td>
-                <th>N/A</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr class="info">
-                <td>470 ARG</td>
-                <td>Thursday</td>
-                <td>7:30 P.M.</td>
-                <td>145.470</td>
-                <th>118.8</th>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>S.M.A.R.C.</td>
-                <td>Thursday</td>
-                <td>7:00 P.M.</td>
-                <td>146.655</td>
-                <th>100</th>
-                <td>146.625</td>
-                <td>118.8</td>
-            </tr>
-            <tr class="info">
-                <td>Blount County ARES</td>
-                <td>Thursday</td>
-                <td>9:00 P.M.</td>
-                <td>145.270</td>
-                <th>127.3</th>
-                <td>146.625</td>
-                <td>N/A</td>
-            </tr>
+        <% }) %>
         </tbody>
     </table>
     </div>

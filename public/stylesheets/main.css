@@ -34,8 +34,6 @@
     padding: 50px 0;
     /* padding-top: 20px;
     padding-left: 21%; */
-
-    
 }
 
 .picture-center > div {
@@ -74,9 +72,17 @@ ul {
     height: 236px;
 }
 
-.customimg {
-    width: 100%;
-    height: auto;
+.customimg { 
+    Height: 40vh;
+    width: auto;
+}
+
+.divimage {
+    padding-left: 60px;
+}
+
+centerimgdiv {
+    align-items: center;
 }
 
 .title-center {
@@ -88,4 +94,9 @@ ul {
 
 .well-blue{
     background-color: #80b8de;
+}
+
+.button-sized{
+    height: 70px;
+    width: 400px;
 }

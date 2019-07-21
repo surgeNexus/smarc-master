@@ -11,6 +11,10 @@ router.get("/", function(req, res){
     res.render("landing");
 });
 
+router.get("/smarc-admin", function(req, res){
+    res.redirect("/home/homescollection");
+});
+
 // show register form
 router.get("/register", function(req, res){
    res.render("register"); 
@@ -53,7 +57,7 @@ router.get("/login", function(req, res){
 //handling login logic
 router.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/radiomarket",
+        successRedirect: "/home/homescollection",
         failureRedirect: "/login",
         failureFlash: true,
         successFlash: 'Welcome Back!'
@@ -69,10 +73,6 @@ router.get("/logout", function(req, res){
 
 router.get("/about", function(req, res){
     res.render("about");
-});
-
-router.get("/netsched", function(req, res){
-    res.render("netsched");
 });
 
 router.get("/repeaters", function(req, res){

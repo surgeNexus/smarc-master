@@ -6,32 +6,32 @@
             <img class="img-circle" src="images/SmarcMeeting.jpg"/>
         </div>
         <div class="col-md-4">
-            <img class="img-circle" src="images/IMG_3965.jpg" />
+            <img class="img-circle" src="images/991a_655.jpg" />
         </div>
         <div class="col-md-3">
-            <img class="img-circle" src="images/IMG_3948.jpg"/>
+            <img class="img-circle" src="images/IMG_3965.jpg"/>
         </div>
         <div class="col-md-2" style="padding-left: 20px; width: 160px;"><iframe style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=111020" width="155" height="228" frameborder="0" scrolling="no"></iframe><a style="text-indent: -9999em;height: 20px;position: relative;z-index: 1;margin: -20px 0 0 0;display: block" href="https://www.willyweather.com/tn/blount-county/maryville.html" rel="nofollow">maryville weather information</a></div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-6">
+                <% foundHome.forEach(function(foundHome){ %>
             <div class="well well-lg well-blue">
-                    <% campground.comments.forEach(function(comment){ %>
                 <h2 class="title-center">
-                    <%= comment.title %>
+                    <%= foundHome.title %>
                 </h2>
                 <hr>
                 <h4>
-                    <%= comment.text %> 
+                    <%= foundHome.body %> 
                 </h4>
                 <hr>
-                    <% }) %>
             </div>
+            <% }) %>
         </div>
-        <div class="col-md-2">
-            <center class="">
+        <div class="col-md-2 col-sm-6">
+            <center class="text-center">
                 <a href="http://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="http://www.hamqsl.com/solarbc.php"></a>
                 <a href="http://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="http://www.hamqsl.com/solarpic.php"></a>
             </center>

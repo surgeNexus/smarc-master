@@ -1,0 +1,27 @@
+<% include ../partials/adminheader %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">New Silent Key</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/documents/docscollection/<%= foundDoc._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="title" value="<%= foundDoc.title %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="date" value="<%= foundDoc.date %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="file" name="docLoc">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <form id="delete-form" action="/documents/docscollection/<%= foundDoc.id %>?_method=DELETE" method="POST">
+                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+            </form>
+            <a href="/documents/docscollection">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/adminfooter %>

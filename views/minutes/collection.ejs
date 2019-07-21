@@ -1,0 +1,28 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Minutes Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/info/minutes/minutescollection/new">New Meeting Entry</a>
+        <% if(!currentUser){ %>
+            <a href="/login">login</a>
+        <% } else { %>
+            <a href="/logout">logout</a>
+        <% } %>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundMinutes.forEach(function(minutes){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= minutes.date %></h4>
+                   </div>
+                   <p>
+                       <a href="/info/minutes/minutescollection/<%= minutes._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

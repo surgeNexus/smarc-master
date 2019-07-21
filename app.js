@@ -11,8 +11,8 @@ var express          = require("express"),
     Campground       = require("./models/campground"),
     Comment          = require("./models/comment"),
     User             = require("./models/user"),
-    roles            = require("roles")
-
+    roles            = require("roles"),
+    fileUpload       = require("express-fileupload")
 
     
 //requring routes
@@ -21,9 +21,16 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index"),
     homeRoutes       = require("./routes/home"),
     infoRoutes       = require("./routes/info"),
-    contactRoutes    = require("./routes/contact");
-    
+    netschedRoutes   = require("./routes/netsched"),
+    skRoutes         = require("./routes/sk"),
+    minutesRoutes    = require("./routes/minutes"),
+    netscriptRoutes  = require("./routes/netcontrol"),
+    officersRoutes   = require("./routes/officers"),
+    documentsRoute      = require("./routes/documents");
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 mongoose.connect("mongodb://localhost:27017/smarc");
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -36,7 +43,7 @@ app.use(flash());
 app.locals.moment = require('moment');
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-    secret: "Once again Rusty wins cutest dog!",
+    secret: "Once again Star wins cutest dog!",
     resave: false,
     saveUninitialized: false
 }));
@@ -45,6 +52,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+app.use(fileUpload());
 
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
@@ -53,15 +61,17 @@ app.use(function(req, res, next){
   next();
 });
 
-// USER ROLES
-
 app.use(indexRoutes);
 app.use("/radiomarket", campgroundRoutes);
 app.use("/radiomarket/:id/comments", commentRoutes);
 app.use("/home", homeRoutes);
 app.use("/info", infoRoutes);
-app.use("/contact", contactRoutes)
-
+app.use("/netsched", netschedRoutes);
+app.use("/info/sk", skRoutes);
+app.use("/info/minutes", minutesRoutes);
+app.use("/info/netscript", netscriptRoutes);
+app.use("/info/officers", officersRoutes);
+app.use("/documents", documentsRoute);
 
 app.listen(3000, function(){
    console.log("The SMARC Server Has Started!");

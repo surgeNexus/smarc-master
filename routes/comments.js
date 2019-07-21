@@ -46,7 +46,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 });
 
 // comments edit route
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
+router.get("/:comment_id/edit", middleware.isLoggedIn, function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground) {
         if(err || !foundCampground){
             req.flash("error", "Item not found");
@@ -63,7 +63,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, 
 });
 
 //  comment update
-router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
+router.put("/:comment_id", middleware.isLoggedIn, function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
         if(err){
             res.redirect("back");
@@ -74,7 +74,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
 });
 
 // comment destroy route
-router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res){
+router.delete("/:comment_id", middleware.isLoggedIn, function(req, res){
     Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if(err){
             req.flash("error", "Comment not found");

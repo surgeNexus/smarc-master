@@ -1,0 +1,25 @@
+<% include ../partials/adminheader %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">New Officer</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/info/officers/" method="POST" encType="multipart/form-data" id="new-form">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="title" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="callsign" placeholder="Callsign">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="file" name="officerPicture">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            <a href="/info/officers/officerscollection">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/adminfooter %>

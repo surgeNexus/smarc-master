@@ -1,0 +1,26 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Officer Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/info/officers/officerscollection/new">New Officer</a>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundOfficers.forEach(function(officers){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                        <h4><%= officers.title %></h4>
+                       <h5><%= officers.name %></h5>
+                       <h5><%= officers.callsign %></h5>
+                       <img src="<%= officers.pictureLoc %>">
+                   </div>
+                   <p>
+                       <a href="/info/officers/officerscollection/<%= officers._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

@@ -1,56 +1,19 @@
 <% include ../partials/header %>
 
 <div class="container form-media">
-    <div class="row well well-lg">
-        <div class="col-xs-6 col-md-4 well well-sm  image-size image-container">
-            <h2>President</h2>
-            <h3>Bob Wilson, KK4XA</h3>
-            <img class="customimg" src="/images/bob.png">
+    <div class="row well well-lg text-center">
+    <% foundOfficers.forEach(function(officer){ %>
+        <div class="col-md-4 col-sm-6">
+            <div class="thumbnail">
+               <div class="caption">
+                    <h3><%= officer.title %></h3>
+                    <img src="<%= officer.pictureLoc %>">
+                    <h4><%= officer.name %></h4>
+                    <h4><%= officer.callsign %></h4>
+               </div>
+            </div>
         </div>
-        <div class="col-xs-6 col-md-4 well well-sm  image-size image-container">
-            <h2>Vice President</h2>
-            <h3>Tom Jenkinson, WB7TLW</h3>
-            <img class="customimg" src="/images/tom.png">
-        </div>
-        <div class="col-xs-6 col-md-4 well well-sm image-size image-container">
-            <h2>Repeater Board Chairman</h2>
-            <h3>Kurt Meltzer, KC4NX</h3>
-            <img class="customimg" src="/images/kurt.png">
-        </div>
-    </div>
-    <div class="row well well-lg">
-        <div class="col-xs-6 col-md-4 well well-sm form-picture">
-            <h2>Secretary</h2>
-            <h3>Carroll Peabody, W4PCA</h3>
-            <img class="customimg" src="/images/carroll.png">
-        </div>
-        <div class="col-xs-6 col-md-4 well well-sm form-picture">
-            <h2>Treasurer</h2>
-            <h3>Randy Jackson, K4RDJ</h3>
-            <img class="customimg" src="/images/randy.png">
-        </div>
-        <div class="col-xs-6 col-md-4 well well-sm form-picture">
-            <h2>Newletter Publisher</h2>
-            <h3>Steve Carpenter, K4DXV</h3>
-            <img class="customimg" src="https://s3.amazonaws.com/files.qrz.com/v/k4dxv/100_0621.JPG">
-        </div>
-    </div>
-    <div class="row well well-lg">
-        <div class="col-xs-6 col-md-4 well well-sm form-picture">
-            <h2>Public Information</h2>
-            <h3>Tom Jenkinson, WB7TLW</h3>
-            <img class="customimg" src="/images/tom.png">
-        </div>
-        <div class="col-xs-6 col-md-4 well well-sm form-picture">
-            <h2>Net Manager</h2>
-            <h3>Melvin Turner, WB5KSM</h3>
-            <img class="customimg" src="/images/melvin.png">
-        </div>
-	    <div class="col-xs-6 col-md-4 well well-sm form-picture">
-	        <h2>Website Developer</h2>
-	        <h3>Jordan Webb, K4AVG</h3>
-	        <img class="customimg" src="/images/jordan.png">
-	    </div>
+    <% }); %>
     </div>
 </div>
 

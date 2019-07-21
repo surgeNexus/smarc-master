@@ -1,0 +1,24 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Documents Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/documents/docscollection/new">New Document</a>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundDocs.forEach(function(docs){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4><%= docs.title %></h4>
+                       <h5><%= docs.date %></h5>
+                   </div>
+                   <p>
+                       <a href="/documents/docscollection/<%= docs._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>
