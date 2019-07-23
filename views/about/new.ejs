@@ -1,0 +1,28 @@
+<% include ../partials/adminheader %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">New About Page</h1>
+        <h2>There should never be 2 of these.</h2>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/about" method="POST">
+                <div class="form-group">
+                    <h5>Meeting Location URL</h5>
+                    <input class="form-control" type="text" name="meeting">
+                </div>
+                <div class="form-group">
+                    <h5>Field Day Location URL</h5>
+                    <input class="form-control" type="text" name="fieldDay">
+                </div>
+                <div class="form-group">
+                    <h5>VE Testing Dates</h5>
+                    <textarea class="form-control" type="text" name="test" rows="4" cols="50"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/about/aboutcollection">Go Back</a>
+        </div>
+    </div>
+</div>
+<% include ../partials/adminfooter %>

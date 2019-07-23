@@ -1,0 +1,23 @@
+<% include ../partials/adminheader %> 
+
+ <div class="container">
+     <h1>Documents Admin Page</h1>
+        <a class="btn btn-primary btn-lg" href="/about/aboutcollection/new">New About (There should only be one of these)</a>
+        <hr>
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% foundAbout.forEach(function(about){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <div class="caption">
+                       <h4>About Section</h4>
+                   </div>
+                   <p>
+                       <a href="/about/aboutcollection/<%= about._id %>" class="btn btn-primary">Edit Page</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/adminfooter %>

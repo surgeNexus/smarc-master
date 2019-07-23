@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 
 <div class="container">
@@ -15,12 +15,15 @@
                 the month of June as field day is the Fourth Weekend of the month and the month of December
                 as we host a Christmas Party.
             </p>
-            <a href="https://www.google.com/maps/place/287+Savannah+Park+Dr,+Maryville,+TN+37803/@35.725395,-84.0004417,17z/data=!3m1!4b1!4m5!3m4!1s0x885e9e6102774d41:0x32ea5c01c86dbe86!8m2!3d35.725395!4d-83.998253">
-                <button class="btn btn-success">Directions to Meeting</button>
-            </a>
-            <a class="title-center" href="https://www.google.com/maps/dir//2508+Middlesettlements+Rd,+Maryville,+TN+37801/@35.784037,-84.0509258,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x885c270d6738666b:0xe10e9034a497ff63!2m2!1d-84.0488398!2d35.7914391">
-                <button class="btn btn-success">Directions to Field Day</button>
-            </a>
+            <% foundAbout.forEach(function(about){ %>
+                <a href="<%= about.meeting %>">
+                    <button class="btn btn-success">Directions to Meeting</button>
+                </a>
+                <a class="title-center" href="<%= about.fieldDay %>">
+                    <button class="btn btn-success">Directions to Field Day</button>
+                </a>
+            <% }) %>
+            
             <hr>
         </div>
         <div class="col-md-8 well well-lg text-inline">
@@ -74,12 +77,14 @@
                                 the church. The address is 314 W. Broadway and the church is next 
                                 to the Maryville Municipal Building on the same side of the street.
                                  A photo I.D. and exam fee of $10 is required.
-                                2019 Testing dates are:
-                                3/11/19
-                                6/10/19
-                                9/9/19
-                                12/9/19
                             </p>
+                            <p>Testing dates are:</p>
+                            <% foundAbout.forEach(function(about){ %>
+                                <p>
+                                    <%= about.test %>
+                                </p>
+                            <% }) %>
+                            
                         </div>
                     </div>
                 </div>
@@ -284,4 +289,5 @@
         </div>
     </div>
 </div>
-<% include partials/footer %>
+
+<% include ../partials/footer %>

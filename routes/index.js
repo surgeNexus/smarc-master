@@ -71,10 +71,6 @@ router.get("/logout", function(req, res){
    res.redirect("/radiomarket");
 });
 
-router.get("/about", function(req, res){
-    res.render("about");
-});
-
 router.get("/repeaters", function(req, res){
     res.render("repeaters");
 });

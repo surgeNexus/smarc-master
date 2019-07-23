@@ -26,12 +26,13 @@ var commentRoutes    = require("./routes/comments"),
     minutesRoutes    = require("./routes/minutes"),
     netscriptRoutes  = require("./routes/netcontrol"),
     officersRoutes   = require("./routes/officers"),
-    documentsRoute      = require("./routes/documents");
+    documentsRoute   = require("./routes/documents"),
+    aboutRoute       = require("./routes/about");
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb://localhost:27017/smarc");
+mongoose.connect("mongodb://localhost:27017/smarcWbe");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -72,7 +73,8 @@ app.use("/info/minutes", minutesRoutes);
 app.use("/info/netscript", netscriptRoutes);
 app.use("/info/officers", officersRoutes);
 app.use("/documents", documentsRoute);
+app.use("/about", aboutRoute);
 
-app.listen(3000, function(){
+app.listen(3100, function(){
    console.log("The SMARC Server Has Started!");
 });
