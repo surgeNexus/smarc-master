@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var skSchema = mongoose.Schema({
     name: String,
     callsign: String,
-    picture: String,
+    pictureLoc: String,
     author: String,
 });
 

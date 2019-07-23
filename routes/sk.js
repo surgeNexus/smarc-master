@@ -50,7 +50,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     });
     var pictureLoc = "/images/" + req.files.skPicture.name;
 
-    var newSk = {name: name, callsign: callsign, picture: pictureLoc};
+    var newSk = {name: name, callsign: callsign, pictureLoc: pictureLoc};
     Sk.create(newSk, function(err){
         if(err || !newSk){
             console.log(err)
