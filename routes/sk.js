@@ -39,9 +39,18 @@ router.get("/skcollection/new", middleware.isLoggedIn, function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     var name = req.body.name;
     var callsign = req.body.callsign;
-    var picture = req.body.picture;
 
-    var newSk = {name: name, callsign: callsign, picture: picture};
+    let skPicture = req.files.skPicture;
+
+    skPicture.mv("./public/images/" + req.files.skPicture.name, function(err){
+        if(err){
+            console.log(err);
+        };
+        console.log('success');
+    });
+    var pictureLoc = "/images/" + req.files.skPicture.name;
+
+    var newSk = {name: name, callsign: callsign, picture: pictureLoc};
     Sk.create(newSk, function(err){
         if(err || !newSk){
             console.log(err)

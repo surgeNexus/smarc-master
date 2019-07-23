@@ -16,12 +16,12 @@ router.get("/smarc-admin", function(req, res){
 });
 
 // show register form
-router.get("/register", function(req, res){
+router.get("/register", middleware.isLoggedIn, function(req, res){
    res.render("register"); 
 });
 
 //handle sign up logic
-router.post("/register", function(req, res){
+router.post("/register", middleware.isLoggedIn, function(req, res){
     var newUser = new User({
         username: req.body.username,
         firstName: req.body.firstName,

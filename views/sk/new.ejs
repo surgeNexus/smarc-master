@@ -3,7 +3,7 @@
     <div class="row">
         <h1 style="text-align: center">New Silent Key</h1>
         <div style="width: 30%; margin: 25px auto;">
-            <form action="/info/sk/" method="POST">
+            <form action="/info/sk/" method="POST" encType="multipart/form-data">
                 <div class="form-group">
                     <input class="form-control" type="text" name="name" placeholder="Name">
                 </div>
@@ -11,7 +11,7 @@
                     <input class="form-control" type="text" name="callsign" placeholder="Callsign">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="picture" placeholder="Picture">
+                    <input class="form-control" type="file" name="skPicture" >
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit</button>
