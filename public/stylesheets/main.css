@@ -60,16 +60,20 @@ ul {
     list-style: none;
 }
 
+.widgets {
+    padding-left: 10px;
+    object-position: center;
+}
+
 .jumbotron {
     margin-bottom: 0px;
-    background-image: url(../images/SMARC-web-banner-v1-unsquished.png);
     background-position: 0% 25%;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
-    width: 1168px auto;
-    height: 236px;
+    width: auto;
+    height: auto;
 }
 
 .customimg { 
@@ -81,8 +85,9 @@ ul {
     padding-left: 60px;
 }
 
-centerimgdiv {
+.centerjumbo {
     align-items: center;
+    padding-right: 50px
 }
 
 .title-center {
@@ -92,11 +97,16 @@ centerimgdiv {
     text-align: center;
 }
 
-.well-blue{
+/* .well-blue{
     background-color: #80b8de;
-}
+} */
 
 .button-sized{
     height: 70px;
-    width: 400px;
+    width: 300px;
+}
+
+.banner {
+    max-width: 100%;
+    max-height: 100%;
 }
