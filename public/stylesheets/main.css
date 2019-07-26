@@ -104,6 +104,8 @@ ul {
 .button-sized{
     height: 70px;
     width: 300px;
+    /* max-width: auto;
+    max-height: auto; */
 }
 
 .banner {
