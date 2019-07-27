@@ -75,6 +75,6 @@ app.use("/info/officers", officersRoutes);
 app.use("/documents", documentsRoute);
 app.use("/about", aboutRoute);
 
-app.listen(3100, function(){
+app.listen(3000, function(){
    console.log("The SMARC Server Has Started!");
 });
