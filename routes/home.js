@@ -66,7 +66,9 @@ router.put("/:id", function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     var title = req.body.title;
     var body = req.body.body;
+    var link1name = req.body.link1name
     var link1 = req.body.link1;
+    var link2name = req.body.link2name
     var link2 = req.body.link2;
     var image1 = req.body.image1;
     var image2 = req.body.image2;
@@ -75,7 +77,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         id: req.user._id,
         username: req.user.username
     };
-    var newHome = {title:title, body:body, link1:link1, link2:link2, image1:image1, image2:image2, image3:image3, author:author};
+    var newHome = {title:title, body:body, link1name: link1name, link1:link1, link2name: link2name, link2:link2, image1:image1, image2:image2, image3:image3, author:author};
     Home.create(newHome, function(err, newEntry){
         if(err){
             console.log(err);
