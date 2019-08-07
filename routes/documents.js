@@ -49,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
     var docLoc = "/files/documents/" + req.files.doc.name;
 
-    var newDoc = {title: title, date: date, docLoc};
+    var newDoc = {title: title, date: date, docLoc:docLoc};
     Docs.create(newDoc, function(err){
         if(err || !newDoc){
             console.log(err)
