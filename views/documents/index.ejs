@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 
+<div class="page-center">
 <div class="container">
-        <h1>W4OLB Club Documents</h1>
+    <h1 class="text-center">W4OLB Club Documents</h1>
+      <div class="form-media">
         <div class="row text-center well well-lg" style="display:flex; flex-wrap: wrap;">
            <% foundDocs.reverse().forEach(function(docs){ %>
                <div class="col-md-3 col-sm-6">
@@ -11,13 +13,13 @@
                           <h5><%= docs.date %></h5>
                           <div>
                             <a href="<%= docs.docLoc %>"><button class="btn btn-lg btn-primary">View Document</button></a>
-                            <a href="<%= docs.docLoc %>"><button class="btn btn-lg btn-primary">View Document</button></a>
                           </div>
                       </div>
                    </div>
                </div>
            <% }); %>
        </div>
+     </div>
    </div>
-
+</div>
 <% include ../partials/footer %>

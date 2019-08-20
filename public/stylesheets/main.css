@@ -116,3 +116,11 @@ ul {
 .row {
     margin-right: 15px;
 }
+
+.page-center {
+    padding-left: 30px;
+}
+
+.well-expand {
+    padding-right: 10px;
+}
