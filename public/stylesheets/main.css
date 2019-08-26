@@ -124,3 +124,7 @@ ul {
 .well-expand {
     padding-right: 10px;
 }
+
+[draggable] {
+    user-select: none;
+}
