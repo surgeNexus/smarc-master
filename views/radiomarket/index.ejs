@@ -1,17 +1,7 @@
 <% include ../partials/header %> 
 
- <div class="container">
-     <h1>Admin Edit Page</h1>
-        <a class="btn btn-primary btn-lg" href="/radiomarket/">Admin Page</a>
-        <a class="btn btn-primary btn-lg" href="/home/homescollection">Edit Home Page</a> 
-        <a class="btn btn-primary btn-lg" href="/netsched/netschedcollection">Edit Nets</a>
-        <% if(!currentUser){ %>
-            <a href="/login">login</a>
-        <% } else { %>
-            <a href="/logout">logout</a>
-        <% } %>
-        <hr>
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+ <div class="container form-media text-center">
+     <div class="row form-media text-center" style="display:flex; flex-wrap: wrap;">
         <% campgrounds.forEach(function(campground){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
@@ -20,7 +10,7 @@
                        <h4><%= campground.name %></h4>
                    </div>
                    <p>
-                       <a href="/radiomarket/<%= campground._id %>" class="btn btn-primary">Edit Page</a>
+                       <a href="/radiomarket/<%= campground._id %>" class="btn btn-primary">More Info</a>
                    </p>
                 </div>
             </div>

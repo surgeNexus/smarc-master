@@ -12,7 +12,7 @@ var express          = require("express"),
     Comment          = require("./models/comment"),
     User             = require("./models/user"),
     roles            = require("roles"),
-    fileUpload       = require("express-fileupload")
+    fileUpload       = require("express-fileupload");
 
     
 //requring routes

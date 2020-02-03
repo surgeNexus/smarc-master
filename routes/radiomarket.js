@@ -4,7 +4,7 @@ var Campground = require("../models/campground");
 var middleware = require("../middleware");
 
 //INDEX - show all campgrounds
-router.get("/",middleware.isLoggedIn, function(req, res){
+router.get("/", function(req, res){
     // Get all campgrounds from DB
     Campground.find({}, function(err, allCampgrounds){
        if(err){
@@ -19,7 +19,7 @@ router.get("/",middleware.isLoggedIn, function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
     var name = req.body.name;
-    var price = req.body.callsign;
+    var price = req.body.price;
     var image = req.body.image;
     var desc = req.body.description;
     var author = {
@@ -33,7 +33,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             console.log(err);
         } else {
             //redirect back to campgrounds page
-            console.log(newlyCreated);
             res.redirect("/radiomarket");
         }
     });
@@ -59,13 +58,13 @@ router.get("/:id", function(req, res){
 });
 
 // EDIT CAMPGROUND ROUTE
-router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
+router.get("/:id/edit", middleware.isLoggedIn, function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground){
         res.render("radiomarket/edit", {campground: foundCampground});
     });
 });
 // UPDATE CAMPGROUND ROUTE
-router.put("/:id", function(req, res){
+router.put("/:id", middleware.isLoggedIn, function(req, res){
     // find and update the correct campground
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
         if(err){
@@ -76,7 +75,7 @@ router.put("/:id", function(req, res){
     });
 });
 // DESTROY CAMPGROUND ROUTE
-router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res){
+router.delete("/:id", middleware.isLoggedIn, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect("/radiomarket");
