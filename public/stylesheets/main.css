@@ -128,3 +128,7 @@ ul {
 [draggable] {
     user-select: none;
 }
+
+.navbar-inverse {
+    color: white !important;
+}
