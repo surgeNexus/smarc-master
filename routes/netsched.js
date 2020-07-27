@@ -5,7 +5,7 @@ var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
   Nets.find({})
-    .sort({ day: 1 })
+    .sort({ day: 1, time: 1 })
     .exec(function (err, foundNets) {
       if (err || !foundNets) {
         req.flash('error', 'Item not found');
