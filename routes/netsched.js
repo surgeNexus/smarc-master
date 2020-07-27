@@ -50,18 +50,20 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', middleware.isLoggedIn, function (req, res) {
   Nets.findByIdAndUpdate(req.params.id, req.body, function (err, updatedNet) {
     if (err) {
       res.redirect('/netsched/netschedcollection');
       req.flash('error', 'Something went wrong');
     } else {
+      updatedNet.verified = req.body.verified;
+      updatedNet.save();
       res.redirect('/netsched/netschedcollection');
     }
   });
 });
 
-router.post('/', middleware.isLoggedIn, function (req, res) {
+router.post('/', function (req, res) {
   var net = req.body.net;
   var day = req.body.day;
   var time = req.body.time;
@@ -70,10 +72,8 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
   var altFreq = req.body.altFreq;
   var altTone = req.body.altTone;
   var externalLink = req.body.externalLink;
-  var author = {
-    id: req.user._id,
-    username: req.user.username
-  };
+  var verified = req.body.verified;
+
   var newNet = {
     net: net,
     day: day,
@@ -84,14 +84,14 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
     altFreq: altFreq,
     altTone: altTone,
     externalLink: externalLink,
-    author: author
+    verified: verified
   };
   Nets.create(newNet, function (err, newEntry) {
     if (err) {
       console.log(err);
     } else {
       req.flash('Success', 'Successfully added a new net');
-      res.redirect('/netsched/netschedcollection');
+      res.redirect('back');
     }
   });
 });

@@ -37,6 +37,13 @@
                     <input class="form-control" type="text" name="altTone" value="<%= foundNet.altTone %>">
                 </div>
                 <div class="form-group">
+                    <h4>Verified</h4>
+                    <div>
+                        <input class="" type="radio" name="verified" value="true" <% if(foundNet.verified === true){ %> checked <% } %> > True
+                        <input class="" type="radio" name="verified" value="false" <% if(foundNet.verified === false){ %> checked <% } %> > False
+                    </div>
+                </div>
+                <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit</button>
                 </div>
             </form>
