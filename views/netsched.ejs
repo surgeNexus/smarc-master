@@ -3,6 +3,7 @@
 <div class="page-center">
     <div class="container">
     <div class="row form-media">
+    
         <table class="table table-hover table-bordered">
         <thead>	
             <tr>
@@ -16,6 +17,7 @@
             </tr>
         </thead>
         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Monday'){ %>
         <tbody>
             <tr>
                 <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
@@ -26,10 +28,87 @@
                 <td><%= nets.altFreq %></td>
                 <td><%= nets.altTone %></td>
             </tr>
-        <% }) %>
         </tbody>
+        <% } %>
+        <% }) %>
+         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Tuesday'){ %>
+        <tbody>
+            <tr>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
+            </tr>
+        </tbody>
+        <% } %>
+        <% }) %>
+         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Wednesday'){ %>
+        <tbody>
+            <tr>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
+            </tr>
+        </tbody>
+        <% } %>
+        <% }) %>
+         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Thursday'){ %>
+        <tbody>
+            <tr>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
+            </tr>
+        </tbody>
+        <% } %>
+        <% }) %>
+         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Friday'){ %>
+        <tbody>
+            <tr>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
+            </tr>
+        </tbody>
+        <% } %>
+        <% }) %>
+         <% foundNets.forEach(function(nets){ %>
+        <% if(nets.day == 'Saturday'){ %>
+        <tbody>
+            <tr>
+                <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                <td><%= nets.day %></td>
+                <td><%= nets.time %></td>
+                <td><%= nets.freq %></td>
+                <th><%= nets.tone %></th>
+                <td><%= nets.altFreq %></td>
+                <td><%= nets.altTone %></td>
+            </tr>
+        </tbody>
+        <% } %>
+        <% }) %>
     </table>
     </div>
+    
     <div class="text-center"><p>If you would like your net added to this list, please click <a type="email" href="mailto:webmaster@w4olb.org">here</a> to email our website administrator.</p></div>
 </div>
 </div>	

@@ -4,17 +4,15 @@ var Nets = require('../models/netsched');
 var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
-  Nets.find({})
-    .sort({ day: 1, time: 1 })
-    .exec(function (err, foundNets) {
-      if (err || !foundNets) {
-        req.flash('error', 'Item not found');
-        res.redirect('back');
-      } else {
-        //render show template with that campground
-        res.render('netsched', { foundNets: foundNets });
-      }
-    });
+  Nets.find({}, function (err, foundNets) {
+    if (err || !foundNets) {
+      req.flash('error', 'Item not found');
+      res.redirect('back');
+    } else {
+      //render show template with that campground
+      res.render('netsched', { foundNets: foundNets });
+    }
+  });
 });
 
 router.get('/netschedcollection', middleware.isLoggedIn, function (req, res) {
