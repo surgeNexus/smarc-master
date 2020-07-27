@@ -1,15 +1,15 @@
-var express = require("express");
-var router  = express.Router();
-var passport = require("passport");
-var fs = require("fs")
-var User = require("../models/user");
-var Campground = require("../models/campground");
-var Comment = require("../models/comment")
-var middleware = require("../middleware");
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var fs = require('fs');
+var User = require('../models/user');
+var Campground = require('../models/campground');
+var Comment = require('../models/comment');
+var middleware = require('../middleware');
 
-router.get("/join", function(req, res){
-    res.render("info/join");
-})
+router.get('/join', function (req, res) {
+  res.render('info/join');
+});
 
 // router.get('/newsletter', function (req, res) {
 //     var filePath = "./public/files/pdf/august.pdf";
@@ -19,5 +19,9 @@ router.get("/join", function(req, res){
 //         res.send(data);
 //     });
 // });
+
+router.get('/email', function (req, res) {
+  res.render('info/email');
+});
 
 module.exports = router;
