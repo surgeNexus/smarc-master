@@ -1,26 +1,30 @@
 <% include ../partials/header %> 
 
  <div class="container page-center form-media text-center">
-        <h1>W4OLB Members Swap and Shop</h1>
-        <hr>
-     <div class="row form-media text-center" style="display:flex; flex-wrap: wrap;">
-        <% campgrounds.forEach(function(campground){ %>
-            <% if(campground.name < 1){ %>
-                <h3>There are currently no listings</h3>
-            <% } else { %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src="<%= campground.image %>">
-                   <div class="caption">
-                       <h4><%= campground.name %></h4>
-                   </div>
-                   <p>
-                       <a href="/radiomarket/<%= campground._id %>" class="btn btn-primary">More Info</a>
-                   </p>
-                </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>W4OLB Members Swap and Shop</h1>
+            <br>
+             <div class="row form-media text-center" style="display:flex; flex-wrap: wrap;">
+                <% campgrounds.forEach(function(campground){ %>
+                    <% if(campground.name < 1){ %>
+                        <h3>There are currently no listings</h3>
+                    <% } else { %>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="thumbnail">
+                           <img src="<%= campground.image %>">
+                           <div class="caption">
+                               <h4><%= campground.name %></h4>
+                           </div>
+                           <p>
+                               <a href="/radiomarket/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                           </p>
+                        </div>
+                    </div>
+                    <% } %>
+                <% }) %>
             </div>
-            <% } %>
-        <% }) %>
+        </div>
     </div>
 </div>
 

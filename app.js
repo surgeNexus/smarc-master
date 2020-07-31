@@ -14,6 +14,9 @@ var express = require('express'),
   roles = require('roles'),
   fileUpload = require('express-fileupload');
 
+var dotenv = require('dotenv');
+dotenv.config();
+
 //requring routes
 var commentRoutes = require('./routes/comments'),
   campgroundRoutes = require('./routes/radiomarket'),
