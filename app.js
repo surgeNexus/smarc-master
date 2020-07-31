@@ -33,7 +33,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb://localhost:27017/smarcWbe2');
+mongoose.connect('mongodb://localhost:27017/smarcWbe');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
