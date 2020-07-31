@@ -57,6 +57,7 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
     if (err) {
       console.log(err);
     } else {
+      foundUser.email = req.body.email;
       foundUser.isAdmin = req.body.admin;
       foundUser.isMember = req.body.member;
       foundUser.save();
