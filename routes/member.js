@@ -58,7 +58,6 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
 
 // User Admin Page
 router.get('/admin', middleware.isLoggedIn, function (req, res) {
-  // if (req.user.isAdmin === true) {
   User.find({}, function (err, foundUsers) {
     if (err) {
       console.log(err);
@@ -66,10 +65,6 @@ router.get('/admin', middleware.isLoggedIn, function (req, res) {
       res.render('members/admin', { users: foundUsers });
     }
   });
-  // } else {
-  //   req.flash('error', 'Administrators only');
-  //   res.redirect('/members');
-  // }
 });
 
 module.exports = router;
