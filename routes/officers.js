@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Officers = require('../models/officers');
 var middleware = require('../middleware');
+var moment = require('moment');
 
 router.get('/', function (req, res) {
   Officers.find({}, function (err, foundOfficers) {
@@ -46,19 +47,19 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
   var title = req.body.title;
   var name = req.body.name;
   var callsign = req.body.callsign;
+  var now = moment();
 
   let officerPicture = req.files.officerPicture;
 
   officerPicture.mv(
-    './public/images/' + req.files.officerPicture.name,
+    './public/images/' + now + req.files.officerPicture.name,
     function (err) {
       if (err) {
         console.log(err);
       }
-      console.log('success');
     }
   );
-  var pictureLoc = '/images/' + req.files.officerPicture.name;
+  var pictureLoc = '/images/' + now + req.files.officerPicture.name;
   var newOfficer = {
     title: title,
     name: name,
@@ -95,33 +96,34 @@ router.put('/officerscollection/:id', middleware.isLoggedIn, function (
   req,
   res
 ) {
-  Officers.findOneAndUpdate(req.params.id, function (err, foundOfficer) {
+  Officers.findById(req.params.id, function (err, foundOfficer) {
     var title = req.body.title;
     var name = req.body.name;
     var callsign = req.body.callsign;
+    var now = moment();
     if (err) {
       console.log(err);
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else if (req.files) {
-      let pictureLoc = '/images/' + req.files.officerPicture.name;
-      image.mv('./public/images/' + req.files.officerPicture.name, function (
-        err
-      ) {
-        if (err) {
-          console.log(err);
-          req.flash('error', 'Something went wrong');
-          res.redirect('back');
-        } else {
-          foundOfficer.name = name;
-          foundOfficer.title = title;
-          foundOfficer.callsign = callsign;
-          foundOfficer.pictureLoc = pictureLoc;
-          foundOfficer.save();
-          req.flash('Success', 'Officer has been updated');
-          res.redirect('/info/officers/officerscollection');
+      var officerPicture = req.files.officerPicture;
+      var pictureLoc = '/images/' + now + req.files.officerPicture.name;
+      officerPicture.mv(
+        './public/images/' + now + req.files.officerPicture.name,
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            foundOfficer.name = name;
+            foundOfficer.title = title;
+            foundOfficer.callsign = callsign;
+            foundOfficer.pictureLoc = pictureLoc;
+            foundOfficer.save();
+            req.flash('Success', 'Officer has been updated');
+            res.redirect('/info/officers/officerscollection');
+          }
         }
-      });
+      );
     } else {
       foundOfficer.name = name;
       foundOfficer.title = title;

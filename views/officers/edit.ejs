@@ -3,7 +3,7 @@
     <div class="row">
         <h1 style="text-align: center">Edit Officers</h1>
         <div style="width: 30%; margin: 25px auto;">
-            <form action="/info/officers/officerscollection/<%= foundOfficer._id %>?_method=PUT" method="POST">
+            <form action="/info/officers/officerscollection/<%= foundOfficer._id %>?_method=PUT" method="POST" encType="multipart/form-data">
                 <div class="form-group">
                     <input class="form-control" type="text" name="title" value="<%= foundOfficer.title %>">
                 </div>
