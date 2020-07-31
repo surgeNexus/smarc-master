@@ -90,17 +90,21 @@ router.get('/repeaters', function (req, res) {
   res.render('repeaters');
 });
 
+router.get('/history', function (req, res) {
+  res.render('info/history');
+});
+
 // User Admin Page
 router.get('/admin', middleware.isLoggedIn, function (req, res) {
   if (req.user.isAdmin === true) {
-    User.find({}, null, {sort: {username: 1}}, function (err, foundUsers) {
-        if (err) {
-          console.log(err);
-          res.redirect('back');
-        } else {
-          res.render('members/admin', { users: foundUsers });
-        }
-      });
+    User.find({}, null, { sort: { username: 1 } }, function (err, foundUsers) {
+      if (err) {
+        console.log(err);
+        res.redirect('back');
+      } else {
+        res.render('members/admin', { users: foundUsers });
+      }
+    });
   } else {
     req.flash('error', 'Administrators only');
     res.redirect('/members');
