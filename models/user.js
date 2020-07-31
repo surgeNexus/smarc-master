@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
   password: String,
   isAdmin: { type: Boolean, default: false },
   isMember: { type: Boolean, default: false },
-  phone: Number,
+  phone: String,
   address: String,
   ctyStZip: String,
   profileImage: String
