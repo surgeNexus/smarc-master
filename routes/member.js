@@ -17,7 +17,9 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
           err,
           foundUsers
         ) {
-          res.render('members/index', { members: foundUsers });
+          res.render('members/index', {
+            members: foundUsers
+          });
         });
       } else {
         req.flash(
@@ -60,7 +62,7 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
         var now = moment();
         let doc = req.files.doc;
         doc.mv(
-          './public/files/memberimages/' + req.files.doc.name + now,
+          './public/files/memberimages/' + now + req.files.doc.name,
           function (err) {
             if (err) {
               console.log(err);
@@ -68,7 +70,7 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
           }
         );
 
-        var docLoc = '/files/memberimages/' + req.files.doc.name + now;
+        var docLoc = '/files/memberimages/' + now + req.files.doc.name;
         foundUser.profileImage = docLoc;
         foundUser.username = req.body.callsign;
         foundUser.firstName = req.body.firstName;
