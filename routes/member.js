@@ -53,7 +53,7 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
       foundUser.address = req.body.address;
       foundUser.ctyStZip = req.body.ctyStZip;
       foundUser.save();
-      res.redirect('/members', {user: foundUser});
+      res.redirect('/members');
     }
   });
 });
