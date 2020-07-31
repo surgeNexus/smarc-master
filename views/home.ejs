@@ -28,8 +28,16 @@
                 </p>
                 <hr>
                 <div class="text-center">
-                    <a href="<%= foundHome.link1 %>"><%= foundHome.link1name %></a>
-                    <a href="<%= foundHome.link2 %>"><%= foundHome.link2name %></a>
+                    <% if(!foundHome.link1){ %>
+                    
+                    <% } else { %>
+                        <a class="btn btn-primary btn-sm" href="<%= foundHome.link1 %>"><%= foundHome.link1name %></a>
+                    <% } %> 
+                    <% if(!foundHome.link2){ %>
+                        
+                    <% } else { %>
+                        <a class="btn btn-primary btn-sm" href="<%= foundHome.link2 %>"><%= foundHome.link2name %></a>
+                    <% } %>
                 </div>
             </div>
             <% }) %>
