@@ -12,7 +12,10 @@ router.get('/', middleware.isLoggedIn, function (req, res) {
       console.log(err);
     } else {
       if (foundUser.isMember === true) {
-        User.find({}, null, {sort: {lastName: -1}}, function (err, foundUsers) {
+        User.find({}, null, { sort: { lastName: 1 } }, function (
+          err,
+          foundUsers
+        ) {
           res.render('members/index', { members: foundUsers });
         });
       } else {
