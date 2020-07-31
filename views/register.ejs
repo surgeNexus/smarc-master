@@ -1,31 +1,43 @@
 <% include ./partials/header %>
 
-<div class="container well form-center">
-    <h1>Sign Up!</h1>
-    <form action="/register" method="POST">
-    <div class="form-group">
-        <input type="text" name="firstName" placeholder="First Name">
+<div class="container form-center">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Sign up For a SMARC</h1>
+            <h1>Member Account!</h1>
+    <form action="/register" method="POST" class="form-media">
+        <div class="form-group">
+            <input type="text" name="firstName" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="lastName" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number(Optional)">
+        </div>
+        <div class="form-group">
+            <input type="text" name="username" placeholder="Callsign" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="address" placeholder="Street Address (Optional)">
+        </div>
+        <div class="form-group">
+            <input type="text" name="ctStZip" placeholder="City, State, Zip (Optional)">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" minlength="6" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password2" minlength="6" placeholder="Re-enter Password" required>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </form>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="text" name="lastName" placeholder="Last Name">
-    </div>
-    <div class="form-group">
-        <input type="email" name="email" placeholder="Email Address">
-    </div>
-    <div class="form-group">
-        <input type="tel" name="phone" placeholder="Phone Number">
-    </div>
-    <div class="form-group">
-        <input type="text" name="username" placeholder="Callsign">
-    </div>
-    <div class="form-group">
-        <input type="password" name="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <input type="text" name="profileImage" placeholder="Profile Image URL">
-    </div>
-    <div class="form-group">
-        <input class="btn btn-primary" type="submit" value="Submit">
-    </div>
-</form>
+    
 <% include ./partials/footer %>

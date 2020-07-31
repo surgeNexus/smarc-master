@@ -1,0 +1,61 @@
+<% include ../../partials/adminheader %>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Admin</h1>
+            <hr>
+            <div class="text-center">
+            <% users.forEach(function(user){ %>
+        <div class="form-check form-check-inline">
+            <form action="/register/<%= user.id %>?_method=PUT" method="POST">
+            
+                <div class="row">
+                    <div class="col-md-2">
+                        <h4>Call Sign</h4>
+                        <p><%= user.username %></p>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Name</h4>
+                        <p><%= user.firstName %> <%= user.lastName %></p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Admin?</h4>
+                        <input class="" type="radio" name="admin" value="true" placeholder="Net Name"
+                        <% if(user.isAdmin === true){ %>
+                            checked
+                        <% } %>> True
+                        <input class="" type="radio" name="admin" value="false" placeholder="Net Name"
+                        <% if(user.isAdmin === false){ %>
+                            checked
+                        <% } %>> False
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Member?</h4>
+                        <input class="" type="radio" name="member" value="true" placeholder="Net Name"
+                        <% if(user.isMember === true){ %>
+                            checked
+                        <% } %>> True
+                        <input class="" type="radio" name="member" value="false" placeholder="Net Name" 
+                        <% if(user.isMember === false){ %>
+                            checked
+                        <% } %>> False
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-md-2">
+                        <button class="btn btn-md btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+                <hr>
+            
+            </form>
+        </div>
+        <% }) %>
+    </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/adminfooter %>

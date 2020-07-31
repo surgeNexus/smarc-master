@@ -16,39 +16,59 @@ router.get('/smarc-admin', function (req, res) {
 });
 
 // show register form
-router.get('/register', middleware.isLoggedIn, function (req, res) {
+router.get('/register', function (req, res) {
   res.render('register');
 });
 
 //handle sign up logic
-router.post('/register', middleware.isLoggedIn, function (req, res) {
-  var newUser = new User({
-    username: req.body.username,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    phone: req.body.phone,
-    profileInfo: req.body.profileInfo,
-    profileImage: req.body.profileImage
-  });
-  if (req.body.memberCode === '1') {
-    newUser.isMember = true;
-  }
-  if (req.body.memberCode === '2') {
-    newUser.isAdmin = true;
-    newUser.isMember = true;
-  }
-  User.register(newUser, req.body.password, function (err, user) {
-    if (err) {
-      console.log(err.message);
-      return res.render('register', { error: err.message });
-    }
-    passport.authenticate('local')(req, res, function () {
-      req.flash('success', 'Welcome to W4OLB, ' + user.username);
-      res.redirect('/radiomarket');
+router.post('/register', function (req, res) {
+  if (req.body.password === req.body.password2) {
+    var newUser = new User({
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phone: req.body.phone,
+      address: req.body.address,
+      ctyStZip: req.body.ctyStZip
     });
+    if (req.body.memberCode === '1') {
+      newUser.isMember = true;
+    }
+    if (req.body.memberCode === '2') {
+      newUser.isAdmin = true;
+      newUser.isMember = true;
+    }
+    User.register(newUser, req.body.password, function (err, user) {
+      if (err) {
+        console.log(err.message);
+        return res.render('register', { error: err.message });
+      }
+      passport.authenticate('local')(req, res, function () {
+        req.flash('success', 'Welcome to W4OLB, ' + user.username);
+        res.redirect('/radiomarket');
+      });
+    });
+  } else {
+    req.flash('error', 'Your passwords do not match');
+    res.redirect('back');
+  }
+});
+
+// update user info
+router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
+  User.findById(req.params._id, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      foundUser.isAdmin = req.body.admin;
+      foundUser.isMember = req.body.member;
+      foundUser.save();
+      res.redirect('back');
+    }
   });
 });
+
 //show login form
 router.get('/login', function (req, res) {
   res.render('login');
@@ -58,7 +78,7 @@ router.get('/login', function (req, res) {
 router.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/home/homescollection',
+    successRedirect: '/userredirect',
     failureRedirect: '/login',
     failureFlash: true,
     successFlash: 'Welcome Back!'
@@ -70,11 +90,29 @@ router.post(
 router.get('/logout', function (req, res) {
   req.logout();
   req.flash('success', 'Logged you out!');
-  res.redirect('/radiomarket');
+  res.redirect('/home');
 });
 
 router.get('/repeaters', function (req, res) {
   res.render('repeaters');
+});
+
+router.get('/userredirect', function (req, res) {
+  User.findById(req.user.id, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (foundUser.isMember === true) {
+        res.redirect('/members');
+      } else {
+        req.flash(
+          'error',
+          'You must be a verified SMARC member to access that page'
+        );
+        res.redirect('/home');
+      }
+    }
+  });
 });
 
 module.exports = router;

@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 form-center">
+            <h1><%= user.username %>'s Info</h1>
+            <form action="/members/<%= user.id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <h4>First Name</h4>
+                    <input type="text" name="firstName" value="<%= user.firstName %>">
+                </div>
+                <div class="form-group">
+                    <h4>Last Name</h4>
+                    <input type="text" name="lastName" value="<%= user.lastName %>">
+                </div>
+                <div class="form-group">
+                    <h4>Call Sign</h4>
+                    <input type="text" name="callsign" value="<%= user.username %>">
+                </div>
+                <div class="form-group">
+                    <h4>Phone</h4>
+                    <input type="text" name="phone" value="<%= user.phone %>">
+                </div>
+                <div class="form-group">
+                    <h4>Email</h4>
+                    <input type="text" name="email" value="<%= user.email %>">
+                </div>
+                <div class="form-group">
+                    <h4>Mailing Address</h4>
+                    <input type="text" name="address" value="<%= user.address %>">
+                </div>
+                <div class="form-group">
+                    <h4>City, State, Zip Code</h4>
+                    <input type="text" name="ctyStZip" value="<%= user.ctyStZip %>">
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

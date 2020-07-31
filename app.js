@@ -27,6 +27,7 @@ var commentRoutes = require('./routes/comments'),
   officersRoutes = require('./routes/officers'),
   documentsRoute = require('./routes/documents'),
   aboutRoute = require('./routes/about');
+memberRoute = require('./routes/member');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -76,6 +77,7 @@ app.use('/info/netscript', netscriptRoutes);
 app.use('/info/officers', officersRoutes);
 app.use('/documents', documentsRoute);
 app.use('/about', aboutRoute);
+app.use('/members', memberRoute);
 
 app.listen(3000, function () {
   console.log('The SMARC Server Has Started!');

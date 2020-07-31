@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<div class="page-center">
+<div class="container">
+    <div class="row form-media">
+    <h1 class="text-center">Member's Section</h1>
+        <br>
+        <table class="table table-hover table-bordered">
+            <thead>	
+                <tr>
+                    <th>Name</th>
+                    <th>Call Sign</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Picture</th>
+                </tr>
+            </thead>
+            <% members.forEach(function(member){ %>
+            <tbody>
+                <tr>
+                    <td><%= member.lastName %>, <%= member.firstName %></td>
+                    <td><%= member.username %></td>
+                    <td><%= member.email %></td>
+                    <td><%= member.phone %></td>
+                    <th><%= member.address %> <%= member.ctyStZip %></th>
+                    <td><img src="<%= member.profileImage %>"></td>
+                </tr>
+            </tbody>
+            <% }) %>
+        </table>
+    </div>
+</div>
+</div>
+
+<% include ../partials/footer %>
