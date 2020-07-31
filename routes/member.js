@@ -4,7 +4,6 @@ var passport = require('passport');
 var fs = require('fs');
 var User = require('../models/user');
 var middleware = require('../middleware');
-const { isLoggedIn } = require('../middleware');
 
 //  members page
 router.get('/', middleware.isLoggedIn, function (req, res) {
@@ -58,18 +57,13 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
 
 // User Admin Page
 router.get('/admin', middleware.isLoggedIn, function (req, res) {
-  if (req.user.isAdmin === true) {
-    User.find({}, function (err, foundUsers) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render('members/admin', { users: foundUsers });
-      }
-    });
-  } else {
-    req.flash('error', 'Administrators only');
-    res.redirect('/members');
-  }
+  User.find({}, function (err, foundUsers) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('members/admin', { users: foundUsers });
+    }
+  });
 });
 
 module.exports = router;
