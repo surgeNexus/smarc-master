@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 form-center">
             <h1><%= user.username %>'s Info</h1>
-            <form action="/members/<%= user.id %>?_method=PUT" method="POST">
+            <form action="/members/<%= user.id %>?_method=PUT" method="POST" encType="multipart/form-data">
                 <div class="form-group">
                     <h4>First Name</h4>
                     <input type="text" name="firstName" value="<%= user.firstName %>">
@@ -33,6 +33,9 @@
                 <div class="form-group">
                     <h4>City, State, Zip Code</h4>
                     <input type="text" name="ctyStZip" value="<%= user.ctyStZip %>">
+                </div>
+                <div class="form-group">
+                    <input type="file" name="doc">
                 </div>
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit">

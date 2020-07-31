@@ -23,7 +23,13 @@
                     <td><%= member.email %></td>
                     <td><%= member.phone %></td>
                     <th><%= member.address %> <%= member.ctyStZip %></th>
-                    <td><img src="<%= member.profileImage %>"></td>
+                    <td>
+                        <div class="profile-image">
+                            <img src="<%= member.profileImage %>">
+                        </div>
+                    </td>
+                    
+                    
                 </tr>
             </tbody>
             <% }) %>
