@@ -58,7 +58,7 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
 
 // User Admin Page
 router.get('/admin', middleware.isLoggedIn, function (req, res) {
-  if (req.user.isAdmin === true) {
+  if (req.user.isAdmin === false) {
     User.find({}, function (err, foundUsers) {
       if (err) {
         console.log(err);
