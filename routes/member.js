@@ -55,15 +55,4 @@ router.put('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-// User Admin Page
-router.get('/admin', middleware.isLoggedIn, function (req, res) {
-  User.find({}, function (err, foundUsers) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('members/admin', { users: foundUsers });
-    }
-  });
-});
-
 module.exports = router;

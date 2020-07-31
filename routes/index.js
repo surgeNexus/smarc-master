@@ -32,13 +32,6 @@ router.post('/register', function (req, res) {
       address: req.body.address,
       ctyStZip: req.body.ctyStZip
     });
-    if (req.body.memberCode === '1') {
-      newUser.isMember = true;
-    }
-    if (req.body.memberCode === '2') {
-      newUser.isAdmin = true;
-      newUser.isMember = true;
-    }
     User.register(newUser, req.body.password, function (err, user) {
       if (err) {
         console.log(err.message);
@@ -95,6 +88,23 @@ router.get('/logout', function (req, res) {
 
 router.get('/repeaters', function (req, res) {
   res.render('repeaters');
+});
+
+// User Admin Page
+router.get('/admin', middleware.isLoggedIn, function (req, res) {
+  // if (req.user.isAdmin === true) {
+  User.find({}, function (err, foundUsers) {
+    if (err) {
+      console.log(err);
+      res.redirect('back');
+    } else {
+      res.render('members/admin', { users: foundUsers });
+    }
+  });
+  // } else {
+  //   req.flash('error', 'Administrators only');
+  //   res.redirect('/members');
+  // }
 });
 
 router.get('/userredirect', function (req, res) {
