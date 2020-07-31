@@ -67,6 +67,7 @@ router.get('/admin', middleware.isLoggedIn, function (req, res) {
       }
     });
   } else {
+    req.flash('error', 'Administrators only');
     res.redirect('/members');
   }
 });
