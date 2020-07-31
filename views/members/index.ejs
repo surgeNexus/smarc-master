@@ -17,6 +17,7 @@
             </thead>
             <% members.forEach(function(member){ %>
             <tbody>
+                <% if(member.isMember === true){ %>
                 <tr>
                     <td><%= member.lastName %>, <%= member.firstName %></td>
                     <td><%= member.username %></td>
@@ -24,9 +25,8 @@
                     <td><%= member.phone %></td>
                     <th><%= member.address %> <%= member.ctyStZip %></th>
                     <td><img class="profile-image" src="<%= member.profileImage %>"></td>
-                    
-                    
                 </tr>
+                <% } %> 
             </tbody>
             <% }) %>
         </table>
