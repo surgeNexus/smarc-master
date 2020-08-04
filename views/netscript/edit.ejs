@@ -1,4 +1,4 @@
-<% include ../partials/adminheader %>
+<% include ../partials/header %>
 <div class="container">
     <div class="row">
         <h1 style="text-align: center">Edit NCS</h1>
@@ -20,8 +20,8 @@
             <form id="delete-form" action="/info/netscript/netscriptcollection/<%= foundNet.id %>?_method=DELETE" method="POST">
                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
-            <a href="/info/netscript/netscriptcollection">Go Back</a>
+            <a href="/info/netscript/">Go Back</a>
         </div>
     </div>
 </div>
-<% include ../partials/adminfooter %>
+<% include ../partials/footer %>

@@ -1,25 +1,42 @@
 <% include ../partials/header %>
 
 <div class="page-center">
-<div class="container">
-    <div class="row">
-    <div class="title-center">
-            <h1>Meeting Minutes</h1>
-            <hr>
+    <div class="container">
+        <div class="row">
+            <div class="title-center">
+                <h1>Meeting Minutes</h1>
+            </div>
         </div>
-        <% foundMinutes.reverse().forEach(function(minutes){ %>
-        <div class="col-md-12 well well-lg">
-            <h4>
-                <%= minutes.date %>
-            </h4>
-            <hr>
-            <p>
-                <%= minutes.minutes %> 
-            </p>
+        <div class="row">
+            <div class=col-md-12>
+                <% if(!currentUser){ %>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" href="/home/new">New Home Entry</a>
+                <% } else { %>
+                <% } %>
+            </div>
         </div>
-        <% }) %>
+        <div class="row form-media">
+            <% foundMinutes.reverse().forEach(function(minutes){ %>
+            <div class="col-md-12 well well-lg">
+                <h4>
+                    <%= minutes.date %>
+                </h4>
+                <hr>
+                <p>
+                    <%= minutes.minutes %> 
+                </p>
+                <% if(!currentUser){ %>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <a href="/info/minutes/minutescollection/<%= minutes._id %>" class="glyphicon glyphicon-pencil"></a>
+                    <hr>
+                <% } else { %>
+                <% } %>
+            </div>
+            <% }) %>
+        </div>
     </div>
-</div>
 </div>
 
 <% include ../partials/footer %>

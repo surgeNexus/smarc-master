@@ -75,16 +75,15 @@ middlewareObj.checkProfileOwnership = function (req, res, next) {
 
 middlewareObj.isAdmin = function (req, res, next) {
   if (req.isAuthenticated()) {
-    User.findById(req.params._id, function (err, foundUser) {
+    User.findById(req.user.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
         res.redirect('/home');
       } else {
-        // does user own the comment?
-        if (foundUser.isAdmin.equals(true)) {
+        if (foundUser.isAdmin === true) {
           next();
         } else {
-          req.flash('error', 'You must be an admin to do that');
+          req.flash('error', "You don't have permission to do that");
           res.redirect('back');
         }
       }
@@ -97,13 +96,12 @@ middlewareObj.isAdmin = function (req, res, next) {
 
 middlewareObj.isMember = function (req, res, next) {
   if (req.isAuthenticated()) {
-    User.findById(req.params._id, function (err, foundUser) {
+    User.findById(req.user.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
         res.redirect('/home');
       } else {
-        // does user own the comment?
-        if (foundUser.isMember.equals(true)) {
+        if (foundUser.isMember === true) {
           next();
         } else {
           req.flash('error', 'You must be a verified member to do that');

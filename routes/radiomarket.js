@@ -48,7 +48,7 @@ router.post('/', middleware.checkCampgroundOwnership, function (req, res) {
 });
 
 //NEW - show form to create new campground
-router.get('/new', middleware.checkCampgroundOwnership, function (req, res) {
+router.get('/new', function (req, res) {
   res.render('radiomarket/new');
 });
 

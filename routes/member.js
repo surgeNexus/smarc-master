@@ -7,33 +7,30 @@ var middleware = require('../middleware');
 const moment = require('moment');
 
 //  members page
-router.get('/', middleware.isLoggedIn, function (req, res) {
+router.get('/', middleware.isMember, function (req, res) {
   User.findById(req.user.id, function (err, foundUser) {
     if (err) {
-      console.log(err);
+      req.flash('error', 'Something went wrong');
+      res.redirect('back');
     } else {
-      if (foundUser.isMember === true) {
-        User.find({}, null, { sort: { lastName: 1 } }, function (
-          err,
-          foundUsers
-        ) {
+      User.find({}, null, { sort: { lastName: 1 } }, function (
+        err,
+        foundUsers
+      ) {
+        if (err) {
+          req.flash('error', 'Something went wrong');
+        } else {
           res.render('members/index', {
             members: foundUsers
           });
-        });
-      } else {
-        req.flash(
-          'error',
-          'You must be a verified SMARC Member to access that page'
-        );
-        res.redirect('/home');
-      }
+        }
+      });
     }
   });
 });
 
 // Member Info Edit Page
-router.get('/:id', middleware.isLoggedIn, function (req, res) {
+router.get('/:id', middleware.isMember, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);
@@ -43,7 +40,7 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.put('/:id', middleware.isLoggedIn, function (req, res) {
+router.put('/:id', middleware.isMember, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);

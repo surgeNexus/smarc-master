@@ -1,4 +1,4 @@
-<% include ../partials/adminheader %>
+<% include ../partials/header %>
 <div class="container">
     <div class="row">
         <h1 style="text-align: center">New Silent Key</h1>
@@ -17,8 +17,8 @@
             <form id="delete-form" action="/info/sk/skcollection/<%= foundSk.id %>?_method=DELETE" method="POST">
                 <button id="delete" type="submit" class="btn btn-xs btn-danger">Delete</button>
             </form>
-            <a href="/info/sk/skcollection">Go Back</a>
+            <a href="/info/sk/">Go Back</a>
         </div>
     </div>
 </div>
-<% include ../partials/adminfooter %>
+<% include ../partials/footer %>

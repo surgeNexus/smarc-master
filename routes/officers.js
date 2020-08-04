@@ -3,6 +3,7 @@ var router = express.Router();
 var Officers = require('../models/officers');
 var middleware = require('../middleware');
 var moment = require('moment');
+var User = require('../models/user');
 
 router.get('/', function (req, res) {
   Officers.find({}, function (err, foundOfficers) {
@@ -10,26 +11,14 @@ router.get('/', function (req, res) {
       req.flash('error', 'Item not found');
       res.redirect('back');
     } else {
-      res.render('info/officers', { foundOfficers: foundOfficers });
+      res.render('info/officers', {
+        foundOfficers: foundOfficers
+      });
     }
   });
 });
 
-router.get('/officerscollection', middleware.isLoggedIn, function (req, res) {
-  Officers.find({}, function (err, foundOfficers) {
-    if (err) {
-      req.flash('error', 'Something went wrong');
-      res.redirect('back');
-    } else {
-      res.render('officers/collection', { foundOfficers: foundOfficers });
-    }
-  });
-});
-
-router.get('/officerscollection/new', middleware.isLoggedIn, function (
-  req,
-  res
-) {
+router.get('/officerscollection/new', middleware.isAdmin, function (req, res) {
   Officers.find({}, function (err, newOfficer) {
     if (err) {
       req.flash('error', 'Something went wrong');
@@ -40,7 +29,7 @@ router.get('/officerscollection/new', middleware.isLoggedIn, function (
   });
 });
 
-router.post('/', middleware.isLoggedIn, function (req, res) {
+router.post('/', middleware.isAdmin, function (req, res) {
   if (Object.keys(req.files).length == 0) {
     return res.status(400).send('No files were uploaded.');
   }
@@ -73,15 +62,12 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
       res.redirect('back');
     } else {
       req.flash('Success', 'New officer created');
-      res.redirect('/info/officers/officerscollection');
+      res.redirect('/info/officers');
     }
   });
 });
 
-router.get('/officerscollection/:id', middleware.isLoggedIn, function (
-  req,
-  res
-) {
+router.get('/officerscollection/:id', middleware.isAdmin, function (req, res) {
   Officers.findById(req.params.id, function (err, foundOfficer) {
     if (err) {
       req.flash('error', 'Something went wrong');
@@ -92,10 +78,7 @@ router.get('/officerscollection/:id', middleware.isLoggedIn, function (
   });
 });
 
-router.put('/officerscollection/:id', middleware.isLoggedIn, function (
-  req,
-  res
-) {
+router.put('/officerscollection/:id', middleware.isAdmin, function (req, res) {
   Officers.findById(req.params.id, function (err, foundOfficer) {
     var title = req.body.title;
     var name = req.body.name;
@@ -120,7 +103,7 @@ router.put('/officerscollection/:id', middleware.isLoggedIn, function (
             foundOfficer.pictureLoc = pictureLoc;
             foundOfficer.save();
             req.flash('Success', 'Officer has been updated');
-            res.redirect('/info/officers/officerscollection');
+            res.redirect('/info/officers');
           }
         }
       );
@@ -130,12 +113,12 @@ router.put('/officerscollection/:id', middleware.isLoggedIn, function (
       foundOfficer.callsign = callsign;
       foundOfficer.save();
       req.flash('Success', 'Officer has been updated');
-      res.redirect('/info/officers/officerscollection');
+      res.redirect('/info/officers/');
     }
   });
 });
 
-router.delete('/officerscollection/:id', middleware.isLoggedIn, function (
+router.delete('/officerscollection/:id', middleware.isAdmin, function (
   req,
   res
 ) {
@@ -144,7 +127,7 @@ router.delete('/officerscollection/:id', middleware.isLoggedIn, function (
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
-      res.redirect('/info/officers/officerscollection');
+      res.redirect('/info/officers/');
     }
   });
 });

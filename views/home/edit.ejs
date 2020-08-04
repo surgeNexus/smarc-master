@@ -1,4 +1,4 @@
-<% include ../partials/adminheader %>
+<% include ../partials/header %>
 <div class="container">
     <div class="row">
         <h1 style="text-align: center">Edit Home Entry</h1>
@@ -49,7 +49,7 @@
             <form id="delete-form" action="/home/<%= foundHome.id %>?_method=DELETE" method="POST">
                 <input type="submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
-            <a href="/home/homescollection">Go Back</a>
+            <a href="/home/">Go Back</a>
         </div>
     </div>
 </div>

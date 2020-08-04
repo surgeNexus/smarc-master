@@ -99,7 +99,7 @@ router.get('/history1', function (req, res) {
 });
 
 // User Admin Page
-router.get('/admin', middleware.isLoggedIn, function (req, res) {
+router.get('/admin', middleware.isAdmin, function (req, res) {
   if (req.user.isAdmin === true) {
     User.find({}, null, { sort: { username: 1 } }, function (err, foundUsers) {
       if (err) {

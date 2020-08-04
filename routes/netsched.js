@@ -15,18 +15,7 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/netschedcollection', middleware.isLoggedIn, function (req, res) {
-  Nets.find({}, function (err, foundNets) {
-    if (err) {
-      console.log(err);
-      req.flash('error', 'something went wrong');
-    } else {
-      res.render('netsched/collection', { foundNets: foundNets });
-    }
-  });
-});
-
-router.get('/new', middleware.isLoggedIn, function (req, res) {
+router.get('/new', middleware.isAdmin, function (req, res) {
   Nets.find({}, function (err, createNet) {
     if (err || !createNet) {
       req.flash('error', 'Item not found');
@@ -39,7 +28,7 @@ router.get('/new', middleware.isLoggedIn, function (req, res) {
 });
 
 // edit route
-router.get('/:id', middleware.isLoggedIn, function (req, res) {
+router.get('/:id', middleware.isAdmin, function (req, res) {
   Nets.findById(req.params.id, function (err, foundNet) {
     if (err) {
       console.log(err);
@@ -50,20 +39,20 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.put('/:id', middleware.isLoggedIn, function (req, res) {
+router.put('/:id', middleware.isAdmin, function (req, res) {
   Nets.findByIdAndUpdate(req.params.id, req.body, function (err, updatedNet) {
     if (err) {
-      res.redirect('/netsched/netschedcollection');
+      res.redirect('/netsched');
       req.flash('error', 'Something went wrong');
     } else {
       updatedNet.verified = req.body.verified;
       updatedNet.save();
-      res.redirect('/netsched/netschedcollection');
+      res.redirect('/netsched');
     }
   });
 });
 
-router.post('/', function (req, res) {
+router.post('/', middleware.isAdmin, function (req, res) {
   var net = req.body.net;
   var day = req.body.day;
   var time = req.body.time;
@@ -91,21 +80,21 @@ router.post('/', function (req, res) {
       console.log(err);
     } else {
       req.flash('Success', 'Successfully added a new net');
-      res.redirect('back');
+      res.redirect('/netsched');
     }
   });
 });
 
 // Delete Route
 
-router.delete('/:id', middleware.isLoggedIn, function (req, res) {
+router.delete('/:id', middleware.isAdmin, function (req, res) {
   Nets.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
       req.flash('success', 'Net Deleted');
-      res.redirect('/netsched/netschedcollection' + req.param.id);
+      res.redirect('/netsched');
     }
   });
 });

@@ -2,12 +2,29 @@
 
 <div class="page-center">
     <div class="container form-media">
+        <div class="row">
+            <div class="col-md-12">
+                <% if(!currentUser){ %>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <a class="btn btn-primary btn-sm" href="/info/officers/officerscollection/new">New Officer</a>
+                    <hr>
+                <% } else { %>
+                <% } %>
+            </div>
+        </div>
         <div class="row text-center">
         <% foundOfficers.forEach(function(officer){ %>
             <div class="col-md-4 col-sm-6">
                 <div class="thumbnail">
                    <div class="caption">
-                        <h3><%= officer.title %></h3>
+                        <div>
+                            <h3><%= officer.title %></h3>
+                            <% if(!currentUser){ %>
+                            <% } else if(currentUser.isAdmin === true) { %>
+                            <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
+                            <% } else { %>
+                            <% } %>
+                        </div>
                         <img src="<%= officer.pictureLoc %>">
                         <h4><%= officer.name %></h4>
                         <h4><%= officer.callsign %></h4>

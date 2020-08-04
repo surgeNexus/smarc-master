@@ -13,6 +13,14 @@
                     <th>Tone (Hz)</th>
                     <th>Alt. Frequency (MHz)</th>
                     <th>Alt Tone (Hz)</th>
+                        <% if(!currentUser){ %>
+                        <% } else if(currentUser.isAdmin === true) { %>
+                        <th>Verified</th>
+                        <th>
+                            Edit
+                        </th>
+                        <% } else { %>
+                        <% } %>
                 </tr>
             </thead>
             <% foundNets.forEach(function(nets){ %>
@@ -26,12 +34,28 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
             <% }) %>
              <% foundNets.forEach(function(nets){ %>
-            <% if(nets.day == 'Tuesday' && nets.verified === true){ %>
+            <% if(nets.day == 'Tuesday' && nets.verified === true || currentUser.isAdmin === true){ %>
             <tbody>
                 <tr>
                     <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
@@ -41,6 +65,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
@@ -56,6 +96,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
@@ -71,6 +127,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
@@ -86,6 +158,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
@@ -101,6 +189,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>
@@ -116,6 +220,22 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
                 </tr>
             </tbody>
             <% } %>

@@ -14,11 +14,25 @@
     </div>
 </div>
 <div class="container">
+    <div class="row">
+        <div class=col-md-12>
+                <% if(!currentUser){ %>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" href="/home/new">New Home Entry</a>
+                <% } else { %>
+                <% } %>
+        </div>
+    </div>
     <div class="row form-media">
-        
         <div class="col-md-10 col-sm-6">
                 <% foundHome.forEach(function(foundHome){ %>
             <div class="well well-lg well-blue">
+                <% if(!currentUser){ %>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <a href="/home/<%= foundHome._id %>" class="glyphicon glyphicon-pencil"></a>
+                <% } else { %>
+                <% } %>
                 <h2 class="title-center">
                     <%= foundHome.title %>
                 </h2>

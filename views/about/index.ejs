@@ -2,8 +2,6 @@
 
 <div class="page-center">
 <div class="container">
-    <div class="text-center">
-    </div>
     <div class="row form-media">
         <div class="col-md-4 form-media">
             <h2>Contact</h2>
@@ -28,11 +26,18 @@
                     <button class="btn btn-success">Directions to Field Day</button>
                 </a>
             </div>
+            <% if(!currentUser){ %>
+                <hr>
+                <% } else if(currentUser.isAdmin === true) { %>
+                    <a href="/about/aboutcollection/<%= about._id %>" class="form-media glyphicon glyphicon-pencil"></a>
+                <% } else { %>
+                <hr>
+                <% } %>
             <% }) %>
-            <hr>
-        </div>
-        <div>
             
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center form-media">Testing Info</h2>
         </div>
     </div>
 </div>

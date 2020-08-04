@@ -18,18 +18,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/homescollection', middleware.isLoggedIn, function (req, res) {
-  Home.find({}, function (err, foundHomes) {
-    if (err) {
-      console.log(err);
-      req.flash('error', 'something went wrong');
-    } else {
-      res.render('home/collection', { foundHomes: foundHomes });
-    }
-  });
-});
-
-router.get('/new', middleware.isLoggedIn, function (req, res) {
+router.get('/new', middleware.isAdmin, function (req, res) {
   Home.find({}, function (err, foundHome) {
     if (err || !foundHome) {
       req.flash('error', 'Item not found');
@@ -42,7 +31,7 @@ router.get('/new', middleware.isLoggedIn, function (req, res) {
 });
 
 // edit route
-router.get('/:id', middleware.isLoggedIn, function (req, res) {
+router.get('/:id', middleware.isAdmin, function (req, res) {
   Home.findById(req.params.id, function (err, foundHome) {
     if (err) {
       console.log(err);
@@ -53,21 +42,21 @@ router.get('/:id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', middleware.isAdmin, function (req, res) {
   // find and update the correct campground
   Home.findByIdAndUpdate(req.params.id, req.body, function (err, updatedHome) {
     if (err) {
-      res.redirect('/home/homescollection');
+      res.redirect('/home');
       req.flash('error', 'Something went wrong');
     } else {
       updatedHome.order = req.body.order;
       updatedHome.save();
-      res.redirect('/home/homescollection');
+      res.redirect('/home');
     }
   });
 });
 
-router.post('/', middleware.isLoggedIn, function (req, res) {
+router.post('/', middleware.isAdmin, function (req, res) {
   var title = req.body.title;
   var body = req.body.body;
   var link1name = req.body.link1name;
@@ -99,21 +88,21 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/home/homescollection');
+      res.redirect('/home');
     }
   });
 });
 
 // Delete Route
-router.delete('/:id', middleware.isLoggedIn, function (req, res) {
+router.delete('/:id', middleware.isAdmin, function (req, res) {
   Home.findByIdAndRemove(req.params.id, function (err, deleteEntry) {
     if (err) {
       console.log(err);
       console.log(req.params.id);
-      res.redirect('/home/homescollection');
+      res.redirect('/home');
     } else {
       console.log(req.params.id);
-      res.redirect('/home/homescollection');
+      res.redirect('/home');
     }
   });
 });
