@@ -12,6 +12,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th>ARRL</th>
                     <th>Picture</th>
                 </tr>
             </thead>
@@ -24,6 +25,9 @@
                     <td><a href="mailto:<%= member.email %>"><%= member.email %></a></td>
                     <td><a href="tel:<%= member.phone %>"><%= member.phone %></a></td>
                     <th><%= member.address %> <%= member.ctyStZip %></th>
+                    <th><% if(member.arrl === true){ %> Yes <% } else if(member.arrl === false){ %> No <% } else { %>
+                        N/A
+                    <% } %></th>
                     <td><img class="profile-image" src="<%= member.profileImage %>"></td>
                 </tr>
                 <% } %> 

@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
   phone: String,
   address: String,
   ctyStZip: String,
+  arrl: Boolean,
   profileImage: String
 });
 

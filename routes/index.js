@@ -33,7 +33,8 @@ router.post('/register', function (req, res) {
       email: req.body.email,
       phone: req.body.phone,
       address: req.body.address,
-      ctyStZip: req.body.ctyStZip
+      ctyStZip: req.body.ctyStZip,
+      arrl: req.body.arrl
     });
     User.register(newUser, req.body.password, function (err, user) {
       if (err) {
@@ -60,6 +61,7 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
       foundUser.email = req.body.email;
       foundUser.isAdmin = req.body.admin;
       foundUser.isMember = req.body.member;
+      foundUser.arrl = req.body.arrl;
       foundUser.save();
       res.redirect('back');
     }

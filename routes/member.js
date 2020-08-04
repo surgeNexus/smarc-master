@@ -53,6 +53,7 @@ router.put('/:id', middleware.isMember, function (req, res) {
         foundUser.email = req.body.email;
         foundUser.address = req.body.address;
         foundUser.ctyStZip = req.body.ctyStZip;
+        foundUser.arrl = req.body.arrl;
         foundUser.save();
         res.redirect('/members');
       } else {
@@ -76,6 +77,7 @@ router.put('/:id', middleware.isMember, function (req, res) {
         foundUser.email = req.body.email;
         foundUser.address = req.body.address;
         foundUser.ctyStZip = req.body.ctyStZip;
+        foundUser.arrl = req.body.arrl;
         foundUser.save();
         res.redirect('/members');
       }
