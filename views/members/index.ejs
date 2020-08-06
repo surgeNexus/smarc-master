@@ -17,11 +17,12 @@
                 </tr>
             </thead>
             <% members.forEach(function(member){ %>
+            <% var callsign = member.username.toUpperCase() %>
             <tbody>
                 <% if(member.isMember === true){ %>
                 <tr>
                     <td><%= member.lastName %>, <%= member.firstName %></td>
-                    <td><%= member.username %></td>
+                    <td><%= callsign %></td>
                     <td><a href="mailto:<%= member.email %>"><%= member.email %></a></td>
                     <td><a href="tel:<%= member.phone %>"><%= member.phone %></a></td>
                     <th><%= member.address %> <%= member.ctyStZip %></th>
@@ -30,8 +31,8 @@
                     <% } %></th>
                     <td><img class="profile-image" src="<%= member.profileImage %>"></td>
                 </tr>
-                <% } %> 
             </tbody>
+            <% } %>
             <% }) %>
         </table>
     </div>

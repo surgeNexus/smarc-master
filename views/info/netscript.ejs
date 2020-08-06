@@ -88,11 +88,10 @@
                     <h4>
                         This is 
                         <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
-                                    <% if(net.date === today){ %>
-                                        <%= callsign %>
-                            <% } else if(!net.date === today) { %>
-                                (callsign)
+                            <% if(net.date === today){ %>
+                                <%= callsign %>
                             <% } %>
+                                
                         <% }) %> 
                 your NCS of SMARC taking check-ins from any and all stations. Please come with 
                         your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
