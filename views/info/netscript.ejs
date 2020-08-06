@@ -119,9 +119,12 @@
                             <p>
                                 Callsign: <%= net.ncs.username %>
                             </p>
-                            <div class="profile-image">
-                                <img src="<%= net.ncs.profileImage %>" alt="">
+                            <div class="container">
+                                <div class="profile-image">
+                                    <img src="<%= net.ncs.profileImage %>" alt="">
+                                </div>
                             </div>
+                            
                              <% if(!currentUser){ %>
                             <% } else if(currentUser.isAdmin === true) { %>
                             <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
