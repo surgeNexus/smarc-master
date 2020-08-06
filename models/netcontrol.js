@@ -1,9 +1,11 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 
 var netSchema = mongoose.Schema({
-    name: String,
-    date: String,
-    callsign: String,
+  date: String,
+  ncs: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
-module.exports = mongoose.model("Net", netSchema);
+module.exports = mongoose.model('Net', netSchema);

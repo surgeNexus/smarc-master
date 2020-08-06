@@ -2,22 +2,45 @@
 <div class="page-center">
     <div class="container form-media">
         <div class="row form-media">
-            <div class="col-md-8 col-sm-6 form-media well well-lg">
+            <div class="col-md-8 col-sm-12 form-media well well-lg">
                 <h1 class="title-center">Smoky Mountain Amateur Radio Club</h1>
                 <h2 class="title-center">(SMARC: Net Control Station Procedure)</h2>
                 <hr>
                 <div>
                     <h4>
-                        This is (Call Sign) calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Mhz)
+                        This is 
+                                <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                                    <% if(net.date === today){ %>
+                                        <%= callsign %>
+                                    <% } else if(!net.date === today) { %>
+                                        (callsign)
+                                    <% } %>
+                                <% }) %> 
+                        calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Mhz)
                         is this frequency in use? <em>**PAUSE**</em> I am your Net Control Station (NCS) 
-                        for this session and my name is (name).
+                        for this session and my name is 
+                        <% foundNet.forEach(function(net){ %>
+                            <% if(net.date === today){ var firstName = net.ncs.firstName.toUpperCase() %>
+                                <%= firstName %>.
+                            <% } else if(!net.date === today) { %>
+                                (name).
+                            <% } %>
+                        <% }) %>
                     </h4>
                 </div>
                 <br>
                 <div>
                     <h4>
                         This net is currently activated as an open net to all SMARC members and hams 
-                        who are interested in promoting the hobby. This is (Call Sign) standing by for 
+                        who are interested in promoting the hobby. This is 
+                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                                    <% if(net.date === today){ %>
+                                        <%= callsign %>
+                            <% } else if(!net.date === today) { %>
+                                (callsign)
+                            <% } %>
+                        <% }) %>
+                         standing by for 
                         EMERGENCY TRAFFIC. 
                     </h4>
                 </div>
@@ -48,20 +71,36 @@
                 <br>
                 <div>
                     <h4>
-                        This is (Call Sign) your net control station. Please come now with your fist name, call sign, location, and
+                        This is 
+                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                                    <% if(net.date === today){ %>
+                                        <%= callsign %>
+                            <% } else if(!net.date === today) { %>
+                                (callsign)
+                            <% } %>
+                        <% }) %>
+                         your net control station. Please come now with your fist name, call sign, location, and
                          let us know if you are a member of SMARC. <em>**PAUSE FOR CHECKINS**</em>
                     </h4>
                 </div>
                 <br>
                 <div>
                     <h4>
-                        This is (Call Sign) your NCS of SMARC taking check-ins from any and all stations. Please come with 
+                        This is 
+                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                                    <% if(net.date === today){ %>
+                                        <%= callsign %>
+                            <% } else if(!net.date === today) { %>
+                                (callsign)
+                            <% } %>
+                        <% }) %> 
+                your NCS of SMARC taking check-ins from any and all stations. Please come with 
                         your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
                         by the FCC and follow ALL FCC RULES. <em>**PAUSE FOR MORE CHECKINS**</em>
                     </h4>
                 </div>
             </div>
-                <div class="col-md-4 title-center">
+                <div class="col-md-4 col-sm-12 title-center">
                     <h1 class="title-center">Net Control Station Schedule</h1>
                     <hr>
                     <% if(!currentUser){ %>
@@ -74,18 +113,21 @@
                         <div class="well well-sm">
                             <h4>
                             Date: <%= net.date %>
-                        </h4>
-                        <p>
-                            Name: <%= net.name %>
-                        </p>
-                        <p>
-                            Callsign: <%= net.callsign %>
-                        </p>
-                         <% if(!currentUser){ %>
-                        <% } else if(currentUser.isAdmin === true) { %>
-                        <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
-                        <% } else { %>
-                        <% } %>
+                            </h4>
+                            <p>
+                                Name: <%= net.ncs.firstName %>
+                            </p>
+                            <p>
+                                Callsign: <%= net.ncs.username %>
+                            </p>
+                            <div>
+                                <img src="<%= net.ncs.profileImage %>" alt="">
+                            </div>
+                             <% if(!currentUser){ %>
+                            <% } else if(currentUser.isAdmin === true) { %>
+                            <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
+                            <% } else { %>
+                            <% } %>
                         </div>
                         <% }); %>
                     </div>
