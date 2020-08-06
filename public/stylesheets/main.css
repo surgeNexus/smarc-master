@@ -148,10 +148,10 @@ body {
 }
 
 .net-img {
-  padding-left: 8%;
+  padding-left: 9%;
   padding-right: auto;
   float: left;
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 300px;
+  max-height: 300px;
   object-fit: cover;
 }
