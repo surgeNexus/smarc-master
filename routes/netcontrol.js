@@ -7,7 +7,7 @@ var moment = require('moment');
 const { update } = require('../models/user');
 const user = require('../models/user');
 
-router.get('/', middleware.isMember, function (req, res) {
+router.get('/', function (req, res) {
   Net.find({})
     .populate('ncs')
     .sort({ date: 1 })
