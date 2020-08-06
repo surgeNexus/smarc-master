@@ -9,23 +9,11 @@
                 <div>
                     <h4>
                         This is 
-                                <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
-                                    <% if(net.date === today){ %>
-                                        <%= callsign %>
-                                    <% } else if(!net.date === today) { %>
-                                        (callsign)
-                                    <% } %>
-                                <% }) %> 
+                               
                         calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Mhz)
                         is this frequency in use? <em>**PAUSE**</em> I am your Net Control Station (NCS) 
                         for this session and my name is 
-                        <% foundNet.forEach(function(net){ %>
-                            <% if(net.date === today){ var firstName = net.ncs.firstName.toUpperCase() %>
-                                <%= firstName %>.
-                            <% } else if(!net.date === today) { %>
-                                (name).
-                            <% } %>
-                        <% }) %>
+                        
                     </h4>
                 </div>
                 <br>
@@ -33,13 +21,7 @@
                     <h4>
                         This net is currently activated as an open net to all SMARC members and hams 
                         who are interested in promoting the hobby. This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
-                                    <% if(net.date === today){ %>
-                                        <%= callsign %>
-                            <% } else if(!net.date === today) { %>
-                                (callsign)
-                            <% } %>
-                        <% }) %>
+                        
                          standing by for 
                         EMERGENCY TRAFFIC. 
                     </h4>
@@ -72,13 +54,7 @@
                 <div>
                     <h4>
                         This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
-                                    <% if(net.date === today){ %>
-                                        <%= callsign %>
-                            <% } else if(!net.date === today) { %>
-                                (callsign)
-                            <% } %>
-                        <% }) %>
+                        
                          your net control station. Please come now with your fist name, call sign, location, and
                          let us know if you are a member of SMARC. <em>**PAUSE FOR CHECKINS**</em>
                     </h4>
@@ -87,13 +63,7 @@
                 <div>
                     <h4>
                         This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
-                                    <% if(net.date === today){ %>
-                                        <%= callsign %>
-                            <% } else if(!net.date === today) { %>
-                                (callsign)
-                            <% } %>
-                        <% }) %> 
+                        
                 your NCS of SMARC taking check-ins from any and all stations. Please come with 
                         your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
                         by the FCC and follow ALL FCC RULES. <em>**PAUSE FOR MORE CHECKINS**</em>
@@ -115,13 +85,13 @@
                             Date: <%= net.date %>
                             </h4>
                             <p>
-                                Name: <%= net.ncs.firstName %>
+                                Name: 
                             </p>
                             <p>
-                                Callsign: <%= net.ncs.username %>
+                                Callsign: 
                             </p>
                             <div>
-                                <img src="<%= net.ncs.profileImage %>" alt="">
+                                <img src="" alt="">
                             </div>
                              <% if(!currentUser){ %>
                             <% } else if(currentUser.isAdmin === true) { %>
