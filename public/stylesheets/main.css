@@ -146,3 +146,11 @@ body {
   max-height: 200px;
   object-fit: cover;
 }
+
+.net-img {
+  padding-right: auto;
+  float: left;
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+}
