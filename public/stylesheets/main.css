@@ -157,6 +157,7 @@ body {
 }
 
 .usr-img {
+  padding-right: 2%;
   max-width: 250px;
   max-height: 250px;
   object-fit: cover;
