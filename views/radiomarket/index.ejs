@@ -4,6 +4,12 @@
     <div class="row">
         <div class="col-md-12">
             <h1>W4OLB Members Swap and Shop</h1>
+            <% if(!currentUser){ %>
+            <% } else if(currentUser.isMember === true){ %>
+            <div class="form-media">
+                <a class="btn btn-md btn-primary" href="/radiomarket/new">Add Listing</a>
+            </div>
+            <% } %>
             <br>
              <div class="row form-media text-center" style="display:flex; flex-wrap: wrap;">
                 <% campgrounds.forEach(function(campground){ %>

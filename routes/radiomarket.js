@@ -48,7 +48,7 @@ router.post('/', middleware.checkCampgroundOwnership, function (req, res) {
 });
 
 //NEW - show form to create new campground
-router.get('/new', function (req, res) {
+router.get('/new', middleware.isMember, function (req, res) {
   res.render('radiomarket/new');
 });
 
@@ -77,6 +77,7 @@ router.get('/:id/edit', middleware.checkCampgroundOwnership, function (
     res.render('radiomarket/edit', { campground: foundCampground });
   });
 });
+
 // UPDATE CAMPGROUND ROUTE
 router.put('/:id', middleware.checkCampgroundOwnership, function (req, res) {
   // find and update the correct campground
@@ -91,6 +92,7 @@ router.put('/:id', middleware.checkCampgroundOwnership, function (req, res) {
     }
   });
 });
+
 // DESTROY CAMPGROUND ROUTE
 router.delete('/:id', middleware.checkCampgroundOwnership, function (req, res) {
   Campground.findByIdAndRemove(req.params.id, function (err) {

@@ -42,7 +42,12 @@ router.post('/register', function (req, res) {
         return res.render('register', { error: err.message });
       }
       passport.authenticate('local')(req, res, function () {
-        req.flash('success', 'Welcome to W4OLB, ' + user.username);
+        req.flash(
+          'success',
+          'Welcome to W4OLB, ' +
+            user.firstName +
+            '! Please allow up to 48 hours for your membership verification to complete.'
+        );
         res.redirect('/radiomarket');
       });
     });
