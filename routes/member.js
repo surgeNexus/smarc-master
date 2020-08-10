@@ -20,8 +20,10 @@ router.get('/', middleware.isMember, function (req, res) {
         if (err) {
           req.flash('error', 'Something went wrong');
         } else {
+          var url = '/members' + req.url;
           res.render('members/index', {
-            members: foundUsers
+            members: foundUsers,
+            url: url
           });
         }
       });

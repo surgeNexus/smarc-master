@@ -7,7 +7,7 @@ var moment = require('moment');
 const { update } = require('../models/user');
 const user = require('../models/user');
 
-router.get('/', function (req, res) {
+router.get('/', middleware.isAdmin, function (req, res) {
   Net.find({})
     .populate('ncs')
     .sort({ date: 1 })
@@ -21,11 +21,13 @@ router.get('/', function (req, res) {
             req.flash('error', 'User not found');
             res.redirect('back');
           } else {
+            var url = '/info/netsched' + req.url;
             var today = moment().format('YYYY-MM-DD');
             res.render('info/netscript', {
               foundNet: foundNet,
               foundUsers: foundUsers,
-              today: today
+              today: today,
+              url: url
             });
           }
         });

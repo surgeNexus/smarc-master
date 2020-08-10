@@ -3,13 +3,14 @@ var router = express.Router();
 var Minutes = require('../models/minutes');
 var middleware = require('../middleware');
 
-router.get('/', function (req, res) {
+router.get('/', middleware.isMember, function (req, res) {
   Minutes.find({}, function (err, foundMinutes) {
     if (err || !foundMinutes) {
       req.flash('error', 'Item not found');
       res.redirect('back');
     } else {
-      res.render('info/minutes', { foundMinutes: foundMinutes });
+      var url = '/info/minutes' + req.url;
+      res.render('info/minutes', { foundMinutes: foundMinutes, url: url });
     }
   });
 });
