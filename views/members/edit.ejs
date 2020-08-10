@@ -31,13 +31,13 @@
                     <input type="text" name="address" value="<%= user.address %>">
                 </div>
                 <div class="form-group">
+                    <h4>City, State, Zip Code</h4>
+                    <input type="text" name="ctyStZip" value="<%= user.ctyStZip %>">
+                </div>
+                <div class="form-group">
                     <h4>ARRL Member</h4>
                     <input type="radio" name="arrl" value="true" <% if(user.arrl === true){ %> checked <% } %>> Yes 
                     <input type="radio" name="arrl" value="false" <% if(user.arrl === false){ %> checked <% } %>> No 
-                </div>
-                <div class="form-group">
-                    <h4>City, State, Zip Code</h4>
-                    <input type="text" name="ctyStZip" value="<%= user.ctyStZip %>">
                 </div>
                 <div class="form-center">
                     <h4>Profile Image</h4>
