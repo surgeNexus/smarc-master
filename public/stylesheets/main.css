@@ -162,3 +162,11 @@ body {
   max-height: 250px;
   object-fit: cover;
 }
+
+.net-img-home {
+  padding-right: 7%;
+  float: left;
+  max-width: 175px;
+  max-height: 175px;
+  object-fit: cover;
+}

@@ -58,10 +58,29 @@
         </div>
         <div class="col-md-2 col-sm-6">
             <div>
+                <% nets.forEach(function(ncs){ %>
+                    <% if(ncs.date >= today && ncs.date < weekFrom){ %>
+                        <div class="well well-md text-center">
+                            <h5>This Week's NCS</h5>
+                            <div class="container">
+                                <div class="text-center">
+                                    <img class="net-img-home" src="<%= ncs.ncs.profileImage %>" alt="">
+                                </div>
+                            </div>
+                            <p><%= ncs.ncs.firstName %></p>
+                            <p><%= ncs.ncs.username %></p>
+                        </div>
+                        
+                    <% } %>
+                <% }) %>
+            </div>  
+            <div>
                 <form method="post" action="https://www.qrz.com/lookup" style="display:inline" >
-                    <b>QRZ callsign lookup:<b>
-                    <input type="text" name="callsign" size="10" />
-                    <input type="submit" value="Search" /></b>
+                    <h4>Callsign Lookup<h4>
+                    <input type="text" name="callsign" size="14" />
+                    <div>
+                        <input type="submit" value="Search" /></h4>
+                    </div>
                 </form>
                 <iframe class="title-center" style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=111020" width="155" height="228" frameborder="0" scrolling="no"></iframe><a style="text-indent: -9999em;height: 20px;position: relative;z-index: 1;margin: -20px 0 0 0;display: block" href="https://www.willyweather.com/tn/blount-county/maryville.html" rel="nofollow">maryville weather information</a>
                 <center class="title-center">

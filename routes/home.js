@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
 var Comment = require('../models/comment');
 var Home = require('../models/home');
+var Net = require('../models/netcontrol');
 var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
@@ -12,8 +14,24 @@ router.get('/', function (req, res) {
         req.flash('error', 'Item not found');
         res.redirect('back');
       } else {
-        //render show template with that campground
-        res.render('home', { foundHome: foundHome });
+        Net.find({})
+          .populate('ncs')
+          .exec(function (err, foundNets) {
+            if (err) {
+              req.flash('error', 'NCS not found');
+              res.redirect('back');
+            } else {
+              var today = moment().format('YYYY-MM-DD');
+              var weekFrom = moment().add(7, 'd').format('YYYY-MM-DD');
+              //render show template with that campground
+              res.render('home', {
+                foundHome: foundHome,
+                nets: foundNets,
+                today: today,
+                weekFrom: weekFrom
+              });
+            }
+          });
       }
     });
 });
