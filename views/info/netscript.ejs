@@ -113,6 +113,7 @@
                     <% } %>
                     <div class="form-media">
                         <% foundNet.forEach(function(net){ %>
+                            <% if(net.date >= today){ %>
                         <div class="well well-sm">
                             <h4>
                             Date: <%= net.date %>
@@ -135,6 +136,7 @@
                             <% } else { %>
                             <% } %>
                         </div>
+                            <% } %>
                         <% }); %>
                     </div>
                 </div>
