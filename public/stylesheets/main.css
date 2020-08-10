@@ -170,3 +170,16 @@ body {
   max-height: 175px;
   object-fit: cover;
 }
+
+.home-img {
+  padding-left: 15%;
+  padding-right: auto;
+  float: left;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.well-black {
+  background-color: black;
+}
