@@ -129,6 +129,8 @@ router.get('/userredirect', function (req, res) {
     } else {
       if (foundUser.isMember === true) {
         res.redirect('/members');
+      } else if (foundUser.isMember === false) {
+        res.redirect('/radiomarket');
       } else {
         req.flash(
           'error',

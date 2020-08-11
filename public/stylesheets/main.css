@@ -19,10 +19,11 @@
 }
 
 .form-center {
+  text-align: center;
+  padding-left: 0%;
   padding: auto;
   padding-top: 20px;
   margin: auto;
-  text-align: center;
   font-size: 120%;
 }
 
@@ -180,6 +181,6 @@ body {
   object-fit: cover;
 }
 
-.well-black {
-  background-color: black;
+.head-room {
+  padding-top: 4%;
 }

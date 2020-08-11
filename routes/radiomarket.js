@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Campground = require('../models/campground');
+var moment = require('moment');
 var middleware = require('../middleware');
+const { update } = require('../models/comment');
 
 //INDEX - show all campgrounds
 router.get('/', function (req, res) {
@@ -19,23 +21,40 @@ router.get('/', function (req, res) {
 });
 
 //CREATE - add new campground to DB
-router.post('/', middleware.checkCampgroundOwnership, function (req, res) {
+router.post('/', middleware.isMember, function (req, res) {
   // get data from form and add to campgrounds array
   var name = req.body.name;
   var price = req.body.price;
-  var image = req.body.image;
   var desc = req.body.description;
   var author = {
     id: req.user._id,
     username: req.user.username
   };
-  var newCampground = {
-    name: name,
-    price: price,
-    image: image,
-    description: desc,
-    author: author
-  };
+  var now = moment();
+  if (req.files) {
+    let image = req.files.image;
+
+    image.mv('./public/images/' + now + req.files.image.name, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    var pictureLoc = '/images/' + now + req.files.image.name;
+    var newCampground = {
+      name: name,
+      price: price,
+      image: pictureLoc,
+      description: desc,
+      author: author
+    };
+  } else {
+    var newCampground = {
+      name: name,
+      price: price,
+      description: desc,
+      author: author
+    };
+  }
   // Create a new campground and save to DB
   Campground.create(newCampground, function (err, newlyCreated) {
     if (err) {
@@ -87,7 +106,27 @@ router.put('/:id', middleware.checkCampgroundOwnership, function (req, res) {
   ) {
     if (err) {
       res.redirect('/radiomarket');
+    } else if (!req.files) {
+      updatedCampground.name = req.body.name;
+      updatedCampground.description = req.body.description;
+      updatedCampground.price = req.body.price;
+      updatedCampground.save();
+      res.redirect('/radiomarket/' + req.params.id);
     } else {
+      var now = moment();
+      let image = req.files.image;
+
+      image.mv('./public/images/' + now + req.files.image.name, function (err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+      var pictureLoc = '/images/' + now + req.files.image.name;
+      updatedCampground.name = req.body.name;
+      updatedCampground.description = req.body.description;
+      updatedCampground.price = req.body.price;
+      updatedCampground.image = pictureLoc;
+      updatedCampground.save();
       res.redirect('/radiomarket/' + req.params.id);
     }
   });

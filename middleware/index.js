@@ -40,7 +40,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
         // does user own the comment?
         if (
           foundComment.author.id.equals(req.user._id) ||
-          foundUser.isAdmin === true
+          foundUser.isAdmin.equals(true)
         ) {
           next();
         } else {
