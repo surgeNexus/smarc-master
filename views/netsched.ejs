@@ -55,7 +55,7 @@
             <% } %>
             <% }) %>
             <% foundNets.forEach(function(nets){ %>
-            <% if(nets.day == 'Monday' && nets.verified === true || currentUser && currentUser.isAdmin === true){ %>
+            <% if(nets.day == 'Monday' && nets.verified === true){ %>
             <tbody>
                 <tr>
                     <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
