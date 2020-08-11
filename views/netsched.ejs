@@ -24,6 +24,37 @@
                 </tr>
             </thead>
             <% foundNets.forEach(function(nets){ %>
+            <% if(nets.day !== 'Monday' && nets.day !== 'Tuesday' && nets.day !== 'Wednesday' && nets.day !== 'Thursday' && nets.day !== 'Friday' &&  nets.day !== 'Saturday' && nets.day !== 'Sunday'){ %>
+            <tbody>
+                <tr>
+                    <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
+                    <td><%= nets.day %></td>
+                    <td><%= nets.time %></td>
+                    <td><%= nets.freq %></td>
+                    <th><%= nets.tone %></th>
+                    <td><%= nets.altFreq %></td>
+                    <td><%= nets.altTone %></td>
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <% if(nets.verified === true){ %>
+                            <td>
+                                Yes
+                            </td>
+                        <% } else { %>
+                            <td>
+                                No
+                            </td>
+                        <% } %>
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                    </td>
+                    <% } else { %>
+                    <% } %>
+                </tr>
+            </tbody>
+            <% } %>
+            <% }) %>
+            <% foundNets.forEach(function(nets){ %>
             <% if(nets.day == 'Monday' && nets.verified === true || currentUser && currentUser.isAdmin === true){ %>
             <tbody>
                 <tr>
