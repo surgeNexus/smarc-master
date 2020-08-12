@@ -1,102 +1,112 @@
 <% include partials/header %>
 <div class="page-center">
-<div class="container form-media">    
-    <div class="row">
-        <div class="home-pic-pad">
-            <div class="col-md-4">
-                <img class="home-img rounded" src="images/SmarcMeeting.jpg"/>
-            </div>
-        </div>
-        <div class="home-pic-pad">
-            <div class="col-md-4">
-                <img class="home-img rounded" src="images/991a_655.jpg" />
-            </div>
-        </div>
-        <div class="home-pic-pad">
-            <div class="col-md-4">
-                <img class="home-img rounded" src="images/IMG_3965.jpg"/>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class=col-md-12>
-                <% if(!currentUser){ %>
-                <% } else if(currentUser.isAdmin === true) { %>
-                    <hr>
-                    <a class="btn btn-primary btn-sm" href="/home/new">New Home Entry</a>
-                <% } else { %>
-                <% } %>
-        </div>
-    </div>
-    <div class="row form-media">
-        <div class="col-md-10 col-sm-6">
-                <% foundHome.forEach(function(foundHome){ %>
-            <div class="well well-lg well-blue">
-                <% if(!currentUser){ %>
-                <% } else if(currentUser.isAdmin === true) { %>
-                    <a href="/home/<%= foundHome._id %>" class="glyphicon glyphicon-pencil"></a>
-                <% } else { %>
-                <% } %>
-                <h2 class="title-center">
-                    <%= foundHome.title %>
-                </h2>
-                <hr>
-                <p>
-                    <%= foundHome.body %> 
-                </p>
-                <hr>
-                <div class="text-center">
-                    <% if(!foundHome.link1){ %>
-                    
-                    <% } else { %>
-                        <a class="btn btn-primary btn-sm" href="<%= foundHome.link1 %>"><%= foundHome.link1name %></a>
-                    <% } %> 
-                    <% if(!foundHome.link2){ %>
-                        
-                    <% } else { %>
-                        <a class="btn btn-primary btn-sm" href="<%= foundHome.link2 %>"><%= foundHome.link2name %></a>
-                    <% } %>
-                </div>
-            </div>
-            <% }) %>
-        </div>
-        <div class="col-md-2 col-sm-6">
-            <div>
-                <% nets.forEach(function(ncs){ %>
-                    <% if(ncs.date >= today && ncs.date < weekFrom){ %>
-                        <div class="well well-md text-center">
-                            <h5>This Week's NCS</h5>
-                            <div class="container">
-                                <div class="text-center form-media">
-                                    <img class="net-img-home" src="<%= ncs.ncs.profileImage %>" alt="">
-                                </div>
-                            </div>
-                            <p class="form-media"><%= ncs.ncs.firstName %></p>
-                            <p><%= ncs.ncs.username.toUpperCase() %></p>
-                        </div>
-                        
-                    <% } %>
-                <% }) %>
-            </div>  
-            <div>
-                <form method="post" action="https://www.qrz.com/lookup" style="display:inline" >
-                    <h4>Callsign Lookup<h4>
-                    <input type="text" name="callsign" size="14" />
-                    <div>
-                        <input type="submit" value="Search" /></h4>
+    <div class="container form-media">    
+        <div class="row">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                </ol>
+    
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img class="home-img" src="images/slide1.jpg" alt="...">
                     </div>
-                </form>
-                <iframe class="title-center" style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=111020" width="155" height="228" frameborder="0" scrolling="no"></iframe><a style="text-indent: -9999em;height: 20px;position: relative;z-index: 1;margin: -20px 0 0 0;display: block" href="https://www.willyweather.com/tn/blount-county/maryville.html" rel="nofollow">maryville weather information</a>
-                <center class="title-center">
-                    <a href="http://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="http://www.hamqsl.com/solarvhf.php"></a>
-                </center>
+                    <div class="item">
+                        <img class="home-img-2" src="images/slide2.jpg" alt="...">
+                    </div>
+                </div>
+      <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+                </a>
             </div>
-            
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class=col-md-12>
+                    <% if(currentUser && currentUser.isAdmin === true) { %>
+                        <hr>
+                        <a class="btn btn-primary btn-sm" href="/home/new">New Home Entry</a>
+                    <% } else { %>
+                    <% } %>
+            </div>
+        </div>
+        <div class="row form-media">
+            <div class="col-md-10 col-sm-6">
+                    <% foundHome.forEach(function(foundHome){ %>
+                <div class="well well-lg well-blue">
+                    <% if(!currentUser){ %>
+                    <% } else if(currentUser.isAdmin === true) { %>
+                        <a href="/home/<%= foundHome._id %>" class="glyphicon glyphicon-pencil"></a>
+                    <% } else { %>
+                    <% } %>
+                    <h2 class="title-center">
+                        <%= foundHome.title %>
+                    </h2>
+                    <hr>
+                    <p>
+                        <%= foundHome.body %> 
+                    </p>
+                    <hr>
+                    <div class="text-center">
+                        <% if(!foundHome.link1){ %>
+                        
+                        <% } else { %>
+                            <a class="btn btn-primary btn-sm" href="<%= foundHome.link1 %>"><%= foundHome.link1name %></a>
+                        <% } %> 
+                        <% if(!foundHome.link2){ %>
+                            
+                        <% } else { %>
+                            <a class="btn btn-primary btn-sm" href="<%= foundHome.link2 %>"><%= foundHome.link2name %></a>
+                        <% } %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div>
+                    <% nets.forEach(function(ncs){ %>
+                        <% if(ncs.date >= today && ncs.date < weekFrom){ %>
+                            <div class="well well-md text-center">
+                                <h5>This Week's NCS</h5>
+                                <div class="container">
+                                    <div class="text-center form-media">
+                                        <img class="net-img-home" src="<%= ncs.ncs.profileImage %>" alt="">
+                                    </div>
+                                </div>
+                                <p class="form-media"><%= ncs.ncs.firstName %></p>
+                                <p><%= ncs.ncs.username.toUpperCase() %></p>
+                            </div>
+                            
+                        <% } %>
+                    <% }) %>
+                </div>  
+                <div>
+                    <form method="post" action="https://www.qrz.com/lookup" style="display:inline" >
+                        <h4>Callsign Lookup<h4>
+                        <input type="text" name="callsign" size="14" />
+                        <div>
+                            <input type="submit" value="Search" /></h4>
+                        </div>
+                    </form>
+                    <iframe class="title-center" style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=111020" width="155" height="228" frameborder="0" scrolling="no"></iframe><a style="text-indent: -9999em;height: 20px;position: relative;z-index: 1;margin: -20px 0 0 0;display: block" href="https://www.willyweather.com/tn/blount-county/maryville.html" rel="nofollow">maryville weather information</a>
+                    <center class="title-center">
+                        <a href="http://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="http://www.hamqsl.com/solarvhf.php"></a>
+                    </center>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
 <% include partials/footer %>

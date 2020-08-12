@@ -173,7 +173,16 @@ body {
 }
 
 .home-img {
-  padding-left: 15%;
+  padding-left: 12%;
+  padding-right: auto;
+  float: left;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.home-img-2 {
+  padding-left: 11%;
   padding-right: auto;
   float: left;
   max-width: 300px;
@@ -187,6 +196,7 @@ body {
 
 .well,
 .btn,
-.thumbnail {
-  box-shadow: 2px 2px #5755553a !important;
+.thumbnail,
+.shadow {
+  box-shadow: 2px 2px 2px 2px #807d7d3a !important;
 }

@@ -17,81 +17,80 @@
 
   gtag('config', 'UA-144653652-2');
 </script>
-
     </head>
     <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class=""><a href="/home">Home</a></li>
-            <li class=""><a href="/radiomarket">Radio Market</a></li>
-            <li class=""><a href="/info/sk">Silent Key</a></li>
-            <li class=""><a href="/netsched">Local Nets</a></li>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class=""><a href="/home">Home</a></li>
+                <li class=""><a href="/radiomarket">Radio Market</a></li>
+                <li class=""><a href="/info/sk">Silent Key</a></li>
+                <li class=""><a href="/netsched">Local Nets</a></li>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about">Contact and Location</a></li>
+                        <li><a href="/info/officers">Officers</a></li>
+                        <li><a href="/history1">Club History</a></li>
+                        <li><a href="/repeaters">Repeaters</a></li>
+                        <li><a href="/documents">Documents</a></li>
+                        <li><a href="http://www.arrl.org/what-is-ham-radio">About Ham Radio</a></li>
+                    </ul>
+                </li>
+          </ul>
+              </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/about">Contact and Location</a></li>
-                    <li><a href="/info/officers">Officers</a></li>
-                    <li><a href="/history1">Club History</a></li>
-                    <li><a href="/repeaters">Repeaters</a></li>
-                    <li><a href="/documents">Documents</a></li>
-                    <li><a href="http://www.arrl.org/what-is-ham-radio">About Ham Radio</a></li>
-                </ul>
-            </li>
-      </ul>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-                    <% if(!currentUser){ %>
-                        <li><a href="/login">Member Login</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
-                        <li>
-                              <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
-                        </li>
-                    <% } else if(currentUser.isAdmin === true){ %>
-                        <li><a href="/members">Member's Section</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
-                        <li>
-                              <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
-                        </li>
-                        <li class="dropdown">
-                        <a href="#" class="glyphicon glyphicon-option-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin">User Admin</a></li>
-                            <li><a href="/members/<%= currentUser.id %>">My Info</a></li>
+                        <% if(!currentUser){ %>
+                            <li><a href="/login">Member Login</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
+                            <li>
+                                  <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
+                            </li>
+                        <% } else if(currentUser.isAdmin === true){ %>
                             <li><a href="/members">Member's Section</a></li>
-                            <li><a href="/logout">Logout</a></li>
-                        </ul>
-                    <% } else { %>
-                        <li><a href="/members">Member's Section</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
-                        <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
-                        <li>
-                              <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
-                        </li>
-                        <li class="dropdown">
-                        <a href="#" class="glyphicon glyphicon-option-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/members/<%= currentUser.id %>">My Info</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
+                            <li>
+                                  <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
+                            </li>
+                            <li class="dropdown">
+                            <a href="#" class="glyphicon glyphicon-option-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin">User Admin</a></li>
+                                <li><a href="/members/<%= currentUser.id %>">My Info</a></li>
+                                <li><a href="/members">Member's Section</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        <% } else { %>
                             <li><a href="/members">Member's Section</a></li>
-                            <li><a href="/logout">Logout</a></li>
-                        </ul>
-                    <% } %>
-              
-          </ul>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
+                            <li>
+                                  <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
+                            </li>
+                            <li class="dropdown">
+                            <a href="#" class="glyphicon glyphicon-option-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/members/<%= currentUser.id %>">My Info</a></li>
+                                <li><a href="/members">Member's Section</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        <% } %>
+                  
+              </ul>
+            </div>
         </div>
-    </div>
 </nav>
 
 
