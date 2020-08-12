@@ -165,28 +165,10 @@ body {
 }
 
 .net-img-home {
-  padding-right: 7%;
+  padding-left: 2px;
   float: left;
-  max-width: 175px;
-  max-height: 175px;
-  object-fit: cover;
-}
-
-.home-img {
-  padding-left: 12%;
-  padding-right: auto;
-  float: left;
-  max-width: 300px;
-  max-height: 300px;
-  object-fit: cover;
-}
-
-.home-img-2 {
-  padding-left: 11%;
-  padding-right: auto;
-  float: left;
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 150px;
+  max-height: 150px;
   object-fit: cover;
 }
 
