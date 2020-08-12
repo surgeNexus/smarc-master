@@ -184,3 +184,9 @@ body {
 .head-room {
   padding-top: 4%;
 }
+
+.well,
+.btn,
+.thumbnail {
+  box-shadow: 2px 2px #2c2c2c3a !important;
+}
