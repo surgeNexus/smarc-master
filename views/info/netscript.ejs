@@ -111,16 +111,17 @@
                     <% } %>
                     <div class="form-media">
                         <% foundNet.forEach(function(net){ %>
+                        <% var netCallsign = net.ncs.username.toUpperCase() %>
                             <% if(net.date >= today){ %>
                         <div class="well well-sm">
                             <h4>
-                            Date: <%= net.date %>
+                                <%= net.date %>
                             </h4>
                             <p>
-                                Name: <%= net.ncs.firstName %>
+                                <%= net.ncs.firstName %>
                             </p>
                             <p>
-                                Callsign: <%= net.ncs.username %>
+                                <%= netCallsign %>
                             </p>
                             <div class="container">
                                 <div class="text-center">

@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <h1 class="text-center">SMARC Event Photos</h1>
+            <div class="panel-group form-media" id="accordion" role="tablist" aria-multiselectable="true">
+            <% for (var i = 0; i < events.length; i++) { %>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title text-center">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= i %>" aria-expanded="false" aria-controls="headingOne">
+                                <p><%= events[i].title %></p> <p><%= events[i].date %></p>
+                            </a>
+                            <% if(currentUser && currentUser.isAdmin === true){ %>
+                            <form class="" id="delete-form" action="/events/<%= events[i].id %>?_method=DELETE" method="POST">
+                                <div class="form-media">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                </div>
+                            </form>
+                            <% } %>
+                        </h4>
+                    </div>
+                    <div id="collapse_<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                                <% events[i].eventImages.forEach(function(image){ %>
+                                    <div class="container col-md-3">
+                                        <a class="" data-toggle="modal" data-target="#<%= image.id %>">
+                                          <img class="usr-img" src="<%= image.image %>">
+                                        </a>
+                                        <% if(currentUser && currentUser.isAdmin === true){ %>
+                                        <form class="" id="delete-form" action="/events/<%= events[i].id %>/<%= image._id %>?_method=DELETE" method="POST">
+                                            <div class="form-media">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </div>
+                                        </form>
+                                        <% } %>
+                                    </div>
+                                    <div class="modal fade" id="<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="">
+                                          <div class="text-center">
+                                            <img class="modal-img" src="<%= image.image %>">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                <% }) %> 
+                        </div>
+                    </div>
+                </div>
+                <% if(currentUser && currentUser.isAdmin === true){ %>
+                <form action="/events/<%= events[i].id %>?_method=PUT" method="POST" encType="multipart/form-data">
+                    <div class="">
+                        <h1>Add Image</h1>
+                        <input class="" type="file" name="pic">
+                    </div>
+                    <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+                </form>
+                <% } %>
+            <% } %>
+            </div>
+        </div>
+    </div>
+    <% if(currentUser && currentUser.isAdmin === true){ %>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align: center">New Event</h1>
+            <hr>
+            <div style="width: 30%; margin: 25px auto;">
+                <form action="/events/" method="POST" encType="multipart/form-data">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="date" name="date" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    </>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<% include ../partials/footer %>    
