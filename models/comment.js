@@ -10,6 +10,7 @@ var commentSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
+    email: String,
     username: String
   }
 });

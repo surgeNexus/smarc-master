@@ -3,6 +3,7 @@ var router = express.Router({ mergeParams: true });
 var Campground = require('../models/campground');
 var Comment = require('../models/comment');
 var middleware = require('../middleware');
+var nodemailer = require('nodemailer');
 
 // COMMENTS NEW
 router.get('/new', middleware.isLoggedIn, function (req, res) {
@@ -33,13 +34,40 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
           //add username and id to comment
           comment.text = req.body.text;
           comment.author.id = req.user._id;
+          comment.author.email = req.user.email;
           comment.author.username = req.user.username;
           //save comment
           comment.save();
           campground.comments.push(comment);
           campground.save();
-          req.flash('success', 'Comment added');
-          res.redirect('/radiomarket/' + campground._id);
+          var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: process.env.GMAILUSER,
+              pass: process.env.GMAILPW
+            }
+          });
+          var mailOptions = {
+            to: comment.author.email,
+            from: 'surgenexus.app@gmail.com',
+            subject:
+              '[SMARC RADIOMARKET] Someone has commented on your listing',
+            text:
+              comment.author.username.toUpperCase() +
+              ' has commented on your listing, ' +
+              campground.name +
+              ' in the SMARC Radiomarket. \n\n' +
+              'Comment: \n\n ' +
+              comment.text +
+              '\n\n' +
+              '\n\n' +
+              'To reply to this comment, please visit http://w4olb.org/radiomarket/' +
+              campground._id
+          };
+          smtpTransport.sendMail(mailOptions, function (err) {
+            req.flash('success', 'Comment added');
+            res.redirect('/radiomarket/' + campground._id);
+          });
         }
       });
     }
