@@ -6,7 +6,7 @@
     <div class="row">
         <div class=col-md-12>
           <% if(!currentUser){ %>
-          <% } else if(currentUser.isAdmin === true) { %>
+          <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
               <a class="btn btn-primary btn-sm" href="/documents/docscollection/new">New Document</a>
           <% } else { %>
           <% } %>
@@ -28,7 +28,7 @@
                         </div>
                       </div>
                       <% if(!currentUser){ %>
-                      <% } else if(currentUser.isAdmin === true) { %>
+                      <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                           <a href="/documents/docscollection/<%= docs._id %>" class="glyphicon glyphicon-pencil"></a>
                       <% } else { %>
                       <% } %>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class=col-md-12>
-                    <% if(currentUser && currentUser.isAdmin === true) { %>
+                    <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                         <hr>
                         <a class="btn btn-primary btn-sm" href="/home/new">New Home Entry</a>
                     <% } else { %>
@@ -15,7 +15,7 @@
                     <% foundHome.forEach(function(foundHome){ %>
                 <div class="well well-lg well-blue">
                     <% if(!currentUser){ %>
-                    <% } else if(currentUser.isAdmin === true) { %>
+                    <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                         <a href="/home/<%= foundHome._id %>" class="glyphicon glyphicon-pencil"></a>
                     <% } else { %>
                     <% } %>

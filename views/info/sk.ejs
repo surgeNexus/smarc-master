@@ -5,7 +5,7 @@
     <div class="row form-media">
         <div class=col-md-12>
             <% if(!currentUser){ %>
-            <% } else if(currentUser.isAdmin === true) { %>
+            <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                 <a class="btn btn-primary btn-sm" href="/info/sk/skcollection/new">New SK</a>
             <% } else { %>
             <% } %>
@@ -27,7 +27,7 @@
                            <h5><%= sk.callsign %></h5>
                        </div>
                        <% if(!currentUser){ %>
-                <% } else if(currentUser.isAdmin === true) { %>
+                <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                     <a href="/info/sk/skcollection/<%= sk._id %>" class="glyphicon glyphicon-pencil"></a>
                 <% } else { %>
                 <% } %>

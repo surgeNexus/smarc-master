@@ -105,7 +105,7 @@
                     <h1 class="title-center">Net Control Station Schedule</h1>
                     <hr>
                     <% if(!currentUser){ %>
-                    <% } else if(currentUser.isAdmin === true) { %>
+                    <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                         <a class="btn btn-primary btn-sm" href="/info/netscript/netscriptcollection/new">New NCS</a>
                     <% } else { %>
                     <% } %>
@@ -130,7 +130,7 @@
                             </div>
                             
                              <% if(!currentUser){ %>
-                            <% } else if(currentUser.isAdmin === true) { %>
+                            <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                             <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
                             <% } else { %>
                             <% } %>

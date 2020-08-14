@@ -1,45 +1,44 @@
 <% include ../partials/header %>
 
 <div class="page-center">
-<div class="container">
-    <div class="row form-media">
-        <div class="col-md-4 form-media">
-            <h2>Contact</h2>
-            <hr>
-            <div>
-                <a type="email" href="mailto:info@w4olb.org"><button type="button" class="btn btn-danger">Send us an Email</button></a>
-                <a href="http://m.me/w4olb"><button type="button" class="btn btn-primary">Message us on Facebook</button></a>
-            </div>
-            <hr>
-            <h4>Visit our club Meeting</h4>
-            <p>
-                The Smoky Mountain Amateur Radio Club meets the fourth Monday of each Month at 7:00 P.M. excluding 
-                the month of June as field day is the Fourth Weekend of the month and the month of December
-                as we host a Christmas Party.
-            </p>
-            <% foundAbout.forEach(function(about){ %>
-            <div>
-                <a href="<%= about.meeting %>">
-                    <button class="btn btn-success">Directions to Meeting</button>
-                </a>
-                <a class="title-center" href="<%= about.fieldDay %>">
-                    <button class="btn btn-success">Directions to Field Day</button>
-                </a>
-            </div>
-            <% if(!currentUser){ %>
+    <div class="container">
+        <div class="row form-media">
+            <div class="col-md-4 form-media">
+                <h2>Contact</h2>
                 <hr>
-                <% } else if(currentUser.isAdmin === true) { %>
-                    <a href="/about/aboutcollection/<%= about._id %>" class="form-media glyphicon glyphicon-pencil"></a>
-                <% } else { %>
+                <div>
+                    <a type="email" href="mailto:info@w4olb.org"><button type="button" class="btn btn-danger">Send us an Email</button></a>
+                    <a href="http://m.me/w4olb"><button type="button" class="btn btn-primary">Message us on Facebook</button></a>
+                </div>
                 <hr>
-                <% } %>
-            <% }) %>
-            
-        </div>
-        <div class="col-md-8">
-            <h2 class="text-center form-media">Testing Info</h2>
+                <h4>Visit our club Meeting</h4>
+                <p>
+                    The Smoky Mountain Amateur Radio Club meets the fourth Monday of each Month at 7:00 P.M. excluding 
+                    the month of June as field day is the Fourth Weekend of the month and the month of December
+                    as we host a Christmas Party.
+                </p>
+                <% foundAbout.forEach(function(about){ %>
+                <div>
+                    <a href="<%= about.meeting %>">
+                        <button class="btn btn-success">Directions to Meeting</button>
+                    </a>
+                    <a class="title-center" href="<%= about.fieldDay %>">
+                        <button class="btn btn-success">Directions to Field Day</button>
+                    </a>
+                </div>
+                <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
+                        <a href="/about/aboutcollection/<%= about._id %>" class="form-media glyphicon glyphicon-pencil"></a>
+                        
+                    <% } %>
+                <% }) %>
+            </div>
+            <div class="col-md-8">
+                <h2 class="text-center form-media">Testing Info</h2> 
+                <% foundAbout.forEach(function(testing){ %>
+                    <p class="text-center form-media"><%= testing.test %></p>
+                <% }) %>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <% include ../partials/footer %>

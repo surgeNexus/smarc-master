@@ -12,10 +12,10 @@
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= i %>" aria-expanded="false" aria-controls="headingOne">
                                 <p><%= events[i].title %></p> <p><%= events[i].date %></p>
                             </a>
-                            <% if(currentUser && currentUser.isAdmin === true){ %>
+                            <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                             <form class="" id="delete-form" action="/events/<%= events[i].id %>?_method=DELETE" method="POST">
                                 <div class="form-media">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
                                 </div>
                             </form>
                             <% } %>
@@ -28,10 +28,10 @@
                                         <a class="" data-toggle="modal" data-target="#<%= image.id %>">
                                           <img class="usr-img" src="<%= image.image %>">
                                         </a>
-                                        <% if(currentUser && currentUser.isAdmin === true){ %>
+                                        <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                                         <form class="" id="delete-form" action="/events/<%= events[i].id %>/<%= image._id %>?_method=DELETE" method="POST">
                                             <div class="form-media">
-                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                                <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
                                             </div>
                                         </form>
                                         <% } %>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <% if(currentUser && currentUser.isAdmin === true){ %>
+                <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                 <form action="/events/<%= events[i].id %>?_method=PUT" method="POST" encType="multipart/form-data">
                     <div class="">
                         <h1>Add Image</h1>
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <% if(currentUser && currentUser.isAdmin === true){ %>
+    <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
     <div class="row">
         <div class="col-md-12">
             <h1 style="text-align: center">New Event</h1>
@@ -84,5 +84,16 @@
     </div>
     <% } %>
 </div>
+
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you wish to delete this?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>    
 
 <% include ../partials/footer %>    

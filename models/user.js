@@ -9,6 +9,7 @@ var UserSchema = new mongoose.Schema({
   password: String,
   isAdmin: { type: Boolean, default: false },
   isMember: { type: Boolean, default: false },
+  showAdmin: { type: Boolean, default: false },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   phone: String,

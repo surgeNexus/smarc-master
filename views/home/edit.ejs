@@ -47,10 +47,20 @@
                 </div>
             </form>
             <form id="delete-form" action="/home/<%= foundHome.id %>?_method=DELETE" method="POST">
-                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
             </form>
             <a href="/home/">Go Back</a>
         </div>
     </div>
 </div>
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you wish to delete this?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>    
 <% include ../partials/adminfooter %>

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <% if(!currentUser){ %>
-                <% } else if(currentUser.isAdmin === true) { %>
+                <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                     <a class="btn btn-primary btn-sm" href="/info/officers/officerscollection/new">New Officer</a>
                     <hr>
                 <% } else { %>
@@ -20,7 +20,7 @@
                         <div>
                             <h3><%= officer.title %></h3>
                             <% if(!currentUser){ %>
-                            <% } else if(currentUser.isAdmin === true) { %>
+                            <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                             <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
                             <% } else { %>
                             <% } %>

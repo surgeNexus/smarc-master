@@ -73,6 +73,18 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
   });
 });
 
+router.put('/register/:id/admin', middleware.isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      foundUser.showAdmin = req.body.showAdmin;
+      foundUser.save();
+      res.redirect('back');
+    }
+  });
+});
+
 //show login form
 router.get('/login', function (req, res) {
   res.render('login');
@@ -107,19 +119,14 @@ router.get('/history1', function (req, res) {
 
 // User Admin Page
 router.get('/admin', middleware.isAdmin, function (req, res) {
-  if (req.user.isAdmin === true) {
-    User.find({}, null, { sort: { username: 1 } }, function (err, foundUsers) {
-      if (err) {
-        console.log(err);
-        res.redirect('back');
-      } else {
-        res.render('members/admin', { users: foundUsers });
-      }
-    });
-  } else {
-    req.flash('error', 'Administrators only');
-    res.redirect('/members');
-  }
+  User.find({}, null, { sort: { username: 1 } }, function (err, foundUsers) {
+    if (err) {
+      console.log(err);
+      res.redirect('back');
+    } else {
+      res.render('members/admin', { users: foundUsers });
+    }
+  });
 });
 
 router.get('/userredirect', function (req, res) {
