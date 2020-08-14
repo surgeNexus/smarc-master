@@ -104,19 +104,21 @@
         </div>
     <% } %>
 </div>
+<div class="container">
+    <div class="form-media">
+            <img class="banner" src="/images/SMARC-web-banner-v1-unsquished.png" alt="">
+    </div>
+</div>
 <% if(currentUser && currentUser.isAdmin === true){ %>
 <div class="container">
-    <h4>Admin Settings</h4>
+    <div class="pull-right">
+        <h4>Admin Settings</h4>
         <form class="" action="/register/<%= currentUser.id %>/admin?_method=PUT" method="POST">
             <div class="btn-group btn-toggle"> 
                 <button type="push" class="<% if(currentUser.showAdmin === true){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="true">ON</button>
                 <button type="push" class="<% if(currentUser.showAdmin === false){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="false" <% if(currentUser.showAdmin === false){ %> checked <% } %>>OFF</button>
             </div>
         </form>
-</div>
-<% } %>
-<div class="container">
-    <div class="form-media">
-            <img class="banner" src="/images/SMARC-web-banner-v1-unsquished.png" alt="">
     </div>
 </div>
+<% } %>
