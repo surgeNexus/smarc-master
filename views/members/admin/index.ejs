@@ -27,25 +27,43 @@
                         <h4>Email</h4>
                         <input type="text" name="email" value="<%= user.email %>">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <h4>Admin?</h4>
-                        <input class="" type="radio" name="admin" value="true" placeholder="Net Name"
+                        <div>
+                            <input class="" type="radio" name="admin" value="true" placeholder="Net Name"
                         <% if(user.isAdmin === true){ %>
                             checked
                         <% } %>> True
+                        </div>
+                        
                         <input class="" type="radio" name="admin" value="false" placeholder="Net Name"
                         <% if(user.isAdmin === false){ %>
                             checked
                         <% } %>> False
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <h4>Member?</h4>
-                        <input class="" type="radio" name="member" value="true" placeholder="Net Name"
+                        <div>
+                            <input class="" type="radio" name="member" value="true" placeholder="Net Name"
                         <% if(user.isMember === true){ %>
                             checked
                         <% } %>> True
+                        </div>
                         <input class="" type="radio" name="member" value="false" placeholder="Net Name" 
                         <% if(user.isMember === false){ %>
+                            checked
+                        <% } %>> False
+                    </div>
+                    <div class="col-md-1">
+                        <h4>NCS?</h4>
+                        <div>
+                            <input class="" type="radio" name="ncs" value="true"
+                        <% if(user.ncs === true){ %>
+                            checked
+                        <% } %>> True
+                        </div>
+                        <input class="" type="radio" name="ncs" value="false"
+                        <% if(user.ncs === false){ %>
                             checked
                         <% } %>> False
                     </div>

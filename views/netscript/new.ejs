@@ -10,7 +10,9 @@
                 <div class="form-group">
                     <select name="ncs">
                         <% user.forEach(function(option){ %>
-                            <option name="ncs" value="<%= option.id %>"><%= option.username %></option>
+                            <% if(option.ncs === true) { %>
+                                <option name="ncs" value="<%= option.id %>"><%= option.username %></option>
+                            <% } %>
                         <% }) %>
                     </select>
                 </div>

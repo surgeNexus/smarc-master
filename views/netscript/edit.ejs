@@ -11,7 +11,9 @@
                     <select name="ncs">
                             <option name="ncs" value="<%= foundNet.ncs %>"><%= foundNet.ncs.username %></option>
                             <% user.forEach(function(usr){ %>
-                                <option name="ncs" value="<%= usr.id %>"><%= usr.username %></option>
+                                <% if(usr.ncs === true){ %>
+                                    <option name="ncs" value="<%= usr.id %>"><%= usr.username %></option>
+                                <% } %>
                             <% }) %>
                     </select>
                 </div>

@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
   isAdmin: { type: Boolean, default: false },
   isMember: { type: Boolean, default: false },
   showAdmin: { type: Boolean, default: false },
+  ncs: { type: Boolean, default: false },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   phone: String,

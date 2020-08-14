@@ -67,6 +67,7 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
       foundUser.isAdmin = req.body.admin;
       foundUser.isMember = req.body.member;
       foundUser.arrl = req.body.arrl;
+      foundUser.ncs = req.body.ncs;
       foundUser.save();
       res.redirect('back');
     }
