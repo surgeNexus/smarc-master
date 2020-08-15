@@ -40,29 +40,34 @@ router.put('/:id', middleware.isAdmin, function (req, res) {
       req.flash('error', 'Event not found. Something went wrong.');
       res.redirect('back');
     } else {
-      Image.create(req.files, function (err, image) {
-        if (err) {
-          req.flash('error', 'Event not created. Something went wrong.');
-          res.redirect('back');
-        } else {
-          var now = moment().utc();
-          let pic = req.files.pic;
-          pic.mv(
-            './public/images/events/' + now + req.files.pic.name,
-            function (err) {
-              if (err) {
-                console.log(err);
+      if (req.files) {
+        Image.create(req.files, function (err, image) {
+          if (err) {
+            req.flash('error', 'Event not created. Something went wrong.');
+            res.redirect('back');
+          } else {
+            var now = moment().utc();
+            let pic = req.files.pic;
+            pic.mv(
+              './public/images/events/' + now + req.files.pic.name,
+              function (err) {
+                if (err) {
+                  console.log(err);
+                }
               }
-            }
-          );
-          var picLocation = '/images/events/' + now + req.files.pic.name;
-          image.image = picLocation;
-          image.save();
-          foundEvent.eventImages.push(image);
-          foundEvent.save();
-          res.redirect('back');
-        }
-      });
+            );
+            var picLocation = '/images/events/' + now + req.files.pic.name;
+            image.image = picLocation;
+            image.save();
+            foundEvent.eventImages.push(image);
+            foundEvent.save();
+            res.redirect('back');
+          }
+        });
+      } else {
+        req.flash('error', 'You must submit an Image.');
+        res.redirect('back');
+      }
     }
   });
 });
