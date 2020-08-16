@@ -5,7 +5,7 @@ var middleware = require('../middleware');
 
 router.get('/', middleware.isMember, function (req, res) {
   Minutes.find({})
-    .sort({ date: 1 })
+    .sort({ date: -1 })
     .exec(function (err, foundMinutes) {
       if (err || !foundMinutes) {
         req.flash('error', 'Item not found');
