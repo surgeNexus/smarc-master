@@ -17,23 +17,34 @@
             </div>
         </div>
         <div class="row form-media">
-            <% foundMinutes.reverse().forEach(function(minutes){ %>
-            <div class="col-md-12 well well-lg">
-                <h4>
-                    <%= minutes.date %>
-                </h4>
-                <hr>
-                <p>
-                    <%= minutes.minutes %> 
-                </p>
-                <% if(!currentUser){ %>
-                <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
-                    <a href="/info/minutes/minutescollection/<%= minutes._id %>" class="glyphicon glyphicon-pencil"></a>
-                    <hr>
-                <% } else { %>
-                <% } %>
+            <% for(var i = 0; i < foundMinutes.length; i++) { %>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#<%= foundMinutes[i]._id %>" aria-expanded="false" aria-controls="collapseTwo">
+                                <%= foundMinutes[i].date %>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="<%= foundMinutes[i]._id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <p>
+                                    <%= foundMinutes[i].minutes %> 
+                                </p>
+                                <% if(!currentUser){ %>
+                                <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                                <a href="/info/minutes/minutescollection/<%= foundMinutes[i]._id %>" class="glyphicon glyphicon-pencil"></a>
+                                <hr>
+                                <% } else { %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <% }) %>
+            <% } %>
         </div>
     </div>
 </div>

@@ -4,15 +4,17 @@ var Minutes = require('../models/minutes');
 var middleware = require('../middleware');
 
 router.get('/', middleware.isMember, function (req, res) {
-  Minutes.find({}, function (err, foundMinutes) {
-    if (err || !foundMinutes) {
-      req.flash('error', 'Item not found');
-      res.redirect('back');
-    } else {
-      var url = '/info/minutes' + req.url;
-      res.render('info/minutes', { foundMinutes: foundMinutes, url: url });
-    }
-  });
+  Minutes.find({})
+    .sort({ date: -1 })
+    .exec(function (err, foundMinutes) {
+      if (err || !foundMinutes) {
+        req.flash('error', 'Item not found');
+        res.redirect('back');
+      } else {
+        var url = '/info/minutes' + req.url;
+        res.render('info/minutes', { foundMinutes: foundMinutes, url: url });
+      }
+    });
 });
 
 router.get('/minutescollection/new', middleware.isAdmin, function (req, res) {
