@@ -195,3 +195,7 @@ body {
 .glyphicon-asterisk {
   color: rgb(207, 176, 2) !important;
 }
+
+.lowercase {
+  text-transform: lowercase;
+}

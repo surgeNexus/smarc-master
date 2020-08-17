@@ -5,6 +5,7 @@ var fs = require('fs');
 var User = require('../models/user');
 var middleware = require('../middleware');
 const moment = require('moment');
+const user = require('../models/user');
 
 //  members page
 router.get('/', middleware.isMember, function (req, res) {
@@ -96,6 +97,17 @@ router.put('/:id', middleware.isMember, function (req, res) {
         foundUser.save();
         res.redirect('/members');
       }
+    }
+  });
+});
+
+router.delete('/:id/remove', function (req, res) {
+  User.findByIdAndDelete(req.params.id, function (err, user) {
+    if (err) {
+      req.flash('error', 'User not removed');
+    } else {
+      req.flash('success', 'This member has been removed');
+      res.redirect('/home');
     }
   });
 });
