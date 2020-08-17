@@ -19,7 +19,7 @@
             <input type="tel" name="phone" placeholder="Phone Number(Optional)">
         </div>
         <div class="form-group">
-            <input class="lowercase" type="text" name="username" placeholder="Callsign" required>
+            <input class="" oninput="this.value=this.value.toLowerCase()" type="text" name="username" placeholder="Callsign" required>
         </div>
         <div class="form-group">
             <input type="text" name="address" placeholder="Street Address (Optional)">
@@ -44,5 +44,9 @@
     </form>
         </div>
     </div>
+
+<script>        
+    element.addEventListener('input',function(){this.value=this.value.toLowerCase()});​
+</script>
     
 <% include ./partials/footer %>

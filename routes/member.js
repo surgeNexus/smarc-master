@@ -60,7 +60,7 @@ router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
       console.log(err);
     } else {
       if (!req.files) {
-        foundUser.username = req.body.callsign;
+        foundUser.username = req.body.callsign.toLowerCase();
         foundUser.firstName = req.body.firstName;
         foundUser.lastName = req.body.lastName;
         foundUser.phone = req.body.phone;
