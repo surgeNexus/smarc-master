@@ -127,13 +127,11 @@
                                     <img class="net-img" src="<%= net.ncs.profileImage %>" alt="">
                                 </div>
                             </div>
-                            
-                             <% if(!currentUser){ %>
-                            <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                            <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                             <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
-                            <% } else { %>
                             <% } %>
                         </div>
+                            <% } %>
                         <% }); %>
                     </div>
                 </div>
