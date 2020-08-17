@@ -35,9 +35,9 @@
                     <h4>
                         This net is currently activated as an open net to all SMARC members and hams 
                         who are interested in promoting the hobby. This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                        <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
-                                        <%= callsign %>
+                                        <%= net.ncs.username.toUpperCase() %>
                             <% } else if(!net.date === today) { %>
                                 (callsign)
                             <% } %>
@@ -74,9 +74,9 @@
                 <div>
                     <h4>
                         This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                        <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
-                                        <%= callsign %>
+                                        <%= net.ncs.username.toUpperCase() %>
                             <% } else if(!net.date === today) { %>
                                 (callsign)
                             <% } %>
@@ -89,9 +89,9 @@
                 <div>
                     <h4>
                         This is 
-                        <% foundNet.forEach(function(net){ var callsign = net.ncs.username.toUpperCase() %>
+                        <% foundNet.forEach(function(net){ %>
                             <% if(net.date === today){ %>
-                                <%= callsign %>
+                                <%= net.ncs.username.toUpperCase() %>
                             <% } %>
                                 
                         <% }) %> 
