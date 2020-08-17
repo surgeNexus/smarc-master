@@ -3,9 +3,7 @@
  <div class="container page-center form-media text-center">
     <div class="row">
         <div class="col-md-12">
-            <h1>W4OLB Members Swap and Shop</h1>
-            <% if(!currentUser){ %>
-            <% } else if(currentUser.isMember === true){ %>
+            <% if(currentUser && currentUser.isMember === true){ %>
             <div class="form-media">
                 <a class="btn btn-md btn-primary" href="/radiomarket/new">Add Listing</a>
             </div>

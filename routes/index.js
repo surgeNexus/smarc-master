@@ -8,6 +8,7 @@ var middleware = require('../middleware');
 var async = require('async');
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
+const user = require('../models/user');
 
 //root route
 router.get('/', function (req, res) {
@@ -131,6 +132,7 @@ router.get('/admin', middleware.isAdmin, function (req, res) {
   });
 });
 
+// User Redirect
 router.get('/userredirect', function (req, res) {
   User.findById(req.user.id, function (err, foundUser) {
     if (err) {
@@ -302,6 +304,22 @@ router.post('/reset/:token', function (req, res) {
       res.redirect('/home');
     }
   );
+});
+
+// Callsign Redirect
+router.get('/me/:_username', function (req, res) {
+  user.findOne({ username: req.params._username }, function (err, user) {
+    if (err) {
+      req.flash('error', 'Something went wrong');
+      res.redirect('back');
+    } else if (user === null) {
+      req.flash('error', 'Callsign not found');
+      res.redirect('back');
+    } else {
+      console.log(user.id);
+      res.redirect('/members/' + user.id);
+    }
+  });
 });
 
 module.exports = router;

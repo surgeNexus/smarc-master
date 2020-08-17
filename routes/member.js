@@ -32,7 +32,7 @@ router.get('/', middleware.isMember, function (req, res) {
 });
 
 // Get Member's Profile
-router.get('/:id', middleware.isMember, function (req, res) {
+router.get('/:id', function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);
