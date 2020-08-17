@@ -191,3 +191,7 @@ body {
   width: 60%;
   margin: 5% auto;
 }
+
+.glyphicon-asterisk {
+  color: rgb(207, 176, 2) !important;
+}

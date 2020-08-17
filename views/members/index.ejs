@@ -4,6 +4,7 @@
     <div class="row form-media">
     <% include ../partials/sidebar %>
         <br>
+        
         <table class="table table-hover table-bordered">
             <thead>	
                 <tr>
@@ -22,7 +23,7 @@
                 <% if(member.isMember === true){ %>
                 <tr>
                     <td><%= member.lastName %>, <%= member.firstName %></td>
-                    <td><%= callsign %></td>
+                    <td><a href="/members/<%= member.id %>"><%= callsign %></a></td>
                     <td><a href="mailto:<%= member.email %>"><%= member.email %></a></td>
                     <td><a href="tel:<%= member.phone %>"><%= member.phone %></a></td>
                     <th><%= member.address %> <%= member.ctyStZip %></th>

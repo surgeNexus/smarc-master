@@ -1,0 +1,78 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="well well-sm">
+                <h1 class="text-center"><%= user.firstName%> <%= user.lastName %></h1>
+                <h2 class="text-center"><%= user.username.toUpperCase() %></h2>
+                <div class="thumbnail">
+                    <img src="<%= user.profileImage %>" alt="">
+                </div>
+                <% if(user.isAdmin === true) { %>
+                <div class="">
+                    <p><span class="glyphicon glyphicon-asterisk inline"></span> <%= user.username.toUpperCase() %> is a SMARC Web Admin</p>
+                </div>
+                <% } %>
+                <% if(user.isMember === true) { %>
+                <div class="">
+                    <p><span class="glyphicon glyphicon-asterisk inline"></span> <%= user.username.toUpperCase() %> is a verified SMARC member</p>
+                </div>
+                <% } %>
+                <% if(user.ncs === true) { %>
+                <div class="">
+                    <p><span class="glyphicon glyphicon-asterisk inline"></span> <%= user.username.toUpperCase() %> is a SMARC Net Control Station</p>
+                </div>
+                <% } %>
+                <% if(user.arrl === true) { %>
+                <div class="">
+                    <p><span class="glyphicon glyphicon-asterisk inline"></span> <%= user.username.toUpperCase() %> is an ARRL member</p>
+                </div>
+                <% } %>
+                <div>
+                    <h4>Contact Information</h4>
+                    <% if(user.email){ %>
+                    <div>
+                        Email: <a href="mailto:<%= user.email %>"><%= user.email %></a>
+                    </div>
+                    <% } %>
+                    <% if(user.phone){ %>
+                    <div>
+                        Phone: <a href="tel:<%= user.phone %>"><%= user.phone %></a>
+                    </div>
+                    <% } %>
+                    <% if(user.address){ %>
+                    <div>
+                    <br>
+                        <div>
+                            <p>Mailing Address:</p>
+                        </div>
+                        <div>
+                            <p><%= user.address %></p>
+                        </div>
+                        <div>
+                            <p><%= user.ctyStZip %></p>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(user.id === currentUser.id) { %>
+                    <div class="text-center">
+                        <br>
+                        <a href="/members/<%= user.id %>/edit" class="glyphicon glyphicon-pencil"></a>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center">About <%= user.username.toUpperCase() %></h1>
+            <br>
+            <div>
+                <p><%- user.aboutMe %></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

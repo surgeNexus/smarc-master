@@ -17,7 +17,8 @@ var UserSchema = new mongoose.Schema({
   address: String,
   ctyStZip: String,
   arrl: Boolean,
-  profileImage: String
+  profileImage: String,
+  aboutMe: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

@@ -31,8 +31,19 @@ router.get('/', middleware.isMember, function (req, res) {
   });
 });
 
-// Member Info Edit Page
+// Get Member's Profile
 router.get('/:id', middleware.isMember, function (req, res) {
+  User.findById(req.params.id, function (err, foundUser) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('members/show', { user: foundUser });
+    }
+  });
+});
+
+// Member Info Edit Page
+router.get('/:id/edit', middleware.isMember, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);
@@ -56,6 +67,7 @@ router.put('/:id', middleware.isMember, function (req, res) {
         foundUser.address = req.body.address;
         foundUser.ctyStZip = req.body.ctyStZip;
         foundUser.arrl = req.body.arrl;
+        foundUser.aboutMe = req.body.about;
         foundUser.save();
         res.redirect('/members');
       } else {
@@ -80,6 +92,7 @@ router.put('/:id', middleware.isMember, function (req, res) {
         foundUser.address = req.body.address;
         foundUser.ctyStZip = req.body.ctyStZip;
         foundUser.arrl = req.body.arrl;
+        foundUser.aboutMe = req.body.about;
         foundUser.save();
         res.redirect('/members');
       }

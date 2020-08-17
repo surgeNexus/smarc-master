@@ -68,6 +68,7 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
       foundUser.isMember = req.body.member;
       foundUser.arrl = req.body.arrl;
       foundUser.ncs = req.body.ncs;
+      foundUser.aboutMe = req.body.about;
       foundUser.save();
       res.redirect('back');
     }
@@ -138,6 +139,10 @@ router.get('/userredirect', function (req, res) {
       if (foundUser.isMember === true) {
         res.redirect('/members');
       } else if (foundUser.isMember === false) {
+        req.flash(
+          'success',
+          'Please allow up to 48 hours for your membership to be approved. You can now post and comment in the Radiomarket'
+        );
         res.redirect('/radiomarket');
       } else {
         req.flash(
