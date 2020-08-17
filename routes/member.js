@@ -44,7 +44,7 @@ router.get('/:id', function (req, res) {
 });
 
 // Member Info Edit Page
-router.get('/:id/edit', middleware.isMember, function (req, res) {
+router.get('/:id/edit', middleware.checkProfileOwnership, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);
@@ -54,7 +54,7 @@ router.get('/:id/edit', middleware.isMember, function (req, res) {
   });
 });
 
-router.put('/:id', middleware.isMember, function (req, res) {
+router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
   User.findById(req.params.id, function (err, foundUser) {
     if (err) {
       console.log(err);

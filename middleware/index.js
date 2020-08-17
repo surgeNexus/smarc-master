@@ -57,13 +57,13 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
 
 middlewareObj.checkProfileOwnership = function (req, res, next) {
   if (req.isAuthenticated()) {
-    User.findById(req.params._id, function (err, foundUser) {
+    User.findById(req.params.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
         res.redirect('/home');
       } else {
         // does user own the comment?
-        if (foundUser._id.equals(req.user.id)) {
+        if (foundUser._id.equals(req.user.id) || req.user.isAdmin === true) {
           next();
         } else {
           req.flash('error', "You don't have permission to do that");
