@@ -111,6 +111,7 @@ ul {
 }
 
 .banner {
+  border-radius: 5px;
   max-width: 100%;
   max-height: 100%;
 }
@@ -179,8 +180,9 @@ body {
 .well,
 .thumbnail,
 .shadow,
-.panel {
-  box-shadow: 4px 4px 4px 4px #807d7d3a !important;
+.panel,
+.banner {
+  box-shadow: 3px 3px 3px 3px #807d7d3a !important;
 }
 
 .btn {
