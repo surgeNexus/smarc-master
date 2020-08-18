@@ -185,7 +185,8 @@ body {
   box-shadow: 3px 3px 3px 3px #807d7d3a !important;
 }
 
-.btn {
+.btn,
+.form-control {
   box-shadow: 2px 2px 2px 2px #807d7d3a !important;
 }
 
