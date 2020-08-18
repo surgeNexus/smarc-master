@@ -179,8 +179,9 @@ body {
 .well,
 .btn,
 .thumbnail,
-.shadow {
-  box-shadow: 2px 2px 2px 2px #807d7d3a !important;
+.shadow,
+.panel {
+  box-shadow: 4px 4px 4px 4px #807d7d3a !important;
 }
 
 .modal-img {
