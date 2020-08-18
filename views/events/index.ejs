@@ -4,8 +4,11 @@
     <div class="row">
         <div class="col-md-12 col-sm-6">
             <h1 class="text-center">SMARC Event Photos</h1>
-            <div class="panel-group form-media" id="accordion" role="tablist" aria-multiselectable="true">
-            <% for (var i = 0; i < events.length; i++) { %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-group form-media" id="accordion" role="tablist" aria-multiselectable="true">
+        <% for (var i = 0; i < events.length; i++) { %>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title text-center">
@@ -23,6 +26,7 @@
                     </div>
                     <div id="collapse_<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
+                        <div class="col-md-3 col-sm-6">
                                 <% events[i].eventImages.forEach(function(image){ %>
                                     <div class="container col-md-3 form-media">
                                         <a class="" data-toggle="modal" data-target="#<%= image.id %>">
