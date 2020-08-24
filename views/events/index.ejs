@@ -23,6 +23,7 @@
                     </div>
                     <div id="collapse_<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
+                            <div class="row">
                                 <% events[i].eventImages.forEach(function(image){ %>
                                     <div class="container col-md-3 form-media">
                                         <a class="" data-toggle="modal" data-target="#<%= image.id %>">
@@ -37,15 +38,16 @@
                                         <% } %>
                                     </div>
                                     <div class="modal fade" id="<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="">
-                                          <div class="text-center">
-                                            <img class="modal-img" src="<%= image.image %>">
-                                          </div>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="">
+                                                <div class="text-center">
+                                                    <img class="modal-img" src="<%= image.image %>">
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
                                 <% }) %> 
+                            </div>
                         </div>
                     </div>
                 </div>
