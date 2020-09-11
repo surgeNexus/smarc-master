@@ -8,7 +8,7 @@ var moment = require('moment');
 router.get('/', function (req, res) {
   Event.find({})
     .sort({ date: -1 })
-    .populate('eventImages')
+    .populate('eventImages', 'image')
     .exec(function (err, events) {
       if (err || !events) {
         req.flash('error', 'Item not found');

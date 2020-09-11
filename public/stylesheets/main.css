@@ -206,3 +206,14 @@ body {
 .lowercase {
   text-transform: lowercase;
 }
+
+.event-images {
+  max-height: 100%;
+  max-width: 100%;
+  padding-bottom: 10%;
+}
+
+.event-image {
+  max-height: 100%;
+  max-width: 100%;
+}
