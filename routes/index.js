@@ -122,7 +122,7 @@ router.get('/history1', function (req, res) {
 
 // User Admin Page
 router.get('/admin', middleware.isAdmin, function (req, res) {
-  User.find({}, null, { sort: { username: 1 } }, function (err, foundUsers) {
+  User.find({}, null, { sort: { isMember: 1 } }, function (err, foundUsers) {
     if (err) {
       console.log(err);
       res.redirect('back');
