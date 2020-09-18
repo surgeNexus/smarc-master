@@ -13,7 +13,7 @@
                         This is 
                                 <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
-                                        <%= net.ncs.username.toUpperCase %>
+                                        <%= net.ncs.username.toUpperCase() %>
                                     <% } else if(!net.date === today) { %>
                                         (callsign)
                                     <% } %>
