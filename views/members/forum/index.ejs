@@ -1,0 +1,54 @@
+<% include ../../partials/header %>
+<div class="page-center">
+<div class="container">
+    <div class="row form-media">
+            <% include ../../partials/sidebar %>
+    </div>
+    <div class="row">
+        <div class="col-md-12 head-room">
+            <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Create New Topic
+            </button>
+            <div>
+                <div class="collapse" id="collapseExample">
+                    <form class="" action="/forum" method="POST">
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <br>
+                                <input class="form-control" type="text" name="name" placeholder="Topic Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <textarea class="form-control" name="description" placeholder="What is this topic about?" rows="10" cols="50"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 text-center">
+                                <input class="btn btn-primary" type="submit" value="Post">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 head-room">
+            <% forums.forEach((forum) => { %>
+                <a href="/forum/<%= forum._id %>"><div class="well well-sm">
+                    <h1><%= forum.name %></h1>
+                    <h3><%= forum.author.username %></h3>
+                    <p><%= forum.description %></p>
+                    <div class="">
+                        <p class=""><%= moment(forum.createdAt).fromNow() %></p>
+                    </div>
+                </div></a>
+            <% }) %>
+        </div>
+    </div>
+</div>
+</div>
+<% include ../../partials/footer %>

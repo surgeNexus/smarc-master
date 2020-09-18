@@ -1,19 +1,17 @@
 var mongoose = require('mongoose');
-
-var commentSchema = mongoose.Schema({
-  title: String,
-  text: String,
-  image: String,
+//schema setup
+var forumSchema = new mongoose.Schema({
+  name: String,
+  description: String,
   createdAt: { type: Date, default: Date.now },
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
-    email: String,
     username: String
   },
-  replies: [
+  comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment'
@@ -21,4 +19,4 @@ var commentSchema = mongoose.Schema({
   ]
 });
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('memberForum', forumSchema);

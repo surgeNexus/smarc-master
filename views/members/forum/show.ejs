@@ -1,0 +1,83 @@
+<% include ../../partials/header %>
+
+<div class="container">
+    <div class="row form-media">
+            <% include ../../partials/sidebar %>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 head-room">
+            <div class="well well-sm">
+                <h1><%= topic.name %></h1>
+                <h3><a href="/me/<%= topic.author.username %>"><%= topic.author.username %></a></h3>
+                <p><%= topic.description %></p>
+                <p class="pull-right"><%= moment(topic.createdAt).fromNow() %></p>
+                <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    New Comment
+                </button> 
+                <div class="collapse head-room" id="collapseExample">
+                    <form class="" action="/forum/<%= topic._id %>" method="POST">
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <textarea class="form-control" name="comment" placeholder="Comment Here" rows="4" cols="70"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 text-center">
+                                <input class="btn btn-primary" type="submit" value="Post">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="">
+                <div>
+                    <% for(var i = 0; i < topic.comments.length; i++){ %>
+                    <div class="well well-sm">
+                        <div class="foot-room">
+                            <div>
+                                <h4><a href="/me/<%= topic.comments[i].author.username %>"><%= topic.comments[i].author.username %></a></h4>
+                                <p class=""><%= moment(topic.comments[i].createdAt).fromNow() %></p>
+                            </div>
+                            <p><%= topic.comments[i].text %></p>
+                        </div>
+                        <div>
+                            <a class="" role="button" data-toggle="collapse" href="#<%= topic.comments[i].id %>" aria-expanded="false" aria-controls="<%= topic.comments[i].id %>">
+                                reply
+                            </a>
+                            <div class="collapse head-room" id="<%= topic.comments[i].id %>">
+                                <form class="" action="/forum/<%= topic._id %>/<%= topic.comments[i].id %>" method="POST">
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <textarea class="form-control" name="comment" placeholder="Comment Here" rows="4" cols="70"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 text-center">
+                                            <input class="btn btn-primary" type="submit" value="Post">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <% topic.comments[i].replies.forEach((reply) => { %>
+                                <div class="well well-sm">
+                                    <h4><a href="/me/<%= reply.author.username %>"><%= reply.author.username %></a></h4> 
+                                    <div class="">
+                                        <p class=""><%= moment(reply.createdAt).fromNow() %></p>
+                                    </div>
+                                    <p><%= reply.text %></p>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/footer %>

@@ -217,3 +217,17 @@ body {
   max-height: 100%;
   max-width: 100%;
 }
+
+.foot-room {
+  padding-bottom: 10px;
+}
+
+.custom-well {
+  width: 258px;
+  height: 426px;
+}
+
+.text-align-bottom {
+  position: absolute;
+  bottom: 0;
+}
