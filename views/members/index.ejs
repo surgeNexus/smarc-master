@@ -7,11 +7,11 @@
         <table class="table table-hover table-bordered">
             <div class="row align-items-center justify-content-center">
                 <% members.forEach(function(member){ %>
+                <% if(member.isMember === true){ %>
                 <a href="/members/<%= member.id %>">
                     <div class="col-md-3 col-sm-12 align-items-center justify-content-center">
                         <div class="well custom-well text-center">
                             <% var callsign = member.username.toUpperCase() %>
-                            <% if(member.isMember === true){ %>
                             <h4><%= member.firstName %> <%= member.lastName %></h4>
                             <h5><%= callsign %></h5>
                             <img class="center-block img-responsive img-rounded" src="<%= member.profileImage %>">
@@ -22,10 +22,10 @@
                                     <a href="/members/<%= member.id %>" class="glyphicon glyphicon-pencil"></a>
                                 <% } %>
                             </div>
-                            <% } %>
                         </div>
                     </div>
                 </a>
+                <% } %>
                 <% }) %>
             </div>
         </table>
