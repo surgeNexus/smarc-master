@@ -13,18 +13,18 @@
                         This is 
                                 <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
-                                        <%= net.ncs.username.toUpperCase() %>
-                                    <% } else { %>
+                                        <%= net.ncs.username.toUpperCase %>
+                                    <% } else if(!net.date === today) { %>
                                         (callsign)
                                     <% } %>
                                 <% }) %> 
-                        calling the Smoky Mountain Amateur Radio Club Net (W4OLB - 146.655 Mhz toned to 100 Mhz)
+                        calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Mhz)
                         is this frequency in use? <em>**PAUSE**</em> I am your Net Control Station (NCS) 
                         for this session and my name is 
                         <% foundNet.forEach(function(net){ %>
                             <% if(net.date === today){ var firstName = net.ncs.firstName.toUpperCase() %>
                                 <%= firstName %>.
-                            <% } else { %>
+                            <% } else if(!net.date === today) { %>
                                 (name).
                             <% } %>
                         <% }) %>
@@ -38,7 +38,7 @@
                         <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
                                         <%= net.ncs.username.toUpperCase() %>
-                            <% } else { %>
+                            <% } else if(!net.date === today) { %>
                                 (callsign)
                             <% } %>
                         <% }) %>
@@ -77,7 +77,7 @@
                         <% foundNet.forEach(function(net){ %>
                                     <% if(net.date === today){ %>
                                         <%= net.ncs.username.toUpperCase() %>
-                            <% } else { %>
+                            <% } else if(!net.date === today) { %>
                                 (callsign)
                             <% } %>
                         <% }) %>
@@ -92,9 +92,8 @@
                         <% foundNet.forEach(function(net){ %>
                             <% if(net.date === today){ %>
                                 <%= net.ncs.username.toUpperCase() %>
-                            <% } else { %>
-                                (callsign)
-                            <% } %>    
+                            <% } %>
+                                
                         <% }) %> 
                 your NCS of SMARC taking check-ins from any and all stations. Please come with 
                         your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
