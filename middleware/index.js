@@ -86,15 +86,18 @@ middlewareObj.isAdmin = function (req, res, next) {
       } else {
         if (foundUser.isAdmin === true) {
           next();
+        } else if (foundUser.isMember === true) {
+          req.flash('error', "You don't have permission to do that");
+          res.redirect('/member');
         } else {
           req.flash('error', "You don't have permission to do that");
-          res.redirect('back');
+          res.redirect('/home');
         }
       }
     });
   } else {
     req.flash('error', 'You need to be logged in to do that');
-    res.redirect('back');
+    res.redirect('/login');
   }
 };
 
@@ -109,13 +112,13 @@ middlewareObj.isMember = function (req, res, next) {
           next();
         } else {
           req.flash('error', 'You must be a verified member to do that');
-          res.redirect('back');
+          res.redirect('/home');
         }
       }
     });
   } else {
     req.flash('error', 'You need to be logged in to do that');
-    res.redirect('back');
+    res.redirect('/login');
   }
 };
 

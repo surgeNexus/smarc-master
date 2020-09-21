@@ -10,8 +10,41 @@
         <div class="col-md-12 head-room">
             <div class="well well-sm">
                 <h1><%= topic.name %></h1>
-                <h3><a href="/me/<%= topic.author.username %>"><%= topic.author.username %></a></h3>
+                <h4><a href="/me/<%= topic.author.username %>"><%= topic.author.username.toUpperCase() %></a></h4>
+                <hr>
                 <p><%= topic.description %></p>
+                <hr>
+                <% if(currentUser.id == topic.author.id){ %>
+                <div class="foot-room">
+                    <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#update" aria-expanded="false" aria-controls="collapseExample">
+                        edit
+                    </button> 
+                    <form id="delete-form" action="/forum/<%= topic.id %>?_method=DELETE" method="POST">
+                        <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
+                    <div>
+                        <div class="collapse head-room" id="update">
+                            <form class="" action="/forum/<%= topic._id %>?_method=PUT" method="POST">
+                                <div class="row">
+                                    <div class="form-group col-xs-12 text-center">
+                                        <input class="form-control" name="name" type="text" value="<%= topic.name %>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <textarea class="form-control" name="description" rows="4" cols="70"><%= topic.description %></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12 text-center">
+                                        <input class="btn btn-primary" type="submit" value="Update">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
                 <p class="pull-right"><%= moment(topic.createdAt).fromNow() %></p>
                 <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     New Comment
@@ -37,15 +70,38 @@
                     <div class="well well-sm">
                         <div class="foot-room">
                             <div>
-                                <h4><a href="/me/<%= topic.comments[i].author.username %>"><%= topic.comments[i].author.username %></a></h4>
+                                <h4><a href="/me/<%= topic.comments[i].author.username %>"><%= topic.comments[i].author.username.toUpperCase() %></a></h4>
                                 <p class=""><%= moment(topic.comments[i].createdAt).fromNow() %></p>
                             </div>
                             <p><%= topic.comments[i].text %></p>
                         </div>
+                        <% if(currentUser.id == topic.comments[i].author.id){ %>
+                            <div class="foot-room">
+                                <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#<%= topic.comments[i].id %>" aria-expanded="false" aria-controls="collapseExample">
+                                    edit
+                                </button> 
+                                <form id="delete-form" action="/forum/<%= topic.id %>/<%= topic.comments[i].id %>?_method=DELETE" method="POST">
+                                    <input onclick="return ConfirmDelete2()" type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                </form>
+                                <div>
+                                    <div class="collapse head-room" id="<%= topic.comments[i].id %>">
+                                        <form class="" action="/forum/<%= topic.id %>/<%= topic.comments[i].id %>?_method=PUT" method="POST">
+                                            <div class="row">
+                                                <div class="form-group col-xs-12">
+                                                    <textarea class="form-control" name="comment" rows="4" cols="70"><%= topic.comments[i].text %></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-xs-12 text-center">
+                                                    <input class="btn btn-primary" type="submit" value="Update">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
                         <div>
-                            <a class="" role="button" data-toggle="collapse" href="#<%= topic.comments[i].id %>" aria-expanded="false" aria-controls="<%= topic.comments[i].id %>">
-                                reply
-                            </a>
                             <div class="collapse head-room" id="<%= topic.comments[i].id %>">
                                 <form class="" action="/forum/<%= topic._id %>/<%= topic.comments[i].id %>" method="POST">
                                     <div class="row">
@@ -64,13 +120,42 @@
                         <div>
                             <% topic.comments[i].replies.forEach((reply) => { %>
                                 <div class="well well-sm">
-                                    <h4><a href="/me/<%= reply.author.username %>"><%= reply.author.username %></a></h4> 
+                                    <h4><a href="/me/<%= reply.author.username %>"><%= reply.author.username.toUpperCase() %></a></h4> 
                                     <div class="">
                                         <p class=""><%= moment(reply.createdAt).fromNow() %></p>
                                     </div>
                                     <p><%= reply.text %></p>
+                                    <% if(currentUser.id == reply.author.id){ %>
+                                        <div class="foot-room">
+                                            <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#<%= reply.id %>" aria-expanded="false" aria-controls="collapseExample">
+                                                edit
+                                            </button> 
+                                            <form id="delete-form" action="/forum/<%= topic.id %>/<%= reply.id %>?_method=DELETE" method="POST">
+                                                <input onclick="return ConfirmDelete2()" type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                            </form>
+                                            <div>
+                                                <div class="collapse head-room" id="<%= reply.id %>">
+                                                    <form class="" action="/forum/<%= topic.id %>/<%= reply.id %>?_method=PUT" method="POST">
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-12">
+                                                                <textarea class="form-control" name="comment" rows="4" cols="70"><%= reply.text %></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-12 text-center">
+                                                                <input class="btn btn-primary" type="submit" value="Update">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% } %>
                                 </div>
                             <% }) %>
+                            <a class="" role="button" data-toggle="collapse" href="#<%= topic.comments[i].id %>" aria-expanded="false" aria-controls="<%= topic.comments[i].id %>">
+                                reply
+                            </a>
                         </div>
                     </div>
                     <% } %>
@@ -79,5 +164,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you wish to delete this topic? This action is not reversable.");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>
+<script>
+    function ConfirmDelete2()
+    {
+      var x = confirm("Are you sure you wish to delete this comment?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>
 
 <% include ../../partials/footer %>

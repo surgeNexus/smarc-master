@@ -72,7 +72,7 @@
                         <% } else { %>
                             <li><a href="/members">Member's Section</a></li>
                             <li class="dropdown">
-                            <a href="#" class="glyphicon glyphicon-option-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                            <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/members">Member's Section</a></li>
                                 <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>

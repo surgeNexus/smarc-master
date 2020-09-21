@@ -41,6 +41,22 @@ router.post('/', (req, res) => {
   });
 });
 
+// Update Topic
+router.put('/:topic_id', (req, res) => {
+  var name = req.body.name;
+  var description = req.body.description;
+  newForum = { name: name, description: description };
+  Forum.findByIdAndUpdate(req.params.topic_id, newForum, (err, forum) => {
+    if (err) {
+      req.flash('error', 'Something went wrong. Topic not updated.');
+      res.redirect('back');
+    } else {
+      req.flash('success', 'Your topic has been updated!');
+      res.redirect('back');
+    }
+  });
+});
+
 // Get Topic
 router.get('/:topic_id', (req, res) => {
   Forum.findById(req.params.topic_id)
@@ -62,6 +78,7 @@ router.get('/:topic_id', (req, res) => {
     });
 });
 
+// Post Comment
 router.post('/:topic_id', (req, res) => {
   var text = req.body.comment;
   var author = {
@@ -88,6 +105,7 @@ router.post('/:topic_id', (req, res) => {
   });
 });
 
+// Post nested comment
 router.post('/:topic_id/:comment_id', (req, res) => {
   var text = req.body.comment;
   var author = {
@@ -110,6 +128,48 @@ router.post('/:topic_id/:comment_id', (req, res) => {
           res.redirect('back');
         }
       });
+    }
+  });
+});
+
+// update nested comment
+router.put('/:topic_id/:comment_id', (req, res) => {
+  var text = req.body.comment;
+  var commentPush = { text: text };
+  Comment.findByIdAndUpdate(
+    req.params.comment_id,
+    commentPush,
+    (err, newComment) => {
+      if (err) {
+        req.flash('error', 'Comment not updated.');
+        res.redirect('back');
+      } else {
+        res.redirect('back');
+      }
+    }
+  );
+});
+
+// delete Topic
+router.delete('/:topic_id', (req, res) => {
+  Forum.findByIdAndDelete(req.params.topic_id, err => {
+    if (err) {
+      req.flash('error', 'Something went wrong. Please try again.');
+      res.redirect('/forum');
+    } else {
+      res.redirect('/forum');
+    }
+  });
+});
+
+// delete comment
+router.delete('/:topic_id/:comment_id', (req, res) => {
+  Comment.findByIdAndDelete(req.params.comment_id, err => {
+    if (err) {
+      req.flash('error', 'Something went wrong. Please try again.');
+      res.redirect('back');
+    } else {
+      res.redirect('back');
     }
   });
 });
