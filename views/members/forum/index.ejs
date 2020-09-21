@@ -45,7 +45,10 @@
                     <p><%= forum.description %></p>
                     <hr>
                     <div class="">
-                        <p class=""><%= moment(forum.createdAt).fromNow() %></p>
+                        <p class="pull-right"><%= moment(forum.createdAt).fromNow() %></p>
+                    </div>
+                    <div>
+                        <p><%= forum.comments.length %> Comments</p>
                     </div>
                 </div></a>
             <% }) %>
