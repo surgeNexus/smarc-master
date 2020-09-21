@@ -10,7 +10,7 @@ var middleware = require('../middleware');
 var url = '/forum/';
 
 // Get Forum index
-router.get('/', (req, res) => {
+router.get('/', middleware.isMember, (req, res) => {
   Forum.find({}, null, { sort: { createdAt: -1 } }, (err, forums) => {
     if (err) {
       req.flash('error', 'No items found');
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 // Post new topic
-router.post('/', (req, res) => {
+router.post('/', middleware.isMember, (req, res) => {
   var name = req.body.name;
   var description = req.body.description;
   var author = {
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 });
 
 // Update Topic
-router.put('/:topic_id', (req, res) => {
+router.put('/:topic_id', middleware.isMember, (req, res) => {
   var name = req.body.name;
   var description = req.body.description;
   newForum = { name: name, description: description };
@@ -58,7 +58,7 @@ router.put('/:topic_id', (req, res) => {
 });
 
 // Get Topic
-router.get('/:topic_id', (req, res) => {
+router.get('/:topic_id', middleware.isMember, (req, res) => {
   Forum.findById(req.params.topic_id)
     .populate({
       path: 'comments',
@@ -79,7 +79,7 @@ router.get('/:topic_id', (req, res) => {
 });
 
 // Post Comment
-router.post('/:topic_id', (req, res) => {
+router.post('/:topic_id', middleware.isMember, (req, res) => {
   var text = req.body.comment;
   var author = {
     id: req.user._id,
@@ -106,7 +106,7 @@ router.post('/:topic_id', (req, res) => {
 });
 
 // Post nested comment
-router.post('/:topic_id/:comment_id', (req, res) => {
+router.post('/:topic_id/:comment_id', middleware.isMember, (req, res) => {
   var text = req.body.comment;
   var author = {
     id: req.user._id,
@@ -133,7 +133,7 @@ router.post('/:topic_id/:comment_id', (req, res) => {
 });
 
 // update nested comment
-router.put('/:topic_id/:comment_id', (req, res) => {
+router.put('/:topic_id/:comment_id', middleware.isMember, (req, res) => {
   var text = req.body.comment;
   var commentPush = { text: text };
   Comment.findByIdAndUpdate(
@@ -151,7 +151,7 @@ router.put('/:topic_id/:comment_id', (req, res) => {
 });
 
 // delete Topic
-router.delete('/:topic_id', (req, res) => {
+router.delete('/:topic_id', middleware.isMember, (req, res) => {
   Forum.findByIdAndDelete(req.params.topic_id, err => {
     if (err) {
       req.flash('error', 'Something went wrong. Please try again.');
@@ -163,7 +163,7 @@ router.delete('/:topic_id', (req, res) => {
 });
 
 // delete comment
-router.delete('/:topic_id/:comment_id', (req, res) => {
+router.delete('/:topic_id/:comment_id', middleware.isMember, (req, res) => {
   Comment.findByIdAndDelete(req.params.comment_id, err => {
     if (err) {
       req.flash('error', 'Something went wrong. Please try again.');
