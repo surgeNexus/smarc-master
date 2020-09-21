@@ -40,7 +40,7 @@
             <% forums.forEach((forum) => { %>
                 <a href="/forum/<%= forum._id %>"><div class="well well-sm">
                     <h1><%= forum.name %></h1>
-                    <h3><%= forum.author.username %></h3>
+                    <h3><%= forum.author.username.toUpperCase() %></h3>
                     <hr>
                     <p><%= forum.description %></p>
                     <hr>
