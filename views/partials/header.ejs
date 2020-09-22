@@ -64,6 +64,16 @@
                             <li class="dropdown">
                             <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
+                                <div class="text-center">
+                                    <p style="color: black">Admin Settings</p>
+                                    <form class="" action="/register/<%= currentUser.id %>/admin?_method=PUT" method="POST">
+                                        <div class="btn-group btn-toggle text-center"> 
+                                            <button type="push" class="<% if(currentUser.showAdmin === true){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="true">ON</button>
+                                            <button type="push" class="<% if(currentUser.showAdmin === false){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="false" <% if(currentUser.showAdmin === false){ %> checked <% } %>>OFF</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <hr>
                                 <li><a href="/admin">User Admin</a></li>
                                 <li><a href="/members">Member's Section</a></li>
                                 <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
@@ -103,15 +113,5 @@
     </div>
 </div>
 <% if(currentUser && currentUser.isAdmin === true){ %>
-<div class="container">
-    <div class="pull-right">
-        <h4>Admin Settings</h4>
-        <form class="" action="/register/<%= currentUser.id %>/admin?_method=PUT" method="POST">
-            <div class="btn-group btn-toggle pull-right"> 
-                <button type="push" class="<% if(currentUser.showAdmin === true){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="true">ON</button>
-                <button type="push" class="<% if(currentUser.showAdmin === false){ %> btn btn-xs btn-primary <% } else { %> btn btn-xs btn-default <% } %>" name="showAdmin" onclick="javascript: submit()" value="false" <% if(currentUser.showAdmin === false){ %> checked <% } %>>OFF</button>
-            </div>
-        </form>
-    </div>
-</div>
+
 <% } %>
