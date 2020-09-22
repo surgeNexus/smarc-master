@@ -97,16 +97,23 @@
 </nav>
 <div class="container head-room">
     <% if(error && error.length > 0){ %>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" id="error" role="alert">
             <%= error %>
         </div>
     <% } %>
     <% if(success && success.length > 0){ %>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" id="error" role="alert">
             <%= success %>
         </div>
     <% } %>
 </div>
+
+<script>
+    setTimeout(function() {
+      $("#error").fadeOut().empty();
+    }, 5000);
+</script>
+
 <div class="container">
     <div class="form-media">
         <img class="banner" src="/images/SMARC-web-banner-v1-unsquished.png" alt="">
