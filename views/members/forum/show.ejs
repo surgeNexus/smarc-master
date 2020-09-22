@@ -101,23 +101,6 @@
                                 </div>
                             </div>
                         <% } %>
-                        <div>
-                            <div class="collapse head-room" id="<%= topic.comments[i].id %>2">
-                                <form class="" action="/forum/<%= topic._id %>/<%= topic.comments[i].id %>" method="POST">
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <textarea class="form-control" name="comment" placeholder="Comment Here" rows="4" cols="70"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-xs-12 text-center">
-                                            <input class="btn btn-primary" type="submit" value="Post">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div>
                             <% topic.comments[i].replies.forEach((reply) => { %>
                                 <div class="well well-sm">
                                     <h4><a href="/me/<%= reply.author.username %>"><%= reply.author.username.toUpperCase() %></a></h4> 
@@ -153,9 +136,20 @@
                                     <% } %>
                                 </div>
                             <% }) %>
-                            <a class="" role="button" data-toggle="collapse" href="#<%= topic.comments[i].id %>2" aria-expanded="false" aria-controls="<%= topic.comments[i].id %>">
-                                reply
-                            </a>
+                            <div class="" id="<%= topic.comments[i].id %>2">
+                                <form class="" action="/forum/<%= topic._id %>/<%= topic.comments[i].id %>" method="POST">
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <textarea class="form-control" name="comment" placeholder="Comment Here" rows="4" cols="90"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 text-center">
+                                            <input class="btn btn-primary" type="submit" value="Post">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <% } %>
