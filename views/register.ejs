@@ -5,7 +5,7 @@
         <div class="col-xs-12 col-md-6">
             <h1>Sign up For a SMARC</h1>
             <h1>Member Account!</h1>
-            <form action="/register" method="POST" class="form-media">
+            <form action="/register" method="POST" class="form-media" encType="multipart/form-data">
                 <div class="row">
                     <div class="form-group col-xs-4">
                         <input class="form-control" type="text" name="firstName" placeholder="First Name" required>
@@ -47,6 +47,16 @@
                         <input class="form-control" type="password" name="password2" minlength="6" placeholder="Re-enter Password" required>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Profile Image</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs=12 col-md-offset-4">
+                        <input type="file" name="profileImage">
+                    </div>
+                </div>
                 <br>
                 <div class="form-group">
                     <input class="btn btn-primary btn-md" onclick="return ConfirmSubmit()" class="btn btn-primary" type="submit" value="Submit">
@@ -58,11 +68,12 @@
             <br>
             <h5>By joining SMARC online you gain access to the following:</h5>
             <br>
-            <p>1. Our online Radio Market where you can list items wanted and for sale, and comment on items listed.</p>
+            <p>1. Our online Radio Market where you can list items wanted and for sale, and comment on items listed</p>
             <p>2. Online membership roster where you can view Club Member's pictures, email addresses, phone numbers, mailing addresses and 
-            callsigns if they choose to share.</p>
+            callsigns if they choose to share</p>
             <p>3. Meeting minutes</p>
             <p>4. The Net Control station schedule</p>
+            <p>5. Our member's only forum</p>
             <br>
             <p><em>If you are a SMARC member, please allow up to 48 hours for us to verify your membership. During this time, you will be able to access
              the Radio Market only.</em></p>
