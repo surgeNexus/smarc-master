@@ -14,7 +14,7 @@
                 <hr>
                 <p><%= topic.description %></p>
                 <hr>
-                <% if(currentUser.id == topic.author.id){ %>
+                <% if(currentUser.id == topic.author.id || currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                 <div class="foot-room">
                     <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#update" aria-expanded="false" aria-controls="collapseExample">
                         edit
@@ -75,7 +75,7 @@
                             </div>
                             <p><%= topic.comments[i].text %></p>
                         </div>
-                        <% if(currentUser.id == topic.comments[i].author.id){ %>
+                        <% if(currentUser.id == topic.comments[i].author.id || currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                             <div class="foot-room">
                                 <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#<%= topic.comments[i].id %>" aria-expanded="false" aria-controls="collapseExample">
                                     edit
@@ -125,7 +125,7 @@
                                         <p class="pull-right"><%= moment(reply.createdAt).fromNow() %></p>
                                     </div>
                                     <p><%= reply.text %></p>
-                                    <% if(currentUser.id == reply.author.id){ %>
+                                    <% if(currentUser.id == reply.author.id || currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                                         <div class="foot-room">
                                             <button class="btn btn-xs btn-warning" type="button" data-toggle="collapse" data-target="#<%= reply.id %>" aria-expanded="false" aria-controls="collapseExample">
                                                 edit
