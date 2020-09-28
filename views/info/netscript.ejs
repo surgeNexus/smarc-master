@@ -12,7 +12,7 @@
                     <h4>
                         This is 
                                 <% for(var i = 0; i < foundNet.length; i++){ %>
-                                    <% if(foundNet[i].date === today){ %>
+                                    <% if(foundNet[i].date){ %>
                                         <%= foundNet[i].ncs.username.toUpperCase() %>
                                     <% } %>
                                 <% } %> 

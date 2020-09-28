@@ -25,7 +25,7 @@
                         <div class="panel-body">
                             <div class="row event-images">
                                 <% events[i].eventImages.forEach(function(image){ %>
-                                    <div class="container col-md-3">
+                                    <div class="container col-md-6">
                                     <div class="event-images">
                                         <a class="" data-toggle="modal" data-target="#<%= image.id %>">
                                           <img class="event-image center-block img-responsive" src="<%= image.image %>">
@@ -33,7 +33,7 @@
                                     </div>
                                         <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                                         <form class="" id="delete-form" action="/events/<%= events[i].id %>/<%= image._id %>?_method=DELETE" method="POST">
-                                            <div class="form-media">
+                                            <div class="form-media foot-room">
                                                 <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
                                             </div>
                                         </form>
