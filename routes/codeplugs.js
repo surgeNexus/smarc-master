@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var Codeplugs = require('../models/codeplug');
 var middleware = require('../middleware');
 
@@ -28,15 +29,17 @@ router.get('/codeplugscollection/new', middleware.isAdmin, function (req, res) {
 router.post('/', middleware.isAdmin, function (req, res) {
   var title = req.body.title;
   var date = req.body.date;
-
   let doc = req.files.doc;
-  doc.mv('./public/files/documents/' + req.files.doc.name, function (err) {
+  var now = Date.now();
+  doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
+    err
+  ) {
     if (err) {
       console.log(err);
     }
   });
 
-  var docLoc = '/files/documents/' + req.files.doc.name;
+  var docLoc = '/files/documents/' + now + req.files.doc.name;
   var newDoc = { title: title, date: date, docLoc: docLoc };
 
   Codeplugs.create(newDoc, function (err) {
@@ -63,12 +66,38 @@ router.get('/codeplugscollection/:id', middleware.isAdmin, function (req, res) {
 });
 
 router.put('/codeplugscollection/:id', middleware.isAdmin, function (req, res) {
-  Codeplugs.findByIdAndUpdate(req.params.id, req.body, function (err) {
+  Codeplugs.findByIdAndUpdate(req.params.id, req.body, function (
+    err,
+    foundDoc
+  ) {
     if (err) {
       req.flash('error', 'something went wrong');
       res.redirect('back');
     } else {
-      res.redirect('/codeplugs');
+      if (req.body.doc) {
+        fs.unlink('./public' + foundDoc.docLoc, err => {
+          if (err) {
+            req.flash('error', 'File note deleted; codeplug removed.');
+            res.redirect('back');
+          }
+        });
+        var now = Date.now();
+        router.post('/', middleware.isAdmin, function (req, res) {
+          let doc = req.files.doc;
+          doc.mv(
+            './public/files/documents/' + now + req.files.doc.name,
+            function (err) {
+              if (err) {
+                console.log(err);
+              }
+            }
+          );
+          foundDoc.docLoc = '/files/documents/' + now + req.files.doc.name;
+          res.render('codeplugs/edit', { foundDoc: foundDoc });
+        });
+      } else {
+        res.redirect('/codeplugs');
+      }
     }
   });
 });
@@ -77,11 +106,17 @@ router.delete('/codeplugscollection/:id', middleware.isAdmin, function (
   req,
   res
 ) {
-  Codeplugs.findByIdAndRemove(req.params.id, function (err) {
+  Codeplugs.findByIdAndRemove(req.params.id, function (err, removedCodeplug) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
+      fs.unlink('./public' + removedCodeplug.docLoc, err => {
+        if (err) {
+          req.flash('error', 'File note deleted; codeplug removed.');
+          res.redirect('back');
+        }
+      });
       res.redirect('/codeplugs');
     }
   });

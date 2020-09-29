@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 var Docs = require('../models/document');
 var middleware = require('../middleware');
 
@@ -74,11 +75,17 @@ router.put('/docscollection/:id', middleware.isAdmin, function (req, res) {
 });
 
 router.delete('/docscollection/:id', middleware.isAdmin, function (req, res) {
-  Docs.findByIdAndRemove(req.params.id, function (err) {
+  Docs.findByIdAndRemove(req.params.id, function (err, removedDoc) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
+      fs.unlink('./public' + removedDoc.docLoc, err => {
+        if (err) {
+          req.flash('error', 'File note deleted, but image removed.');
+          res.redirect('back');
+        }
+      });
       res.redirect('/documents');
     }
   });
