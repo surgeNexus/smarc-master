@@ -32,7 +32,8 @@ var commentRoutes = require('./routes/comments'),
   aboutRoute = require('./routes/about'),
   memberRoute = require('./routes/member'),
   eventsRoutes = require('./routes/events'),
-  forumRoutes = require('./routes/forum');
+  forumRoutes = require('./routes/forum'),
+  codeplugRoutes = require('./routes/codeplugs');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -85,6 +86,7 @@ app.use('/about', aboutRoute);
 app.use('/members', memberRoute);
 app.use('/events', eventsRoutes);
 app.use('/forum', forumRoutes);
+app.use('/codeplugs', codeplugRoutes);
 
 app.listen(3000, function () {
   console.log('The SMARC Server Has Started!');
