@@ -5,14 +5,16 @@ var Codeplugs = require('../models/codeplug');
 var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
-  Codeplugs.find({}, function (err, foundCodeplugs) {
-    if (err || !foundCodeplugs) {
-      req.flash('error', 'Item not found');
-      res.redirect('back');
-    } else {
-      res.render('codeplugs', { foundCodeplugs: foundCodeplugs });
-    }
-  });
+  Codeplugs.find({})
+    .sort({ title: -1 })
+    .exec(function (err, foundCodeplugs) {
+      if (err || !foundCodeplugs) {
+        req.flash('error', 'Item not found');
+        res.redirect('back');
+      } else {
+        res.render('codeplugs', { foundCodeplugs: foundCodeplugs });
+      }
+    });
 });
 
 router.get('/codeplugscollection/new', middleware.isAdmin, function (req, res) {
@@ -32,26 +34,34 @@ router.post('/', middleware.isAdmin, function (req, res) {
   var firmware = req.body.firmware;
   var rt = req.body.rt;
   var date = req.body.date;
-  let doc = req.files.doc;
   var now = Date.now();
-  doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
-    err
-  ) {
-    if (err) {
-      console.log(err);
-    }
-  });
-
-  var docLoc = '/files/documents/' + now + req.files.doc.name;
-  var newDoc = {
-    title: title,
-    date: date,
-    docLoc: docLoc,
-    firmware: firmware,
-    model: model,
-    rt: rt
-  };
-
+  if (req.files) {
+    let doc = req.files.doc;
+    doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
+      err
+    ) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    var docLoc = '/files/documents/' + now + req.files.doc.name;
+    var newDoc = {
+      title: title,
+      date: date,
+      docLoc: docLoc,
+      firmware: firmware,
+      model: model,
+      rt: rt
+    };
+  } else {
+    var newDoc = {
+      title: title,
+      date: date,
+      firmware: firmware,
+      model: model,
+      rt: rt
+    };
+  }
   Codeplugs.create(newDoc, function (err) {
     if (err || !newDoc) {
       console.log(err);
