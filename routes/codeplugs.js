@@ -28,6 +28,9 @@ router.get('/codeplugscollection/new', middleware.isAdmin, function (req, res) {
 
 router.post('/', middleware.isAdmin, function (req, res) {
   var title = req.body.title;
+  var model = req.body.model;
+  var firmware = req.body.firmware;
+  var rt = req.body.rt;
   var date = req.body.date;
   let doc = req.files.doc;
   var now = Date.now();
@@ -40,7 +43,14 @@ router.post('/', middleware.isAdmin, function (req, res) {
   });
 
   var docLoc = '/files/documents/' + now + req.files.doc.name;
-  var newDoc = { title: title, date: date, docLoc: docLoc };
+  var newDoc = {
+    title: title,
+    date: date,
+    docLoc: docLoc,
+    firmware: firmware,
+    model: model,
+    rt: rt
+  };
 
   Codeplugs.create(newDoc, function (err) {
     if (err || !newDoc) {

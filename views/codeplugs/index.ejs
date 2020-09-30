@@ -17,7 +17,16 @@
                         <div style="width: 30%; margin: 25px auto;">
                             <form action="/codeplugs" method="POST" encType="multipart/form-data">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="title" placeholder="Radio Specs">
+                                    <input class="form-control" type="text" name="title" placeholder="Radio Brand">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="model" placeholder="Radio Model">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="firmware" placeholder="Firmware Version">
+                                </div>
+                                <div class="form-group text-center">
+                                  RT Systems file <input class="" type="checkbox" name="rt" value="true">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="date" name="date" placeholder="Date">
@@ -45,7 +54,14 @@
                    <div class="thumbnail">
                       <div class="caption">
                         <h4><%= cps.title %></h4>
-                        <h5><%= cps.date %></h5>
+                        <h5><%= cps.model %></h5>
+                        <% if(cps.firmware){ %>
+                          <h5 >FW: <%= cps.firmware %></h5>
+                        <% } %>
+                        <% if(cps.rt === true){ %>
+                          <em>RT Systems File</em>
+                        <% } %>
+                        <p><%= cps.date %></p>
                         <div>
                           <a class="btn btn-md btn-primary" href="<%= cps.docLoc %>" download="<%= cps.title %>">Download</a>
                         </div>
