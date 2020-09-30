@@ -6,7 +6,7 @@ var middleware = require('../middleware');
 
 router.get('/', function (req, res) {
   Codeplugs.find({})
-    .sort({ title: -1 })
+    .sort({ model: -1, title: -1 })
     .exec(function (err, foundCodeplugs) {
       if (err || !foundCodeplugs) {
         req.flash('error', 'Item not found');
