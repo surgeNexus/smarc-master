@@ -6,13 +6,13 @@
         <div class="form-media">
             <div class="col-md-8 col-sm-12 form-media well well-lg">
                 <h1 class="title-center">Smoky Mountain Amateur Radio Club</h1>
-                <h2 class="title-center">(SMARC: Net Control Station Procedure)</h2>
+                <h2 class="title-center">SMARC Net Control Station Procedure</h2>
                 <hr>
                 <div>
                     <h4>
                         This is 
                                 <% for(var i = 0; i < foundNet.length; i++){ %>
-                                    <% if(foundNet[i].date){ %>
+                                    <% if(foundNet[i].date === today){ %>
                                         <%= foundNet[i].ncs.username.toUpperCase() %>
                                     <% } %>
                                 <% } %> 
@@ -32,8 +32,8 @@
                         This net is currently activated as an open net to all SMARC members and hams 
                         who are interested in promoting the hobby. This is 
                         <% foundNet.forEach(function(net){ %>
-                                    <% if(net.date === today){ %>
-                                        <%= net.ncs.username.toUpperCase() %>
+                            <% if(net.date === today){ %>
+                                <%= net.ncs.username.toUpperCase() %>
                             <% } %>
                         <% }) %>
                          standing by for 
@@ -42,11 +42,9 @@
                 </div>
                 <br>
                 <div>
-                    <h4>
-                        Are there any announcements to come before the net? Come now with your first name and call sign.
-                        <em>**PAUSE**</em>
-                        (Take the list and decide when the announcements will be made). Also ask if there are questions. 
-                    </h4>
+                    <h4>Are there any announcements to come before the net? Come now with your first name and call sign.</h4>
+                        <h4><em>**PAUSE**</em></h4>
+                    <h4>(Take the list and decide when the announcements will be made). Also ask if there are questions.</h4>
                 </div>
                 <br>
                 <div>
@@ -86,9 +84,37 @@
                                 <%= net.ncs.username.toUpperCase() %>
                             <% } %>
                         <% }) %> 
-                your NCS of SMARC taking check-ins from any and all stations. Please come with 
-                        your first name, call sign, location and let us know if you are a SMARC member. Remember to ID as required 
-                        by the FCC and follow ALL FCC RULES. <em>**PAUSE FOR MORE CHECKINS**</em>
+                        your NCS taking check-ins from any and all stations. Please come with 
+                        your first name, call sign, location and let us know if you are a SMARC member.<em>**PAUSE FOR MORE CHECKINS**</em>
+                    </h4>
+                </div>
+                <br>
+                <div>
+                    <h4>
+                        Thanks to the SMARC Repeater Committee:
+                    </h4>
+                    <h5>Kurt Meltzer, KC4NX</h5>
+                    <h5>Bob Wilson, KK4XA</h5>
+                    <h5>Carroll Peabody, W4PCA</h5>
+                    <h5>Jordan Webb, K4AVG</h5>
+                    <h5>Tom Jenkinson, WB7TLW</h5>
+                </div>
+                <br>
+                <div>
+                    <h4>
+                    Also, thanks to Tim Berry, WB4GBI, for the use of his repeater 146.625 MHz. If the SMARC repeater is not operational; please tune to 146.625 
+                    toned to 118.8 Hz.
+                    </h4>
+                </div>
+                <br>
+                <div>
+                    <h4>
+                        There were (# of checkins) check-ins tonight. Thanks to everyone and 73's until next week. 
+                        <% for(var i = 0; i < foundNet.length; i++){ %>
+                            <% if(foundNet[i].date === today){ %>
+                                <%= foundNet[i].ncs.username.toUpperCase() %>
+                            <% } %>
+                        <% } %> 
                     </h4>
                 </div>
             </div>
