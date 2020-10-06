@@ -6,7 +6,8 @@ var codeplugSchema = mongoose.Schema({
   rt: { type: Boolean, default: false },
   firmware: String,
   date: String,
-  docLoc: String
+  docLoc: String,
+  coverage: String
 });
 
 module.exports = mongoose.model('Codeplug', codeplugSchema);

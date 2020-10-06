@@ -34,6 +34,7 @@ router.post('/', middleware.isAdmin, function (req, res) {
   var firmware = req.body.firmware;
   var rt = req.body.rt;
   var date = req.body.date;
+  var coverage = req.body.coverage;
   var now = Date.now();
   if (req.files) {
     let doc = req.files.doc;
@@ -51,7 +52,8 @@ router.post('/', middleware.isAdmin, function (req, res) {
       docLoc: docLoc,
       firmware: firmware,
       model: model,
-      rt: rt
+      rt: rt,
+      coverage: coverage
     };
   } else {
     var newDoc = {
@@ -59,7 +61,8 @@ router.post('/', middleware.isAdmin, function (req, res) {
       date: date,
       firmware: firmware,
       model: model,
-      rt: rt
+      rt: rt,
+      coverage: coverage
     };
   }
   Codeplugs.create(newDoc, function (err) {
