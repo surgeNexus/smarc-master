@@ -1,0 +1,12 @@
+<div class="col-md-3">
+    <div class="well well-sm">
+        <% users.forEach((user) => { %>
+            <a href="/messages/<%= user.id %>">
+                <div>
+                    <h5><%= user.username %></h5>
+                </div>
+                <hr>
+            </a>
+        <% }) %>
+    </div>
+</div>

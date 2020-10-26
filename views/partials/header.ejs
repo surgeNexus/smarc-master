@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/stylesheets/main.css">
         <link rel="icon" href="/images/glyphicon.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.wpcc.io/lib/1.0.2/cookieconsent.min.css"/><script src="https://cdn.wpcc.io/lib/1.0.2/cookieconsent.min.js" defer></script><script>window.addEventListener("load", function(){window.wpcc.init({"border":"thin","corners":"small","colors":{"popup":{"background":"#f6f6f6","text":"#000000","border":"#555555"},"button":{"background":"#555555","text":"#ffffff"}},"position":"bottom","content":{"href":"https://www.websitepolicies.com/policies/view/Je1iRpv7"}})});</script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144653652-2"></script>
 <script>
@@ -77,6 +78,7 @@
                                 <hr>
                                 <li><a href="/admin">User Admin</a></li>
                                 <li><a href="/members">Member's Section</a></li>
+                                <li><a href="/messages">Messages</a></li>
                                 <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
@@ -86,6 +88,7 @@
                             <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/members">Member's Section</a></li>
+                                <li><a href="/messages">Messages</a></li>
                                 <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
@@ -123,3 +126,5 @@
 <% if(currentUser && currentUser.isAdmin === true){ %>
 
 <% } %>
+
+

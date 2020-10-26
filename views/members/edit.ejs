@@ -3,64 +3,99 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 form-center">
+        <div class="col-md-6">
             <h1><%= user.username %>'s Info</h1>
+            <br>
             <form action="/members/<%= user.id %>?_method=PUT" method="POST" encType="multipart/form-data">
-                <div class="form-group">
-                    <h4>First Name</h4>
-                    <input type="text" name="firstName" value="<%= user.firstName %>">
-                </div>
-                <div class="form-group">
-                    <h4>Last Name</h4>
-                    <input type="text" name="lastName" value="<%= user.lastName %>">
-                </div>
-                <div class="form-group">
-                    <h4>Call Sign</h4>
-                    <input class="lowercase" type="text" oninput="this.value=this.value.toLowerCase()" name="callsign" value="<%= user.username %>">
-                </div>
-                <div class="form-group">
-                    <h4>Phone</h4>
-                    <input type="text" name="phone" value="<%= user.phone %>">
-                </div>
-                <div class="form-group">
-                    <h4>Email</h4>
-                    <input type="text" name="email" value="<%= user.email %>">
-                </div>
-                <div class="form-group">
-                    <h4>Mailing Address</h4>
-                    <input type="text" name="address" value="<%= user.address %>">
-                </div>
-                <div class="form-group">
-                    <h4>City, State, Zip Code</h4>
-                    <input type="text" name="ctyStZip" value="<%= user.ctyStZip %>">
-                </div>
-                <div class="form-group">
-                    <h4>ARRL Member</h4>
-                    <input type="radio" name="arrl" required="required" value="true" <% if(user.arrl === true){ %> checked <% } %>> Yes 
-                    <input type="radio" name="arrl" required="required" value="false" <% if(user.arrl === false){ %> checked <% } %>> No 
-                </div>
-                <br>
-                <div class="form-group">
-                    <h4>About Me</h4>
-                    <h5>You may use HTML5</h5>
-                    <textarea class="form-control" type="text" name="about" rows="20" cols="100"><%= user.aboutMe %></textarea>
-                </div>
                 <div class="form-center">
-                    <h4>Profile Image</h4>
-                    <div class="container">
-                        <img class="usr-img form-center" src="<%= user.profileImage %>">
+                    <div class="form-group">
+                        <h4>First Name</h4>
+                        <input type="text" class="form-control" name="firstName" value="<%= user.firstName %>">
                     </div>
-                    <input class="" type="file" name="doc">
+                    <div class="form-group">
+                        <h4>Last Name</h4>
+                        <input type="text" class="form-control" name="lastName" value="<%= user.lastName %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>Call Sign</h4>
+                        <input class="lowercase form-control" type="text" oninput="this.value=this.value.toLowerCase()" name="callsign" value="<%= user.username %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>Phone</h4>
+                        <input type="text" class="form-control" name="phone" value="<%= user.phone %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>Email</h4>
+                        <input type="text" class="form-control" name="email" value="<%= user.email %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>Mailing Address</h4>
+                        <input type="text" class="form-control" name="address" value="<%= user.address %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>City, State, Zip Code</h4>
+                        <input type="text" class="form-control" name="ctyStZip" value="<%= user.ctyStZip %>">
+                    </div>
+                    <div class="form-group">
+                        <h4>ARRL Member</h4>
+                        <input type="radio" name="arrl" required="required" value="true" <% if(user.arrl === true){ %> checked <% } %>> Yes 
+                        <input type="radio" name="arrl" required="required" value="false" <% if(user.arrl === false){ %> checked <% } %>> No 
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <h4>About Me</h4>
+                        <h5>You may use HTML5</h5>
+                        <textarea class="form-control" type="text" name="about" rows="20" cols="100"><%= user.aboutMe %></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input class="btn btn-primary" type="submit">
+                <div class="text-center">
+                    <div class="">
+                        <h4>Profile Image</h4>
+                        <div class="container">
+                            <img class="thumbnail" src="<%= user.profileImage %>">
+                        </div>
+                        <input class="" type="file" name="doc">
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-6 form-center">
+                <h1>Notification Settings</h1>
+                <br>
+                <div class="">
+                        <h4>Radiomarket Notifications</h4>
+                        <p>Receive email notifications on items you post in the Radiomarket</p>
+                        <input type="radio" name="marketNotify" required="required" value="true" <% if(user.marketNotify === true){ %> checked <% } %>> On 
+                        <input type="radio" name="marketNotify" required="required" value="false" <% if(user.marketNotify === false){ %> checked <% } %>> Off 
+                    </div>
+                    <div class="form-group head-room">
+                        <h4>Message Notifications</h4>
+                        <p>Receive an email notification anytime someone messages you on the SMARC website</p>
+                        <input type="radio" name="messageNotify" required="required" value="true" <% if(user.messageNotify === true){ %> checked <% } %>> Yes 
+                        <input type="radio" name="messageNotify" required="required" value="false" <% if(user.messageNotify === false){ %> checked <% } %>> No 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group form-center">
+                    <input class="btn btn-primary" style="width: 50%" type="submit">
+                </div>
+            </div>
+        </div>
             </form>
             <hr>
             <br>
-            <form id="delete-form" action="/members/<%= user.id %>/remove?_method=DELETE" method="POST">
-                <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
-            </form>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 style="color: red">CAUTION!</h1>
+                    <h3 style="color: red">Please be aware this action can not be undone.</h3>
+                    <br>
+                    <form id="delete-form" action="/members/<%= user.id %>/remove?_method=DELETE" method="POST">
+                        <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete My Account">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

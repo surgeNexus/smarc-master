@@ -69,6 +69,8 @@ router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
         foundUser.ctyStZip = req.body.ctyStZip;
         foundUser.arrl = req.body.arrl;
         foundUser.aboutMe = req.body.about;
+        foundUser.marketNotify = req.body.marketNotify;
+        foundUser.messageNotify = req.body.messageNotify;
         foundUser.save();
         res.redirect('/members');
       } else {
@@ -94,6 +96,8 @@ router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
         foundUser.ctyStZip = req.body.ctyStZip;
         foundUser.arrl = req.body.arrl;
         foundUser.aboutMe = req.body.about;
+        foundUser.marketNotify = req.body.marketNotify;
+        foundUser.messageNotify = req.body.messageNotify;
         foundUser.save();
         res.redirect('/members');
       }

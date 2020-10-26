@@ -18,7 +18,15 @@ var UserSchema = new mongoose.Schema({
   ctyStZip: String,
   arrl: Boolean,
   profileImage: String,
-  aboutMe: String
+  aboutMe: String,
+  marketNotify: { type: Boolean, default: true },
+  messageNotify: { type: Boolean, default: true },
+  messageBox: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Message'
+    }
+  ]
 });
 
 UserSchema.plugin(passportLocalMongoose);

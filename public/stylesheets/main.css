@@ -231,3 +231,7 @@ body {
   position: absolute;
   bottom: 0;
 }
+
+.btn-chat {
+  height: 45px;
+}

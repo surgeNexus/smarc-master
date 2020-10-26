@@ -15,6 +15,7 @@ var express = require('express'),
   fileUpload = require('express-fileupload');
 
 var dotenv = require('dotenv');
+const message = require('./models/message');
 dotenv.config();
 
 //requring routes
@@ -34,6 +35,7 @@ var commentRoutes = require('./routes/comments'),
   eventsRoutes = require('./routes/events'),
   forumRoutes = require('./routes/forum'),
   codeplugRoutes = require('./routes/codeplugs');
+  // messageRoutes = require('./routes/messages');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -87,6 +89,7 @@ app.use('/members', memberRoute);
 app.use('/events', eventsRoutes);
 app.use('/forum', forumRoutes);
 app.use('/codeplugs', codeplugRoutes);
+// app.use('/messages', messageRoutes);
 
 app.listen(3000, function () {
   console.log('The SMARC Server Has Started!');

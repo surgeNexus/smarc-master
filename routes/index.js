@@ -13,7 +13,8 @@ const user = require('../models/user');
 
 //root route
 router.get('/', function (req, res) {
-  res.redirect('/home');
+var url = 'home'
+  res.redirect('/home', {url: url});
 });
 
 router.get('/smarc-admin', function (req, res) {

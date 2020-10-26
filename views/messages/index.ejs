@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+<div class="head-room">
+    <% include ../partials/chatbar %>
+    <div class="col-md-9">
+        <div class="well well-sm">
+            <div>
+                <form class="form-inline" action="/messages/" method="PUT">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="2" cols="155"></textarea>
+                        <button type="submit" class="form-control btn btn-primary btn-chat">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
