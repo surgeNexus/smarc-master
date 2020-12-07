@@ -98,14 +98,16 @@ router.get('/netscriptcollection/:id', middleware.isAdmin, function (req, res) {
 });
 
 router.put('/netscriptcollection/:id', middleware.isAdmin, function (req, res) {
-  Net.findByIdAndUpdate(req.params.id, req.body, function (err, updatedNet) {
+  Net.findById(req.params.id, function (err, updatedNet) {
     if (err) {
+      console.log(err);
       req.flash('error', 'something went wrong');
       res.redirect('back');
     } else {
-      updatedNet.ncs = req.body.ncs;
+      updatedNet.ncs = req.body.ncst;
+      updatedNet.date = req.body.date;
       updatedNet.save();
-      res.redirect('/info/netscript');
+      res.redirect('/info/netscript/');
     }
   });
 });

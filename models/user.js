@@ -21,12 +21,6 @@ var UserSchema = new mongoose.Schema({
   aboutMe: String,
   marketNotify: { type: Boolean, default: true },
   messageNotify: { type: Boolean, default: true },
-  messageBox: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Message'
-    }
-  ]
 });
 
 UserSchema.plugin(passportLocalMongoose);

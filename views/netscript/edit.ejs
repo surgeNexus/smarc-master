@@ -8,11 +8,10 @@
                     <input class="form-control" type="date" name="date" value="<%= foundNet.date %>">
                 </div>
                 <div class="form-group">
-                    <select name="ncs">
-                            <option name="ncs" value="<%= foundNet.ncs %>"><%= foundNet.ncs.username %></option>
+                    <select name="ncst">
                             <% user.forEach(function(usr){ %>
                                 <% if(usr.ncs === true){ %>
-                                    <option name="ncs" value="<%= usr.id %>"><%= usr.username %></option>
+                                    <option name="ncst" value="<%= usr.id %>"><%= usr.username %></option>
                                 <% } %>
                             <% }) %>
                     </select>
