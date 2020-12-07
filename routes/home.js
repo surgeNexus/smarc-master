@@ -6,35 +6,37 @@ var Home = require('../models/home');
 var Net = require('../models/netcontrol');
 var middleware = require('../middleware');
 
-router.get('/', function (req, res) {
-  Home.find({})
-    .sort({ order: 1 })
-    .exec(function (err, foundHome) {
-      if (err || !foundHome) {
-        req.flash('error', 'Item not found');
-        res.redirect('back');
-      } else {
-        Net.find({})
-          .populate('ncs')
-          .exec(function (err, foundNets) {
-            if (err) {
-              req.flash('error', 'NCS not found');
-              res.redirect('back');
-            } else {
-              var today = moment().format('YYYY-MM-DD');
-              var weekFrom = moment().add(7, 'd').format('YYYY-MM-DD');
-              //render show template with that campground
-              res.render('home', {
-                foundHome: foundHome,
-                nets: foundNets,
-                today: today,
-                weekFrom: weekFrom
-              });
-            }
-          });
-      }
-    });
-});
+
+// **********this has been moved to Index.js***********
+// router.get('/', function (req, res) {
+//   Home.find({})
+//     .sort({ order: 1 })
+//     .exec(function (err, foundHome) {
+//       if (err || !foundHome) {
+//         req.flash('error', 'Item not found');
+//         res.redirect('back');
+//       } else {
+//         Net.find({})
+//           .populate('ncs')
+//           .exec(function (err, foundNets) {
+//             if (err) {
+//               req.flash('error', 'NCS not found');
+//               res.redirect('back');
+//             } else {
+//               var today = moment().format('YYYY-MM-DD');
+//               var weekFrom = moment().add(7, 'd').format('YYYY-MM-DD');
+//               //render show template with that campground
+//               res.render('home', {
+//                 foundHome: foundHome,
+//                 nets: foundNets,
+//                 today: today,
+//                 weekFrom: weekFrom
+//               });
+//             }
+//           });
+//       }
+//     });
+// });
 
 router.get('/new', middleware.isAdmin, function (req, res) {
   Home.find({}, function (err, foundHome) {

@@ -10,11 +10,39 @@ var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var moment = require('moment');
 const user = require('../models/user');
+var Comment = require('../models/comment');
+var Home = require('../models/home');
+var Net = require('../models/netcontrol');
 
 //root route
 router.get('/', function (req, res) {
-var url = 'home'
-  res.redirect('/home', {url: url});
+  Home.find({})
+    .sort({ order: 1 })
+    .exec(function (err, foundHome) {
+      if (err || !foundHome) {
+        req.flash('error', 'Item not found');
+        res.redirect('back');
+      } else {
+        Net.find({})
+          .populate('ncs')
+          .exec(function (err, foundNets) {
+            if (err) {
+              req.flash('error', 'NCS not found');
+              res.redirect('back');
+            } else {
+              var today = moment().format('YYYY-MM-DD');
+              var weekFrom = moment().add(7, 'd').format('YYYY-MM-DD');
+              //render show template with that campground
+              res.render('home', {
+                foundHome: foundHome,
+                nets: foundNets,
+                today: today,
+                weekFrom: weekFrom
+              });
+            }
+          });
+      }
+    });
 });
 
 router.get('/smarc-admin', function (req, res) {
