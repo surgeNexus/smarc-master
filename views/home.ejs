@@ -47,7 +47,7 @@
                     <% nets.forEach(function(ncs){ %>
                         <% if(ncs.date >= today && ncs.date < weekFrom){ %>
                             <div class="well well-md text-center">
-                                <h5>This Week's NCS</h5>
+                                <h5><% if(ncs.date === today){ %> Today's NCS <% } else { %> This Week's NCS <% } %> </h5>
                                 <div class="">
                                     <div class="text-center form-media">
                                         <img class="center-block img-responsive img-rounded" src="<%= ncs.ncs.profileImage %>" alt="">
