@@ -28,7 +28,8 @@ router.post('/', middleware.isMember, function (req, res) {
   var desc = req.body.description;
   var author = {
     id: req.user._id,
-    username: req.user.username
+    username: req.user.username,
+    email: req.user.email
   };
   var now = moment();
   if (req.files) {

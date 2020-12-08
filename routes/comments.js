@@ -48,7 +48,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
             }
           });
           var mailOptions = {
-            to: comment.author.email,
+            to: campground.author.email,
             from: 'surgenexus.app@gmail.com',
             subject:
               '[SMARC RADIOMARKET] Someone has commented on your listing',
