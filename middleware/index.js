@@ -60,7 +60,7 @@ middlewareObj.checkProfileOwnership = function (req, res, next) {
     User.findById(req.params.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
-        res.redirect('/home');
+        res.redirect('/');
       } else {
         // does user own the comment?
         if (foundUser._id.equals(req.user.id) || req.user.isAdmin === true) {
@@ -82,7 +82,7 @@ middlewareObj.isAdmin = function (req, res, next) {
     User.findById(req.user.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
-        res.redirect('/home');
+        res.redirect('/');
       } else {
         if (foundUser.isAdmin === true) {
           next();
@@ -91,7 +91,7 @@ middlewareObj.isAdmin = function (req, res, next) {
           res.redirect('/member');
         } else {
           req.flash('error', "You don't have permission to do that");
-          res.redirect('/home');
+          res.redirect('/');
         }
       }
     });
@@ -106,13 +106,13 @@ middlewareObj.isMember = function (req, res, next) {
     User.findById(req.user.id, function (err, foundUser) {
       if (err || !foundUser) {
         req.flash('error', 'User not found');
-        res.redirect('/home');
+        res.redirect('/');
       } else {
         if (foundUser.isMember === true) {
           next();
         } else {
           req.flash('error', 'You must be a verified member to do that');
-          res.redirect('/home');
+          res.redirect('/');
         }
       }
     });

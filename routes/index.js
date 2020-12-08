@@ -179,7 +179,7 @@ router.post(
 router.get('/logout', function (req, res) {
   req.logout();
   req.flash('success', 'Logged you out!');
-  res.redirect('/home');
+  res.redirect('/');
 });
 
 router.get('/repeaters', function (req, res) {
@@ -221,7 +221,7 @@ router.get('/userredirect', function (req, res) {
           'error',
           'You must be a verified SMARC member to access that page'
         );
-        res.redirect('/home');
+        res.redirect('/');
       }
     }
   });
@@ -290,7 +290,7 @@ router.post('/forgot', function (req, res, next) {
     ],
     function (err) {
       if (err) return next(err);
-      res.redirect('/home');
+      res.redirect('/');
     }
   );
 });
@@ -371,7 +371,7 @@ router.post('/reset/:token', function (req, res) {
       }
     ],
     function (err) {
-      res.redirect('/home');
+      res.redirect('/');
     }
   );
 });
