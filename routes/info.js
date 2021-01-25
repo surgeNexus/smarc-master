@@ -24,7 +24,7 @@ router.get('/email', function (req, res) {
   res.render('info/email');
 });
 
-router.get('/docs', function (req, res) {
+router.get('/docs', middleware.isMember, function (req, res) {
   Docs2.find({}, function (err, foundDocs) {
     if (err || !foundDocs) {
       req.flash('error', 'Item not found');
