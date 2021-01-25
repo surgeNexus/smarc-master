@@ -1,0 +1,39 @@
+<% include ../../partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Edit Document</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/info/docs/<%= foundDoc._id %>?_method=PUT" method="POST"  encType="multipart/form-data">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="title" value="<%= foundDoc.title %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="date" value="<%= foundDoc.date %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="file" name="docLoc">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <form id="delete-form" action="/info/docs/<%= foundDoc.id %>?_method=DELETE" method="POST">
+                <input onclick="return ConfirmDelete()" type="submit" class="btn btn-xs btn-danger" value="Delete">
+            </form>
+            <a href="/documents/">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you wish to delete this?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>    
+
+<% include ../../partials/footer %>
