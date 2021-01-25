@@ -4,7 +4,7 @@ var passport = require('passport');
 var fs = require('fs');
 var User = require('../models/user');
 var Campground = require('../models/campground');
-var Docs = require('../models/memDoc');
+var Docs2 = require('../models/memDoc');
 var middleware = require('../middleware');
 
 router.get('/join', function (req, res) {
@@ -25,7 +25,7 @@ router.get('/email', function (req, res) {
 });
 
 router.get('/docs', function (req, res) {
-  Docs.find({}, function (err, foundDocs) {
+  Docs2.find({}, function (err, foundDocs) {
     if (err || !foundDocs) {
       req.flash('error', 'Item not found');
       res.redirect('back');
@@ -36,7 +36,7 @@ router.get('/docs', function (req, res) {
 });
 
 router.get('/docs/new', middleware.isAdmin, function (req, res) {
-  Docs.find({}, function (err, newSk) {
+  Docs2.find({}, function (err, newSk) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
@@ -60,7 +60,7 @@ router.post('/docs', middleware.isAdmin, function (req, res) {
   var docLoc = '/files/documents/' + req.files.doc.name;
   var newDoc = { title: title, date: date, docLoc: docLoc };
 
-  Docs.create(newDoc, function (err) {
+  Docs2.create(newDoc, function (err) {
     if (err || !newDoc) {
       console.log(err);
       req.flash('error', 'something went wrong');
@@ -73,7 +73,7 @@ router.post('/docs', middleware.isAdmin, function (req, res) {
 });
 
 router.get('/docs/:id', middleware.isAdmin, function (req, res) {
-  Docs.findById(req.params.id, function (err, foundDoc) {
+  Docs2.findById(req.params.id, function (err, foundDoc) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
@@ -84,7 +84,7 @@ router.get('/docs/:id', middleware.isAdmin, function (req, res) {
 });
 
 router.put('/docs/:id', middleware.isAdmin, function (req, res) {
-  Docs.findByIdAndUpdate(req.params.id, req.body, function (err) {
+  Docs2.findByIdAndUpdate(req.params.id, req.body, function (err) {
     if (err) {
       req.flash('error', 'something went wrong');
       res.redirect('back');
@@ -95,7 +95,7 @@ router.put('/docs/:id', middleware.isAdmin, function (req, res) {
 });
 
 router.delete('/docs/:id', middleware.isAdmin, function (req, res) {
-  Docs.findByIdAndRemove(req.params.id, function (err, removedDoc) {
+  Docs2.findByIdAndRemove(req.params.id, function (err, removedDoc) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
