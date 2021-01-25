@@ -4,7 +4,7 @@ var passport = require('passport');
 var fs = require('fs');
 var User = require('../models/user');
 var Campground = require('../models/campground');
-var Docs = require('../models/document');
+var Docs = require('../models/memDoc');
 var middleware = require('../middleware');
 
 router.get('/join', function (req, res) {
