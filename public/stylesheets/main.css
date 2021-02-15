@@ -138,7 +138,12 @@ ul {
 
 body {
   background-color: #005a72;
-  color: black;
+  color: white;
+}
+
+well {
+  background-color: black;
+  color: white;
 }
 
 .profile-image {
