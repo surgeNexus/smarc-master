@@ -111,7 +111,7 @@ router.delete('/:id/remove', function (req, res) {
       req.flash('error', 'User not removed');
     } else {
       req.flash('success', 'This member has been removed');
-      res.redirect('/home');
+      res.redirect('/');
     }
   });
 });

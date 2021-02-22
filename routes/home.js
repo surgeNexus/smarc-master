@@ -66,12 +66,12 @@ router.put('/:id', middleware.isAdmin, function (req, res) {
   // find and update the correct campground
   Home.findByIdAndUpdate(req.params.id, req.body, function (err, updatedHome) {
     if (err) {
-      res.redirect('/home');
+      res.redirect('/');
       req.flash('error', 'Something went wrong');
     } else {
       updatedHome.order = req.body.order;
       updatedHome.save();
-      res.redirect('/home');
+      res.redirect('/');
     }
   });
 });
@@ -108,7 +108,7 @@ router.post('/', middleware.isAdmin, function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/home');
+      res.redirect('/');
     }
   });
 });
@@ -119,10 +119,10 @@ router.delete('/:id', middleware.isAdmin, function (req, res) {
     if (err) {
       console.log(err);
       console.log(req.params.id);
-      res.redirect('/home');
+      res.redirect('/');
     } else {
       console.log(req.params.id);
-      res.redirect('/home');
+      res.redirect('/');
     }
   });
 });
