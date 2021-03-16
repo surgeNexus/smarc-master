@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h1><%= user.username.toUpperCase %>'s Info</h1>
+            <h1 class="text-center"><%= user.username.toUpperCase %>'s Info</h1>
             <br>
             <form action="/members/<%= user.id %>?_method=PUT" method="POST" encType="multipart/form-data">
                 <div class="form-center">
@@ -41,11 +41,6 @@
                         <input type="radio" name="arrl" required="required" value="true" <% if(user.arrl === true){ %> checked <% } %>> Yes 
                         <input type="radio" name="arrl" required="required" value="false" <% if(user.arrl === false){ %> checked <% } %>> No 
                     </div>
-                    <br>
-                    <div class="form-group">
-                        <h4>About Me</h4>
-                        <textarea class="form-control" type="text" name="about" id="htmeditor"><%= user.aboutMe %></textarea><script src="https://htmeditor.com/js/htmeditor.min.js" htmeditor_textarea="htmeditor" full_screen="no" editor_height="480" run_local="no"> </script> 
-                    </div>
                 </div>
                 <div class="text-center">
                     <div class="">
@@ -80,6 +75,14 @@
                         <input type="radio" name="elmer" required="required" value="true" <% if(user.isElmer === true){ %> checked <% } %>> Yes 
                         <input type="radio" name="elmer" required="required" value="false" <% if(user.isElmer === false){ %> checked <% } %>> No 
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h4>About Me</h4>
+                    <textarea class="form-control" type="text" name="about" id="htmeditor"><%= user.aboutMe %></textarea><script src="https://htmeditor.com/js/htmeditor.min.js" htmeditor_textarea="htmeditor" full_screen="no" editor_height="480" run_local="no"> </script> 
                 </div>
             </div>
         </div>
