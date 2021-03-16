@@ -33,22 +33,22 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li class="active"><a href="/radiomarket">Radio Market</a></li>
-                <li class="active"><a href="/info/sk">Silent Key</a></li>
-                <li class="active"><a href="/netsched">Local Nets</a></li>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/radiomarket">Radio Market</a></li>
+                <li class=""><a href="/info/sk">Silent Key</a></li>
+                <li class=""><a href="/netsched">Local Nets</a></li>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="active"><a href="/about">Contact and Location</a></li>
-                        <li class="active"><a href="/events">Event Images</a></li>
-                        <li class="active"><a href="/info/officers">Officers</a></li>
-                        <li class="active"><a href="/history1">Club History</a></li>
-                        <li class="active"><a href="/repeaters">Repeaters</a></li>
-                        <li class="active"><a href="/codeplugs">Codeplugs</a></li>
-                        <li class="active"><a href="/documents">Documents</a></li>
-                        <li class="active"><a href="http://www.arrl.org/what-is-ham-radio">About Ham Radio</a></li>
+                        <li><a href="/about">Contact and Location</a></li>
+                        <li><a href="/events">Event Images</a></li>
+                        <li><a href="/info/officers">Officers</a></li>
+                        <li><a href="/history1">Club History</a></li>
+                        <li><a href="/repeaters">Repeaters</a></li>
+                        <li><a href="/codeplugs">Codeplugs</a></li>
+                        <li><a href="/documents">Documents</a></li>
+                        <li><a href="http://www.arrl.org/what-is-ham-radio">About Ham Radio</a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,15 +56,15 @@
                 <ul class="nav navbar-nav navbar-right">
                         <% if(!currentUser){ %>
                             <li><a href="/login">Member Login</a></li>
-                            <li class="active <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
-                            <li class="active <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/email">Mailing List</a></li>
+                            <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/info/join">Join Us</a></li>
                             <li>
                                   <a href="http://facebook.com/w4olb" class="fa fa-facebook-official" style="font-size:26px;padding-top:15px;"></a>
                             </li>
                         <% } else if(currentUser.isAdmin === true){ %>
-                            <li class="active"><a href="/members">Member's Section</a></li>
-                            <li class="active"><a href="/info/email">Mailing List</a></li>
-                            <li class="active dropdown">
+                            <li><a href="/members">Member's Section</a></li>
+                            <li class=""><a href="/info/email">Mailing List</a></li>
+                            <li class="dropdown">
                             <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
                                 <div class="text-center">
@@ -77,23 +77,24 @@
                                     </form>
                                 </div>
                                 <hr>
-                                <li class="active"><a href="/admin">User Admin</a></li>
-                                <li class="active"><a href="/members">Member's Section</a></li>
-                                <li class="active"><a href="/messages">Messages</a></li>
-                                <li class="active"><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
-                                <li class="active"><a href="/logout">Logout</a></li>
+                                <li><a href="/admin">User Admin</a></li>
+                                <li><a href="/members">Member's Section</a></li>
+                                <li><a href="/messages">Messages</a></li>
+                                <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         <% } else { %>
-                            <li class="active"><a href="/members">Member's Section</a></li>
-                            <li class="active dropdown">
+                            <li><a href="/members">Member's Section</a></li>
+                            <li class="dropdown">
                             <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="/members">Member's Section</a></li>
+                                <li><a href="/members">Member's Section</a></li>
                                 <!-- <li><a href="/messages">Messages</a></li> -->
-                                <li class="active"><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
-                                <li class="active"><a href="/logout">Logout</a></li>
+                                <li><a href="/members/<%= currentUser.id %>/edit">My Account</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         <% } %>
+                  
                 </ul>
             </div>
         </div>
