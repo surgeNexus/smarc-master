@@ -19,6 +19,9 @@
                             <% } else { %>
                                 <img class="center-block img-responsive img-rounded" style="max-height: 310px" src="<%= member.profileImage %>">
                             <% } %>
+                            <% if(member.isElmer === true){ %>
+                                <h6>I am an elmer!</h6>
+                            <% } %>
                             <div class="">
                                 <p><a href="mailto:<%= member.email %>"><%= member.email %></a></p>
                                 <p class="">Click for more info</p>
@@ -26,6 +29,7 @@
                                     <a href="/members/<%= member.id %>" class="glyphicon glyphicon-pencil"></a>
                                 <% } %>
                             </div>
+                            <br>
                         </div>
                     </div>
                 </a>
