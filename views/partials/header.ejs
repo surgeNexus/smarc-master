@@ -63,6 +63,7 @@
                             </li>
                         <% } else if(currentUser.isAdmin === true){ %>
                             <li><a href="/members">Member's Section</a></li>
+                            <li class=""><a href="/info/email">Mailing List</a></li>
                             <li class="dropdown">
                             <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username.toUpperCase() %></a>
                             <ul class="dropdown-menu">
