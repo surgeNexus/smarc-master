@@ -13,14 +13,14 @@
                         <div class="well custom-well text-center">
                             <% var callsign = member.username.toUpperCase() %>
                             <h4><%= member.firstName %> <%= member.lastName %></h4>
-                            <h4><%= callsign %></h4>
+                            <h5><%= callsign %></h5>
                             <% if(!member.profileImage){ %>
                                 <img class="center-block img-responsive img-rounded" style="max-height: 310px" src="https://images.unsplash.com/photo-1559276255-b2c706fa5e19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=932&q=80">
                             <% } else { %>
                                 <img class="center-block img-responsive img-rounded" style="max-height: 310px" src="<%= member.profileImage %>">
                             <% } %>
                             <% if(member.isElmer === true){ %>
-                                <h6>I am an elmer!</h6>
+                                <h5>I am an elmer!</h5>
                             <% } %>
                             <div class="">
                                 <p><a href="mailto:<%= member.email %>"><%= member.email %></a></p>
