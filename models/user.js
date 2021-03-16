@@ -17,6 +17,8 @@ var UserSchema = new mongoose.Schema({
   address: String,
   ctyStZip: String,
   arrl: Boolean,
+  memberPopup: {type: Boolean, default: false},
+  isElmer: {type: Boolean, default: false},
   profileImage: String,
   aboutMe: String,
   marketNotify: { type: Boolean, default: true },
