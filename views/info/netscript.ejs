@@ -129,6 +129,7 @@
                     <div class="form-media">
                         <% foundNet.forEach(function(net){ %>
                             <% if(net.date >= today){ %>
+                                <% if(net.ncs){ %>
                         <div class="well well-sm">
                             <h4>
                                 <%= net.date %>
@@ -148,6 +149,7 @@
                             <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
                             <% } %>
                         </div>
+                            <% } %>
                             <% } %>
                         <% }); %>
                     </div>
