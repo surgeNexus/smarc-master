@@ -50,11 +50,7 @@
                                 <h5><% if(ncs.date === today){ %> Today's NCS <% } else { %> This Week's NCS <% } %> </h5>
                                 <div class="">
                                     <div class="text-center form-media">
-                                        <% if(!ncs.ncs.profileImage){ %>
-                                            <img class="center-block img-responsive img-rounded" src="/images/SMARC_Blank_Officer.png" alt="">
-                                        <% } else { %>
-                                            <img class="center-block img-responsive img-rounded" src="<%= ncs.ncs.profileImage %>" alt="">
-                                        <% } %>
+                                        
                                     </div>
                                 </div>
                                 <p class="form-media"><%= ncs.ncs.firstName %></p>
