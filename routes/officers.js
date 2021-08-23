@@ -6,7 +6,7 @@ var moment = require('moment');
 var User = require('../models/user');
 
 router.get('/', function (req, res) {
-  Officers.find({}).sort({order: "desc"}).exec(function (err, foundOfficers) {
+  Officers.find({}).sort({order: "asc"}).exec(function (err, foundOfficers) {
     if (err || !foundOfficers) {
       req.flash('error', 'Item not found');
       res.redirect('back');
