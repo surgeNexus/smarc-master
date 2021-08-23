@@ -12,19 +12,17 @@
                 <% } %>
             </div>
         </div>
-        <div class="row text-center container" style="justify-content: start;">
+        <div class="row text-center container" style="width: 100%;">
         <% foundOfficers.forEach(function(officer){ %>
             <div class="col-md-4">
                 <div class="thumbnail">
                    <div class="caption">
-                        <div style="width: 90%; height: 100%;">
                             <h3><%= officer.title %></h3>
                             <% if(!currentUser){ %>
                             <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                             <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
                             <% } else { %>
                             <% } %>
-                        </div>
                         <img src="<%= officer.pictureLoc %>">
                         <h4><%= officer.name %></h4>
                         <h4><%= officer.callsign %></h4>
