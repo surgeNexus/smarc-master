@@ -6,7 +6,7 @@ var moment = require('moment');
 var User = require('../models/user');
 
 router.get('/', function (req, res) {
-  Officers.find({}, function (err, foundOfficers) {
+  Officers.find({}).sort({order: asc}).exec(function (err, foundOfficers) {
     if (err || !foundOfficers) {
       req.flash('error', 'Item not found');
       res.redirect('back');
@@ -36,6 +36,7 @@ router.post('/', middleware.isAdmin, function (req, res) {
   var title = req.body.title;
   var name = req.body.name;
   var callsign = req.body.callsign;
+  var order = req.body.order;
   var now = moment();
 
   let officerPicture = req.files.officerPicture;
@@ -53,6 +54,7 @@ router.post('/', middleware.isAdmin, function (req, res) {
     title: title,
     name: name,
     callsign: callsign,
+    order: order,
     pictureLoc: pictureLoc
   };
   Officers.create(newOfficer, function (err) {
@@ -82,6 +84,7 @@ router.put('/officerscollection/:id', middleware.isAdmin, function (req, res) {
   Officers.findById(req.params.id, function (err, foundOfficer) {
     var title = req.body.title;
     var name = req.body.name;
+    var order = req.body.order;
     var callsign = req.body.callsign;
     var now = moment();
     if (err) {
@@ -100,6 +103,7 @@ router.put('/officerscollection/:id', middleware.isAdmin, function (req, res) {
             foundOfficer.name = name;
             foundOfficer.title = title;
             foundOfficer.callsign = callsign;
+            foundOfficer.order = order;
             foundOfficer.pictureLoc = pictureLoc;
             foundOfficer.save();
             req.flash('Success', 'Officer has been updated');

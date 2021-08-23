@@ -4,6 +4,7 @@ var officersSchema = mongoose.Schema({
     title: String,
     name: String,
     callsign: String,
+    order: String,
     pictureLoc: String
 });
 
