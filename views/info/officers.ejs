@@ -14,21 +14,23 @@
         </div>
         <div class="row text-center container" style="justify-content: start;">
         <% foundOfficers.forEach(function(officer){ %>
-            <div class="" style="width: 33%; height: auto;">
-                <div class="thumbnail">
-                   <div class="caption">
-                        <div style="width: 90%; height: 100%;">
-                            <h3><%= officer.title %></h3>
-                            <% if(!currentUser){ %>
-                            <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
-                            <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
-                            <% } else { %>
-                            <% } %>
-                        </div>
-                        <img src="<%= officer.pictureLoc %>">
-                        <h4><%= officer.name %></h4>
-                        <h4><%= officer.callsign %></h4>
-                   </div>
+            <div class="col-md-4">
+                <div class="" style="width: 33%; height: auto;">
+                    <div class="thumbnail">
+                       <div class="caption">
+                            <div style="width: 90%; height: 100%;">
+                                <h3><%= officer.title %></h3>
+                                <% if(!currentUser){ %>
+                                <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                                <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
+                                <% } else { %>
+                                <% } %>
+                            </div>
+                            <img src="<%= officer.pictureLoc %>">
+                            <h4><%= officer.name %></h4>
+                            <h4><%= officer.callsign %></h4>
+                       </div>
+                    </div>
                 </div>
             </div>
         <% }); %>
