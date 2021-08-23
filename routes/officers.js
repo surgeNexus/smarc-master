@@ -115,6 +115,7 @@ router.put('/officerscollection/:id', middleware.isAdmin, function (req, res) {
       foundOfficer.name = name;
       foundOfficer.title = title;
       foundOfficer.callsign = callsign;
+      foundOfficer.order = order;
       foundOfficer.save();
       req.flash('Success', 'Officer has been updated');
       res.redirect('/info/officers/');
