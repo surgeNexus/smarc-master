@@ -12,7 +12,7 @@
                 <% } %>
             </div>
         </div>
-        <div class="row text-center container" style="width: 100%;">
+        <div class="row text-center container">
         <% foundOfficers.forEach(function(officer){ %>
             <div class="col-md-4">
                 <div class="thumbnail">
@@ -23,7 +23,7 @@
                             <a class="glyphicon glyphicon-pencil" href="/info/officers/officerscollection/<%= officer._id %>"></a>
                             <% } else { %>
                             <% } %>
-                        <img src="<%= officer.pictureLoc %>">
+                        <img style="width: 80%; height: auto;" src="<%= officer.pictureLoc %>">
                         <h4><%= officer.name %></h4>
                         <h4><%= officer.callsign %></h4>
                    </div>
