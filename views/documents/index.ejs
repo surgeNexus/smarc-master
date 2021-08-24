@@ -1,7 +1,6 @@
 <% include ../partials/header %>
 
-<div class="page-center">
-<div class="container">
+<div class="container mt-3 mb-3">
     <h1 class="text-center">Club Documents</h1>
     <div class="row">
         <div class=col-md-12>
@@ -15,8 +14,8 @@
       <div class="form-media">
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
            <% foundDocs.reverse().forEach(function(docs){ %>
-               <div class="col-md-3 col-sm-6">
-                   <div class="thumbnail">
+               <div class="col-md-3 col-sm-6 mt-3">
+                   <div class="card">
                       <div class="caption">
                         <h4><%= docs.title %></h4>
                         <h5><%= docs.date %></h5>
@@ -38,5 +37,4 @@
        </div>
      </div>
    </div>
-</div>
 <% include ../partials/footer %>

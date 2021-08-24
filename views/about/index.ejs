@@ -1,43 +1,44 @@
 <% include ../partials/header %>
 
-<div class="page-center">
-    <div class="container">
-        <div class="row form-media">
-            <div class="col-md-4 form-media">
-                <h2>Contact</h2>
-                <hr>
-                <div>
-                    <a type="email" href="mailto:info@w4olb.org"><button type="button" class="btn btn-danger">Send us an Email</button></a>
-                    <a href="http://m.me/w4olb"><button type="button" class="btn btn-primary">Message us on Facebook</button></a>
-                </div>
-                <hr>
-                <h4>Visit our club Meeting</h4>
-                <p>
-                    The Smoky Mountain Amateur Radio Club meets the fourth Monday of each Month at 7:00 P.M. excluding 
-                    the month of June as field day is the Fourth Weekend of the month and the month of December
-                    as we host a Christmas Party.
-                </p>
-                <% foundAbout.forEach(function(about){ %>
-                <div>
-                    <a href="<%= about.meeting %>">
-                        <button class="btn btn-success">Directions to Meeting</button>
-                    </a>
-                    <a class="title-center" href="<%= about.fieldDay %>">
-                        <button class="btn btn-success">Directions to Field Day</button>
-                    </a>
-                </div>
-                <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
-                        <a href="/about/aboutcollection/<%= about._id %>" class="form-media glyphicon glyphicon-pencil"></a>
-                        
-                    <% } %>
-                <% }) %>
+<div class="container mt-3 mb-3">
+    <div class="row form-media">
+        <div class="col-md-4 form-media">
+            <h2 class="text-center">Contact</h2>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <a type="email" class="btn btn-sm btn-danger me-2 shadow-lg" href="mailto:info@w4olb.org">Send us an Email</a>
+                <a class="btn btn-primary shadow-lg" href="http://m.me/w4olb">Message us on Facebook</a>
             </div>
-            <div class="col-md-8">
-                <h2 class="text-center form-media">Testing Info</h2> 
-                <% foundAbout.forEach(function(testing){ %>
-                    <p class="text-center form-media"><%- testing.test %></p>
-                <% }) %>
+            <hr>
+            <h4>Visit our club Meeting</h4>
+            <p>
+                The Smoky Mountain Amateur Radio Club meets the fourth Monday of each Month at 7:00 P.M. excluding 
+                the month of June as field day is the Fourth Weekend of the month and the month of December
+                as we host a Christmas Party.
+            </p>
+            <% foundAbout.forEach(function(about){ %>
+            <div>
+                <a href="<%= about.meeting %>">
+                    <button class="btn btn-success">Directions to Meeting</button>
+                </a>
+                <a class="title-center" href="<%= about.fieldDay %>">
+                    <button class="btn btn-success">Directions to Field Day</button>
+                </a>
             </div>
+            <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
+                    <a href="/about/aboutcollection/<%= about._id %>" class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                          </svg>
+                    </a>
+                <% } %>
+            <% }) %>
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center form-media">Testing Info</h2> 
+            <% foundAbout.forEach(function(testing){ %>
+                <p class="text-center form-media"><%- testing.test %></p>
+            <% }) %>
         </div>
     </div>
 </div>

@@ -1,10 +1,8 @@
 <% include ../../partials/header %>
-
-<div class="page-center">
-<div class="container">
+<div class="container mt-3 mb-3">
     <h1 class="text-center">Member Documents</h1>
     <div class="row">
-        <div class=col-md-12>
+        <div class="col-md-12">
           <% if(!currentUser){ %>
           <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
               <a class="btn btn-primary btn-sm" href="/info/docs/new">New Document</a>
@@ -16,7 +14,7 @@
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
            <% foundDocs.reverse().forEach(function(docs){ %>
                <div class="col-md-3 col-sm-6">
-                   <div class="thumbnail">
+                   <div class="card">
                       <div class="caption">
                         <h4><%= docs.title %></h4>
                         <h5><%= docs.date %></h5>
@@ -38,5 +36,4 @@
        </div>
      </div>
    </div>
-</div>
 <% include ../../partials/footer %>

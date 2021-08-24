@@ -1,44 +1,49 @@
 <% include ../partials/header %>
-<div class="page-center">
-<div class="container">
+
+<div class="container mt-3 mb-3">
     <div class="row form-media">
-    <% include ../partials/sidebar %>
-        <br>
-        <table class="table table-hover table-bordered">
-            <div class="row align-items-center justify-content-center">
+        <% include ../partials/sidebar %>
+    </div>
+    <div class="row mt-3">
+    <br>
+            <div class="row">
                 <% members.forEach(function(member){ %>
                 <% if(member.isMember === true){ %>
-                <a href="/members/<%= member.id %>">
-                    <div class="col-md-3 col-sm-12 align-items-center justify-content-center">
-                        <div class="well custom-well text-center">
-                            <% var callsign = member.username.toUpperCase() %>
-                            <h4><%= member.firstName %> <%= member.lastName %></h4>
-                            <h5><%= callsign %></h5>
-                            <% if(!member.profileImage){ %>
-                                <img class="center-block img-responsive img-rounded" style="max-height: 310px" src="https://images.unsplash.com/photo-1559276255-b2c706fa5e19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=932&q=80">
-                            <% } else { %>
-                                <img class="center-block img-responsive img-rounded" style="max-height: 310px" src="<%= member.profileImage %>">
-                            <% } %>
-                            <% if(member.isElmer === true){ %>
-                                <h5>I am an elmer!</h5>
-                            <% } %>
-                            <div class="">
-                                <p><a href="mailto:<%= member.email %>"><%= member.email %></a></p>
-                                <p class="">Click for more info</p>
-                                <% if(currentUser && currentUser.id === member.id) { %>
-                                    <a href="/members/<%= member.id %>" class="glyphicon glyphicon-pencil"></a>
-                                <% } %>
+                    <div class="col-md-3 col-sm-12 mt-2 justify-content-center">
+                        <a href="/members/<%= member.id %>">
+                            <div class="card text-center" style="height: 100%;">
+                                <% var callsign = member.username.toUpperCase() %>
+                                <div class="card-header">
+                                    <h4><%= member.firstName %> <%= member.lastName %></h4>
+                                    <h5><%= callsign %></h5>
+                                </div>
+                                <div class="card-body">
+                                    <% if(!member.profileImage){ %>
+                                        <img class="rounded img-fluid" style="max-height: 310px" src="https://images.unsplash.com/photo-1559276255-b2c706fa5e19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=932&q=80">
+                                    <% } else { %>
+                                        <img class="rounded img-fluid" style="max-height: 310px" src="<%= member.profileImage %>">
+                                    <% } %>
+                                    <% if(member.isElmer === true){ %>
+                                        <h5>I am an elmer!</h5>
+                                    <% } %>
+                                    <div class="">
+                                        <p><a href="mailto:<%= member.email %>"><%= member.email %></a></p>
+                                        <% if(currentUser && currentUser.id === member.id) { %>
+                                            <a href="/members/<%= member.id %>" class="glyphicon glyphicon-pencil">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                </svg>
+                                            </a>
+                                        <% } %>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
-                        </div>
+                        </a>
                     </div>
-                </a>
                 <% } %>
                 <% }) %>
             </div>
-        </table>
     </div>
-</div>
-</div>
+</div> 
 
 <% include ../partials/footer %>

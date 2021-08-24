@@ -1,14 +1,13 @@
 <% include ../../partials/header %>
-<div class="page-center">
-<div class="container">
-    <div class="row form-media">
+<div class="container mt-3 mb-3">
+    <div class="row">
             <% include ../../partials/sidebar %>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-12 head-room">
-            <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn btn-sm btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Create New Topic
-            </button>
+            </a>
             <div>
                 <div class="collapse" id="collapseExample">
                     <form class="" action="/forum" method="POST">
@@ -33,8 +32,7 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container">
+
     <div class="row">
         <div class="col-md-12 head-room">
             <% forums.forEach((forum) => { %>
@@ -54,6 +52,5 @@
             <% }) %>
         </div>
     </div>
-</div>
 </div>
 <% include ../../partials/footer %>

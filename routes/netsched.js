@@ -15,6 +15,30 @@ router.get('/', function (req, res) {
   });
 });
 
+router.post('/', function (req, res) {
+  var newNet = {
+    net: req.body.net,
+    day: req.body.day,
+    time: req.body.time,
+    freq: req.body.freq,
+    tone: req.body.tone,
+    altFreq: req.body.altFreq,
+    altTone: req.body.altTone,
+    externalLink: req.body.externalLink,
+    verified: false
+  };
+  Nets.create(newNet, function (err, newEntry) {
+    if (err) {
+      console.log(err);
+      req.flash('error', err)
+      res.redirect('back');
+    } else {
+      req.flash('Success', 'Successfully added a new net');
+      res.redirect('/netsched');
+    }
+  });
+});
+
 router.get('/new', middleware.isAdmin, function (req, res) {
   Nets.find({}, function (err, createNet) {
     if (err || !createNet) {
@@ -52,38 +76,7 @@ router.put('/:id', middleware.isAdmin, function (req, res) {
   });
 });
 
-router.post('/', middleware.isAdmin, function (req, res) {
-  var net = req.body.net;
-  var day = req.body.day;
-  var time = req.body.time;
-  var freq = req.body.freq;
-  var tone = req.body.tone;
-  var altFreq = req.body.altFreq;
-  var altTone = req.body.altTone;
-  var externalLink = req.body.externalLink;
-  var verified = req.body.verified;
 
-  var newNet = {
-    net: net,
-    day: day,
-    time: time,
-    freq,
-    freq,
-    tone: tone,
-    altFreq: altFreq,
-    altTone: altTone,
-    externalLink: externalLink,
-    verified: verified
-  };
-  Nets.create(newNet, function (err, newEntry) {
-    if (err) {
-      console.log(err);
-    } else {
-      req.flash('Success', 'Successfully added a new net');
-      res.redirect('/netsched');
-    }
-  });
-});
 
 // Delete Route
 

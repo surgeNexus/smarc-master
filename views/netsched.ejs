@@ -1,9 +1,8 @@
 <% include ./partials/header %>
 
-<div class="page-center">
-    <div class="container">
-    <div class="row form-media">
-        <table class="table table-hover table-bordered">
+<div class="container-fluid mt-3 mb-3">
+    <div class="row form-media container-fluid">
+        <table class="table table-dark table-striped">
             <thead>	
                 <tr>
                     <th>Net</th>
@@ -13,18 +12,16 @@
                     <th>Tone (Hz)</th>
                     <th>Alt. Frequency (MHz)</th>
                     <th>Alt Tone (Hz)</th>
-                        <% if(!currentUser){ %>
-                        <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                        <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                         <th>Verified</th>
                         <th>
                             Edit
                         </th>
-                        <% } else { %>
                         <% } %>
                 </tr>
             </thead>
             <% foundNets.forEach(function(nets){ %>
-            <% if(nets.day !== 'Monday' && nets.day !== 'Tuesday' && nets.day !== 'Wednesday' && nets.day !== 'Thursday' && nets.day !== 'Friday' &&  nets.day !== 'Saturday' && nets.day !== 'Sunday'){ %>
+            <% if(nets.day !== 'Monday' && nets.day !== 'Tuesday' && nets.day !== 'Wednesday' && nets.day !== 'Thursday' && nets.day !== 'Friday' &&  nets.day !== 'Saturday' && nets.day !== 'Sunday' && nets.verified === true){ %>
             <tbody>
                 <tr>
                     <td><a href="http://<%= nets.externalLink %>"><%= nets.net %></a></td>
@@ -34,8 +31,7 @@
                     <th><%= nets.tone %></th>
                     <td><%= nets.altFreq %></td>
                     <td><%= nets.altTone %></td>
-                    <% if(!currentUser){ %>
-                    <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                    <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
                         <% if(nets.verified === true){ %>
                             <td>
                                 Yes
@@ -45,10 +41,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
-                    <% } else { %>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } %>
                 </tr>
             </tbody>
@@ -76,9 +75,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -108,7 +111,11 @@
                             </td>
                         <% } %>
                     <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
+                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                        </a>                        
                     </td>
                     <% } else { %>
                     <% } %>
@@ -138,9 +145,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -169,9 +180,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -200,9 +215,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -231,9 +250,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -262,9 +285,13 @@
                                 No
                             </td>
                         <% } %>
-                    <td>
-                        <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>"></a>
-                    </td>
+                        <td>
+                            <a class="glyphicon glyphicon-pencil" href="/netsched/<%= nets.id %>">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                            </a>                        
+                        </td>
                     <% } else { %>
                     <% } %>
                 </tr>
@@ -273,11 +300,12 @@
             <% }) %>
         </table>
     </div>
+    <hr>
     <div class="text-center">
         <h4>If you would like to add a net to this list, please fill out the form below.</h4>
         <div class="form-check form-check-inline">
             <form action="/netsched" method="POST">
-                <div class="row">
+                <div class="row input-group">
                     <div class="col-md-2">
                         <h4>Net Name</h4>
                         <input class="form-control" type="text" name="net">
@@ -315,8 +343,8 @@
                     </div>
                     <br>
                     <br>
-                    <div class="col-md-2">
-                        <button class="btn btn-md btn-primary btn-block">Submit</button>
+                    <div class="col-md-2 mt-3">
+                        <button class="btn btn-md btn-primary btn-block mt-3">Submit</button>
                     </div>
                 </div>
             </form>
@@ -324,7 +352,6 @@
     </div>
 </div>
 </div>	
-</div>
 </div>
 
 <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>

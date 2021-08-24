@@ -1,14 +1,14 @@
 <% include ../partials/header %>
-<div class="page-center">
-    <div class="container">
+
+<div class="container mt-3 mb-3">
         <div class="row form-media">
         <% include ../partials/sidebar %>
-        <div class="form-media">
-            <div class="col-md-8 col-sm-12 form-media well well-lg">
-                <h1 class="title-center">Smoky Mountain Amateur Radio Club</h1>
-                <h2 class="title-center">SMARC Net Control Station Procedure</h2>
-                <hr>
-                <div>
+            <div class="col-md-8 col-sm-12 card mt-3">
+                <div class="card-header">
+                    <h1 class="text-center">Smoky Mountain Amateur Radio Club</h1>
+                    <h2 class="text-center">SMARC Net Control Station Procedure</h2>
+                </div>
+                <div class="card-body">
                     <h4>
                         This is 
                                 <% for(var i = 0; i < foundNet.length; i++){ %>
@@ -117,35 +117,40 @@
                     </h4>
                 </div>
             </div>
-                <div class="col-md-4 col-sm-12 title-center">
-                    <h1 class="title-center">Net Control Station Schedule</h1>
+                <div class="col-md-4 col-sm-12 text-center">
+                    <h1 class="text-center">Net Control Station Schedule</h1>
                     <hr>
-                    <% if(!currentUser){ %>
-                    <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
-                        <a class="btn btn-primary btn-sm" href="/info/netscript/netscriptcollection/new">New NCS</a>
-                    <% } else { %>
+                    <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true){ %>
+                        <a class="btn btn-primary btn-sm mb-2" href="/info/netscript/netscriptcollection/new">New NCS</a>
                     <% } %>
-                    <div class="form-media">
+                    <div class="">
                         <% foundNet.forEach(function(net){ %>
                             <% if(net.date >= today){ %>
                                 <% if(net.ncs){ %>
-                        <div class="well well-sm">
-                            <h4>
-                                <%= net.date %>
-                            </h4>
-                            <p>
-                                <%= net.ncs.firstName %>
-                            </p>
-                            <p>
-                                <%= net.ncs.username.toUpperCase() %>
-                            </p>
-                            <div class="container">
-                                <div class="text-center">
-                                    <img class="net-img" src="<%= net.ncs.profileImage %>" alt="">
-                                </div>
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <h4>
+                                    <%= net.date %>
+                                </h4>
+                                <p>
+                                    <%= net.ncs.firstName %>
+                                </p>
+                                <p>
+                                    <%= net.ncs.username.toUpperCase() %>
+                                </p>
+                            
+                               <div class="card-body">
+                                   <div class="text-center">
+                                       <img class="img-fluid" src="<%= net.ncs.profileImage %>" alt="">
+                                   </div>
+                               </div>
                             </div>
                             <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
-                            <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil"></a>
+                            <a href="/info/netscript/netscriptcollection/<%= net._id %>" class="glyphicon glyphicon-pencil">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                  </svg>
+                            </a>
                             <% } %>
                         </div>
                             <% } %>
@@ -157,7 +162,6 @@
         </div>
         </div>
     </div>
-</div>
 </div>
 
 <script> 

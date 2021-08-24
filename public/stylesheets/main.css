@@ -1,239 +1,31 @@
-.thumbnail img {
-  width: 100%;
-}
-
-.initial {
-  width: 100%;
-}
-
-.thumbnail {
-  padding: 0;
-}
-
-.thumbnail .caption-full {
-  padding: 9px;
-}
-
-#delete-form {
-  display: inline;
-}
-
-.form-center {
-  text-align: center;
-  padding-left: 0%;
-  padding: auto;
-  padding-top: 20px;
-  margin: auto;
-  font-size: 120%;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.picture-center {
-  padding: 50px 0;
-  /* padding-top: 20px;
-    padding-left: 21%; */
-}
-
-.picture-center > div {
-  text-align: center;
-}
-.picture-center > div img {
-  max-width: 250px;
-}
-
-.form-media {
-  padding-top: 20px;
-}
-
-.user-show-market {
-  padding-top: 100px;
-  padding-left: 60px;
-}
-
-.table th,
-.table td {
-  border-top: none !important;
-}
-
-ul {
-  list-style: none;
-}
-
-.widgets {
-  padding-left: 10px;
-  object-position: center;
-}
-
-.jumbotron {
-  margin-bottom: 0px;
-  background-position: 0% 25%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: white;
-  text-shadow: black 0.3em 0.3em 0.3em;
-  width: auto;
-  height: auto;
-}
-
-.customimg {
-  height: 40vh;
-  width: auto;
-}
-
-.divimage {
-  padding-left: 60px;
-}
-
-.centerjumbo {
-  align-items: center;
-  padding-right: 50px;
-}
-
-.title-center {
-  padding: auto;
-  padding-top: 20px;
-  margin: auto;
-  text-align: center;
-}
-
-/* .well-blue{
-    background-color: #80b8de;
-} */
-
-.button-sized {
-  height: 70px;
-  width: 300px;
-  /* max-width: auto;
-    max-height: auto; */
-}
-
-.banner {
-  border-radius: 5px;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.row {
-  margin-right: 15px;
-}
-
-.page-center {
-  padding-left: 30px;
-}
-
-.well-expand {
-  padding-right: 10px;
-}
-
-[draggable] {
-  user-select: none;
-}
-
-.navbar-inverse {
-  color: white !important;
-}
-
 body {
   background-color: #c2c2c2;
 }
 
-
-
-.profile-image {
-  padding-left: 10%;
-  padding-right: auto;
-  float: left;
-  max-width: 200px;
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.net-img {
-  padding-left: 5%;
-  padding-right: auto;
-  float: left;
-  max-width: 250px;
-  max-height: 250px;
-  object-fit: cover;
-}
-
-.usr-img {
-  padding-right: 5%;
-  max-width: 250px;
-  max-height: 250px;
-  object-fit: cover;
-}
-
-.net-img-home {
-  padding-left: 2px;
-  float: left;
-  max-width: 150px;
-  max-height: 150px;
-  object-fit: cover;
-}
-
-.head-room {
-  padding-top: 4%;
-}
-
-.well,
-.thumbnail,
-.shadow,
-.panel,
 .banner {
-  box-shadow: 3px 3px 3px 3px #807d7d3a !important;
-}
-
-.btn,
-.form-control {
-  box-shadow: 2px 2px 2px 2px #807d7d3a !important;
-}
-
-.modal-img {
-  max-width: 100%;
-  max-height: 100%;
-}
-.modal-dialog {
-  width: 60%;
-  margin: 5% auto;
-}
-
-.glyphicon-asterisk {
-  color: rgb(207, 176, 2) !important;
-}
-
-.lowercase {
-  text-transform: lowercase;
-}
-
-.event-images {
-  height: 100%;
   width: 100%;
-  padding-bottom: 10%;
+  height: auto;
 }
 
-.event-image {
-  max-height: 100%;
-  max-width: 100%;
+.dropdown-menu {
+  background-color: #212529;
+  border: none;
 }
 
-.foot-room {
-  padding-bottom: 10px;
+.dropdown-item {
+  color: white;
 }
 
-.custom-well {
-  width: 258px;
-  height: 450px;
+.dropdown .nav-link {
+  color: white;
 }
 
-.text-align-bottom {
-  position: absolute;
-  bottom: 0;
+.brand {
+  height: 50px;
+  width: auto;
 }
 
-.btn-chat {
-  height: 45px;
+.eventImages {
+  max-width: 200px;
+  max-height: auto;
 }

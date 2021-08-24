@@ -1,8 +1,7 @@
 
-<ul class="nav nav-pills">
-  <li role="presentation" class="<% if(url === "/members/" ) { %>active<% } %>"><a href="/members">Member List</a></li>
-  <li role="presentation" class="<% if(url === "/forum/" ) { %>active<% } %>"><a href="/forum">Forum</a></li>
-  <li role="presentation" class="<% if(url === "/info/netsched/" ) { %>active<% } %>"><a href="/info/netscript">Net Schedule</a></li>
-  <li role="presentation" class="<% if(url === "/info/minutes/" ) { %>active<% } %>"><a href="/info/minutes">Meeting Minutes</a></li>
-  <li role="presentation" class="<% if(url === "/info/docs/" ) { %>active<% } %>"><a href="/info/docs">Member Documents</a></li>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/members/" ) { %>active<% } %>" href="/members">Member List</a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/info/netsched/" ) { %>active<% } %>" href="/info/netscript">Net Schedule</a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/info/minutes/" ) { %>active<% } %>" href="/info/minutes">Meeting Minutes</a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/info/docs/" ) { %>active<% } %>" href="/info/docs">Member Documents</a></li>
 </ul>
