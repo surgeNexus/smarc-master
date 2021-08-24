@@ -16,10 +16,8 @@
         <div class="row text-center container">
         <% foundOfficers.forEach(function(officer){ %>
             <div class="col-md-4">
-                
                 <div class="thumbnail">
                    <div class="caption">
-                    <div class="container">
                             <h3><%= officer.title %></h3>
                             <% if(!currentUser){ %>
                             <% } else if(currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
@@ -29,8 +27,6 @@
                         <img src="<%= officer.pictureLoc %>">
                         <h4><%= officer.name %></h4>
                         <h4><%= officer.callsign %></h4>
-
-                    </div>
                    </div>
                 </div>
             </div>
