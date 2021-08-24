@@ -16,6 +16,7 @@
         <div class="row text-center container">
         <% foundOfficers.forEach(function(officer){ %>
             <div class="col-md-4">
+                <div class="container">
                 <div class="thumbnail">
                    <div class="caption">
                             <h3><%= officer.title %></h3>
@@ -28,6 +29,7 @@
                         <h4><%= officer.name %></h4>
                         <h4><%= officer.callsign %></h4>
                    </div>
+                </div>
                 </div>
             </div>
         <% }); %>
