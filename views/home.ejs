@@ -11,7 +11,7 @@
         <div class="row mb-2">
             <div class="col-md-9 col-sm-12">
                     <% foundHome.forEach(function(foundHome){ %>
-                <div class="card mb-2">
+                <div class="card mb-2 shadow-lg">
                     <div class="card-header">
                         <h2 class="text-center">
                             <%= foundHome.title %>
@@ -47,7 +47,7 @@
                     <% nets.forEach(function(ncs){ %>
                         <% if(ncs.ncs){ %>
                             <% if(ncs.date >= today && ncs.date < weekFrom){ %>
-                                <div class="card text-center">
+                                <div class="card text-center shadow-lg">
                                     <div class="card-header">
                                         <h2><% if(ncs.date === today){ %> Today's NCS <% } else { %> This Week's NCS <% } %> </h2>
                                     </div>
@@ -63,7 +63,7 @@
                         <% } %>
                     <% }) %>
                 </div>  
-                <div class="card d-flex justify-content-center mt-2 text-center">
+                <div class="card d-flex justify-content-center mt-2 text-center shadow-lg">
                     <form method="post" action="https://www.qrz.com/lookup" class="justify-content-center" style="display:inline" >
                         <div class="card-header">
                             <h4>Callsign Lookup<h4>
@@ -75,7 +75,7 @@
                     </form>
                 </div>
                 
-                <div class="d-flex justify-content-center mt-2">
+                <div class="d-flex justify-content-center mt-2 shadow-lg">
                     <iframe class="d-flex justify-content-center" style="display: block;" src="https://cdnres.willyweather.com/widget/loadView.html?id=111020" width="400" height="228" frameborder="0" scrolling="no"></iframe><a style="text-indent: -9999em;height: 20px;position: relative;z-index: 1;margin: -20px 0 0 0;display: block" href="https://www.willyweather.com/tn/blount-county/maryville.html" rel="nofollow">maryville weather information</a>
                 </div>
                 <div class="d-flex justify-content-center mt-2">
