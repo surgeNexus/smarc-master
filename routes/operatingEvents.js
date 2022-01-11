@@ -3,6 +3,8 @@ var router = express.Router();
 var middleware = require('../middleware');
 var Events = require('../models/operatingEvents');
 var fs = require('fs');
+var CronJob = require('cron').CronJob;
+const { networkInterfaces } = require('os');
 
 
 router.get('/', (req, res) => {
@@ -19,7 +21,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', middleware.isAdmin, (req, res) => {
-    var now = Date.now();
+    var now = new Date();
+    now.setDate(now.getDate());
     let doc = req.files.doc;
     doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
       err
@@ -61,5 +64,17 @@ router.delete('/:id', middleware.isAdmin, (req, res) => {
     });
 });
 
+var job = new CronJob('* * * * * *', function() {
+  var now = new Date(); 
+  now.setDate(now.getDate() + 32);
+  Events.find({}, (err, foundEvents) => {
+    if(err){
+      console.log(err);
+    } else if(foundEvents.controlDate) {
+      console.log("Date older than 30 days found");
+    }
+  });
+}, null, true, 'America/New_York');
+job.start();
 
 module.exports = router;
