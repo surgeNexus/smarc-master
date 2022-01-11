@@ -1,0 +1,76 @@
+<% include ../partials/header %>
+<div class="container mt-3 mb-3">
+    <h1 class="text-center">Weekly Operating Events</h1>
+    <div class="row">
+        <div class="col-md-12">
+          <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                New Document
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Minutes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <form action="/operatingevents" method="POST" encType="multipart/form-data">
+                            <div class="input-group mt-3">
+                              <input class="form-control" type="date" name="date" required>
+                            </div>
+                              <div class="input-group mt-3">
+                                  <input class="form-control" type="file" name="doc" required>
+                              </div>
+                              <div class="form-group mt-3 text-center">
+                                  <button class="btn btn-primary btn-block">Upload</button>
+                              </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          <% } %>
+        </div>
+    </div>
+      <div class="container">
+        <div class="row text-center d-flex justify-content-center mt-3" style="display:flex; flex-wrap: wrap;">
+           <% operatingEvents.reverse().forEach((i) => { %>
+                <div class="col-md-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="caption">
+                          <h3><%= i.date %></h3>
+                          <a href="<%= i.docLoc %>" class="btn btn-md btn-primary" target="_blank">View Online</a>
+                          <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
+                              <form action="/operatingevents/<%= i.id %>?_method=DELETE" method="POST">
+                                  <button type="submit" class="no-button" onclick="ConfirmDelete()">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                      </svg>
+                                  </button>
+                              </form>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+           <% }) %>
+       </div>
+     </div>
+   </div>
+</div>
+<% include ../partials/footer %>
+
+
+<script>
+    function ConfirmDelete(minute_id)
+    {
+      var x = confirm("Are you sure you wish to permanently delete this?");
+      if (x) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>   

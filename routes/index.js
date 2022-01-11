@@ -182,10 +182,6 @@ router.get('/logout', function (req, res) {
   res.redirect('/');
 });
 
-router.get('/repeaters', function (req, res) {
-  res.render('repeaters');
-});
-
 router.get('/history', function (req, res) {
   res.render('info/history');
 });

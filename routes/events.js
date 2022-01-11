@@ -22,7 +22,8 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   var newEvent = {
     title: req.body.title,
-    date: req.body.date
+    date: req.body.date,
+    adminOnly: req.body.adminOnly
   };
   Event.create(newEvent, function (err, newEvent) {
     if (err) {

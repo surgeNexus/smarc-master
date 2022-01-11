@@ -35,7 +35,9 @@ var commentRoutes = require('./routes/comments'),
   eventsRoutes = require('./routes/events'),
   forumRoutes = require('./routes/forum'),
   codeplugRoutes = require('./routes/codeplugs');
-  // messageRoutes = require('./routes/messages');
+  repeaterRoutes = require('./routes/repeaters');
+  imageStoreRoutes = require('./routes/imageStore');
+  operatingEventsRoutes = require('./routes/operatingEvents');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -89,6 +91,9 @@ app.use('/members', memberRoute);
 app.use('/events', eventsRoutes);
 app.use('/forum', forumRoutes);
 app.use('/codeplugs', codeplugRoutes);
+app.use('/repeaters', repeaterRoutes);
+app.use('/imageStore', imageStoreRoutes);
+app.use('/operatingevents', operatingEventsRoutes);
 // app.use('/messages', messageRoutes);
 
 app.listen(3000, function () {
