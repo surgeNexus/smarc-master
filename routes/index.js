@@ -186,7 +186,7 @@ router.get('/repeaters', function (req, res) {
   res.render('repeaters');
 });
 
-router.get('/history1', function (req, res) {
+router.get('/history', function (req, res) {
   res.render('info/history');
 });
 

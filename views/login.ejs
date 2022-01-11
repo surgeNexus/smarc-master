@@ -4,29 +4,32 @@
     <div class="row">
         <div class="col-xs-12 col-md-3">
             <form class="" action="/login" method="POST">
-                <div class="row">
-                    <div class="form-group col-xs-12">
-                        <h1 class="text-center">SMARC Login</h1>
-                        <br>
+                <div class="row mt-3">
+                    <h1 class="text-center">SMARC Login</h1>
+                </div>
+                <div class="row mt-3">
+                    <div class="input-group col-xs-12">
+                        <label class="input-group-text">&nbsp; Callsign &nbsp;</label>
                         <input class="form-control" type="text" oninput="this.value=this.value.toLowerCase()" name="username" placeholder="callsign">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-xs-12">
+                <div class="row mt-3">
+                    <div class="input-group col-xs-12">
+                        <label class="input-group-text">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="password">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col-xs-12 text-center">
-                        <input class="btn btn-primary" type="submit" value="Login">
+                        <input class="btn btn-primary btn-block" type="submit" value="Login">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col-xs-12 text-center">
                         <a href="/forgot">Forgot password</a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col-xs-12 text-center">
                         <a href="/register">Need an account?</a>
                     </div>
@@ -34,17 +37,22 @@
             </form>
         </div>
         <div class="col-xs-12 col-md-9 form-media">
-            <h1 class="text-center">SMARC Online Membership</h1>
-            <br>
-            <h4>Members, don't forget to update your "My Info" page.</h4>
-            <br>
-            <p>Select your callsign in the upper righthand corner of the page and select "My Account".</p>
-            <p>Scroll towards the bottom of the page and take note of the "choose file" button. You may upload a profile image there.</p>
-            <p>Also, take note of the "About Me" section. You can write an article about yourself.</p>
-            <p>You will be able to view other people's about me sections by clicking on their callsign in the "Member List" or by visiting i.e. "http://w4olb.org/me/callsign"
-             Just replace "callsign" with the person you are looking up.
-            </p>
-            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">SMARC Online Membership</h1>
+                </div>
+                <div class="card-body text-center">
+                    <br>
+                    <h4>Members, don't forget to update your "My Info" page.</h4>
+                    <br>
+                    <p>Select your callsign in the upper righthand corner of the page and select "My Account".</p>
+                    <p>Scroll towards the bottom of the page and take note of the "choose file" button. You may upload a profile image there.</p>
+                    <p>Also, take note of the "About Me" section. You can write an article about yourself.</p>
+                    <p>You will be able to view other people's about me sections by clicking on their callsign in the "Member List" or by visiting "https://w4olb.org/me/callsign"
+                     Just replace "callsign" with the person you are looking up.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -3,7 +3,7 @@ var router = express.Router();
 var Minutes = require('../models/minutes');
 var middleware = require('../middleware');
 
-router.get('/', middleware.isMember, function (req, res) {
+router.get('/', function (req, res) {
   Minutes.find({})
     .sort({ date: -1 })
     .exec(function (err, foundMinutes) {
@@ -11,72 +11,90 @@ router.get('/', middleware.isMember, function (req, res) {
         req.flash('error', 'Item not found');
         res.redirect('back');
       } else {
-        var url = '/info/minutes' + req.url;
-        res.render('info/minutes', { foundMinutes: foundMinutes, url: url });
+        var url = '/minutes' + req.url;
+        res.render('minutes', { foundMinutes: foundMinutes, url: url });
       }
     });
 });
 
-router.get('/minutescollection/new', middleware.isAdmin, function (req, res) {
-  Minutes.find({}, function (err, newMinutes) {
-    if (err || !newMinutes) {
-      req.flash('error', 'Something went wrong');
-      res.redirect('back');
-    } else {
-      res.render('minutes/new', { newMinutes: newMinutes });
-    }
-  });
-});
-
 router.post('/', middleware.isAdmin, function (req, res) {
   var date = req.body.date;
-  var minutes = req.body.minutes;
-
-  var newMinutes = { date: date, minutes: minutes };
-  Minutes.create(newMinutes, function (err) {
-    if (err || !newMinutes) {
+  var type = req.body.type;
+  var now = Date.now();
+  if (req.files) {
+    let doc = req.files.doc;
+    doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
+      err
+    ) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    var docLoc = '/files/documents/' + now + req.files.doc.name;
+    var newDoc = {
+      date: date,
+      docLoc: docLoc,
+      type: type
+    };
+  } else {
+    var newDoc = {
+      date: date,
+      type: type
+    };
+  }
+  Minutes.create(newDoc, function (err) {
+    if (err || !newDoc) {
       console.log(err);
       req.flash('error', 'something went wrong');
       res.redirect('back');
     } else {
-      req.flash('Success', 'Sorry for your loss');
-      res.redirect('/info/minutes/');
+      req.flash('Success', 'Document upload complete');
+      res.redirect('/minutes');
     }
   });
 });
 
-router.get('/minutescollection/:id', middleware.isAdmin, function (req, res) {
-  Minutes.findById(req.params.id, function (err, foundMinutes) {
-    if (err || !foundMinutes) {
-      req.flash('error', 'Something went wrong');
-      res.redirect('back');
-    } else {
-      res.render('minutes/edit', { foundMinutes: foundMinutes });
-    }
-  });
-});
-
-router.put('/minutescollection/:id', middleware.isAdmin, function (req, res) {
-  Minutes.findByIdAndUpdate(req.params.id, req.body, function (err) {
+router.put('/:id', middleware.isAdmin, function (req, res) {
+  if (req.files) {
+    var now = Date.now();
+    let doc = req.files.doc;
+    doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
+      err
+    ) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    var docLoc = '/files/documents/' + now + req.files.doc.name;
+  }
+  Minutes.findByIdAndUpdate(req.params.id, req.body, function (err, updatedMinutes) {
     if (err) {
       req.flash('error', 'something went wrong');
       res.redirect('back');
     } else {
-      res.redirect('/info/minutes');
+      updatedMinutes.docLoc = docLoc;
+      updatedMinutes.save();
+      res.redirect('/minutes');
     }
   });
 });
 
-router.delete('/minutescollection/:id', middleware.isAdmin, function (
+router.delete('/:id', middleware.isAdmin, function (
   req,
   res
 ) {
-  Minutes.findByIdAndRemove(req.params.id, function (err) {
+  Minutes.findByIdAndRemove(req.params.id, function (err, removedCodeplug) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
-      res.redirect('/info/minutes');
+      fs.unlink('./public' + removedCodeplug.docLoc, err => {
+        if (err) {
+          req.flash('error', 'File not deleted; entry removed.');
+          res.redirect('back');
+        }
+      });
+      res.redirect('/codeplugs');
     }
   });
 });

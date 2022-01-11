@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
 <div class="container mt-3 mb-3">
-        <div class="row form-media">
+        <div class="row">
         <% include ../partials/sidebar %>
             <div class="col-md-8 col-sm-12 card mt-3">
               <div class="card">
@@ -17,7 +17,7 @@
                                         <%= foundNet[i].ncs.username.toUpperCase() %>
                                     <% } %>
                                 <% } %> 
-                        calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Mhz)
+                        calling the SMARC (W4OLB - 146.655 Mhz toned to 100 Hz)
                         is this frequency in use? <em>**PAUSE**</em> I am your Net Control Station (NCS) 
                         for this session and my name is 
                         <% foundNet.forEach(function(net){ %>

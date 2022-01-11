@@ -80,7 +80,7 @@ app.use('/home', homeRoutes);
 app.use('/info', infoRoutes);
 app.use('/netsched', netschedRoutes);
 app.use('/info/sk', skRoutes);
-app.use('/info/minutes', minutesRoutes);
+app.use('/minutes', minutesRoutes);
 app.use('/info/netscript', netscriptRoutes);
 app.use('/info/officers', officersRoutes);
 app.use('/documents', documentsRoute);

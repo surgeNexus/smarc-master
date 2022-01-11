@@ -10,7 +10,7 @@
         </div>
         <div class="row text-center">
         <% foundOfficers.forEach(function(officer){ %>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-6 col-lg-3 col-sm-12 mb-4">
                 <div class="card shadow-lg card-full-height">
                    <div class="caption">
                         <div class="card-header">
@@ -24,7 +24,7 @@
                             <% } %>
                         </div>
                         <div class="card-body">
-                            <img class="rounded img-fluid" style="height: 350px; width: auto;" src="<%= officer.pictureLoc %>">
+                            <img class="rounded img-fluid" style="max-height: 350px; width: auto;" src="<%= officer.pictureLoc %>">
                         </div>
                         <div class="card-footer">
                             <h4><%= officer.name %></h4>
