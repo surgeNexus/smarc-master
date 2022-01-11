@@ -58,3 +58,7 @@ body {
   outline: inherit;
   text-decoration: none;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
