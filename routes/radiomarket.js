@@ -102,33 +102,34 @@ router.get('/:id/edit', middleware.checkCampgroundOwnership, function (
 // UPDATE CAMPGROUND ROUTE
 router.put('/:id', middleware.checkCampgroundOwnership, function (req, res) {
   // find and update the correct campground
-  Campground.findByIdAndUpdate(req.params.id, req.body.campground, function (
-    err,
-    updatedCampground
-  ) {
+  if(req.files){
+    var now = moment();
+    let image = req.files.image;
+    image.mv('./public/images/' + now + req.files.image.name, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    var pictureLoc = '/images/' + now + req.files.image.name;
+    var updateCampground = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image: pictureLoc
+    }
+  } else {
+    var updateCampground = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+    }
+  }
+  Campground.findByIdAndUpdate(req.params.id, updateCampground, function (err, updatedCampground) {
     if (err) {
+      req.flash('error', err.message);
       res.redirect('/radiomarket');
-    } else if (!req.files) {
-      updatedCampground.name = req.body.name;
-      updatedCampground.description = req.body.description;
-      updatedCampground.price = req.body.price;
-      updatedCampground.save();
-      res.redirect('/radiomarket/' + req.params.id);
     } else {
-      var now = moment();
-      let image = req.files.image;
-
-      image.mv('./public/images/' + now + req.files.image.name, function (err) {
-        if (err) {
-          console.log(err);
-        }
-      });
-      var pictureLoc = '/images/' + now + req.files.image.name;
-      updatedCampground.name = req.body.name;
-      updatedCampground.description = req.body.description;
-      updatedCampground.price = req.body.price;
-      updatedCampground.image = pictureLoc;
-      updatedCampground.save();
+      req.flash('success', "Your listing has been updated!");
       res.redirect('/radiomarket/' + req.params.id);
     }
   });
@@ -140,10 +141,9 @@ router.delete('/:id', middleware.checkCampgroundOwnership, function (req, res) {
     if (err) {
       res.redirect('/radiomarket');
     } else {
-      fs.unlink('./public' + removedListing.image, err => {
+      fs.unlink('./public' + removedListing.image, (err) => {
         if (err) {
           req.flash('error', 'File note deleted; codeplug removed.');
-          res.redirect('back');
         }
       });
       res.redirect('/radiomarket');
