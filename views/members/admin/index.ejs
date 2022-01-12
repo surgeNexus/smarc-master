@@ -11,72 +11,51 @@
             <hr>
             <div class="text-center">
             <% users.forEach(function(user){ %>
-        <div class="form-check form-check-inline">
-            <form action="/register/<%= user.id %>?_method=PUT" method="POST">
-            
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4>Call Sign</h4>
-                        <a href="/members/<%= user.id %>/edit"><p><%= user.username.toUpperCase() %></p></a>
-                    </div>
-                    <div class="col-md-2">
-                        <h4>Name</h4>
-                        <p><%= user.firstName %> <%= user.lastName %></p>
-                    </div>
-                    <div class="col-md-2">
-                        <h4>Email</h4>
-                        <input type="text" name="email" value="<%= user.email %>">
-                    </div>
-                    <div class="col-md-1">
-                        <h4>Admin?</h4>
-                        <div>
-                            <input class="" type="radio" name="admin" value="true" placeholder="Net Name"
-                        <% if(user.isAdmin === true){ %>
-                            checked
-                        <% } %>> True
+            <div class="">
+                <form action="/register/<%= user.id %>?_method=PUT" method="POST">
+                    <div class="row input-group">
+                        <div class="col">
+                            <h4>Call Sign</h4>
+                            <a href="/members/<%= user.id %>/edit"><p><%= user.username.toUpperCase() %></p></a>
                         </div>
-                        
-                        <input class="" type="radio" name="admin" value="false" placeholder="Net Name"
-                        <% if(user.isAdmin === false){ %>
-                            checked
-                        <% } %>> False
-                    </div>
-                    <div class="col-md-1">
-                        <h4>Member?</h4>
-                        <div>
-                            <input class="" type="radio" name="member" value="true" placeholder="Net Name"
-                        <% if(user.isMember === true){ %>
-                            checked
-                        <% } %>> True
+                        <div class="col">
+                            <h4>Name</h4>
+                            <p><%= user.firstName %> <%= user.lastName %></p>
                         </div>
-                        <input class="" type="radio" name="member" value="false" placeholder="Net Name" 
-                        <% if(user.isMember === false){ %>
-                            checked
-                        <% } %>> False
-                    </div>
-                    <div class="col-md-1">
-                        <h4>NCS?</h4>
-                        <div>
-                            <input class="" type="radio" name="ncs" value="true"
-                        <% if(user.ncs === true){ %>
-                            checked
-                        <% } %>> True
+                        <div class="col">
+                            <h4>Email</h4>
+                            <input type="text" class="form-control" name="email" value="<%= user.email %>">
                         </div>
-                        <input class="" type="radio" name="ncs" value="false"
-                        <% if(user.ncs === false){ %>
-                            checked
-                        <% } %>> False
+                        <div class="col">
+                            <h4>Admin</h4>
+                            <select class="form-select" name="admin">
+                                <option value="true" <% if(user.isAdmin === true){ %> selected <% } %>>Yes</option>
+                                <option value="false" <% if(user.isAdmin === false){ %> selected <% } %>>No</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <h4>Member</h4>
+                            <select class="form-select" name="member">
+                                <option value="true" <% if(user.isMember === true){ %> selected <% } %>>Yes</option>
+                                <option value="false" <% if(user.isMember === false){ %> selected <% } %>>No</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <h4>NCS</h4>
+                            <select class="form-select" name="ncs">
+                                <option value="true" <% if(user.ncs === true){ %> selected <% } %>>Yes</option>
+                                <option value="false" <% if(user.ncs === false){ %> selected <% } %>>No</option>
+                            </select>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col">
+                            <button class="btn btn-md btn-primary btn-block mt-4">Submit</button>
+                        </div>
                     </div>
-                    <br>
-                    <br>
-                    <div class="col-md-2">
-                        <button class="btn btn-md btn-primary btn-block">Submit</button>
-                    </div>
-                </div>
-                <hr>
-            
-            </form>
-        </div>
+                    <hr>
+                </form>
+            </div>
         <% }) %>
     </div>
         </div>
