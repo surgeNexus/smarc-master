@@ -65,7 +65,9 @@ router.post('/register', function (req, res) {
       phone: req.body.phone,
       address: req.body.address,
       ctyStZip: req.body.ctyStZip,
-      arrl: req.body.arrl
+      arrl: req.body.arrl,
+      acceptTOS: req.body.tos,
+      TOSDate: Date.now(),
     });
     User.register(newUser, req.body.password, function (err, user) {
       if (err) {
@@ -103,7 +105,9 @@ router.post('/register', function (req, res) {
       address: req.body.address,
       ctyStZip: req.body.ctyStZip,
       arrl: req.body.arrl,
-      profileImage: docLoc
+      profileImage: docLoc,
+      acceptTOS: req.body.tos,
+      TOSDate: Date.now()
     });
     User.register(newUser, req.body.password, function (err, user) {
       if (err) {
@@ -141,6 +145,20 @@ router.put('/register/:_id', middleware.isLoggedIn, function (req, res) {
       foundUser.ncs = req.body.ncs;
       foundUser.aboutMe = req.body.about;
       foundUser.save();
+      res.redirect('back');
+    }
+  });
+});
+
+router.put('/tos/:user_id', middleware.owner, (req, res) => {
+  User.findById(req.params.user_id, (err, foundUser) => {
+    if(err) {
+      req.flash('error', 'User not found');
+    } else {
+      foundUser.acceptTOS = req.body.tos;
+      foundUser.TOSDate = Date.now();
+      foundUser.save()
+      req.flash('success', foundUser.username.toUpperCase() + "'s account has been updated!");
       res.redirect('back');
     }
   });

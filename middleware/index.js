@@ -131,6 +131,27 @@ middlewareObj.isMember = function (req, res, next) {
   }
 };
 
+middlewareObj.owner = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    User.findById(req.user.id, function (err, foundUser) {
+      if (err || !foundUser) {
+        req.flash('error', 'Item not found');
+        res.redirect('back');
+      } else {
+        // does user own the campground?
+        if (foundUser.isAdmin === true || foundUser.id === req.params.user_id) {
+          next();
+        } else {
+          req.flash('error', "You don't have permission to do that");
+          res.redirect('/');
+        }
+      }
+    });
+  } else {
+    res.redirect('back');
+  }
+};
+
 middlewareObj.isLoggedIn = function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();

@@ -23,6 +23,8 @@ var UserSchema = new mongoose.Schema({
   aboutMe: String,
   marketNotify: { type: Boolean, default: true },
   messageNotify: { type: Boolean, default: true },
+  acceptTOS: {type: Boolean, default: false},
+  TOSDate: Date,
 });
 
 UserSchema.plugin(passportLocalMongoose);
