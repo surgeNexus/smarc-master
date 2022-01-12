@@ -4,38 +4,42 @@
     <div class="row mb-5">
         <div class="col-md-12 text-center">
             <% if(currentUser && currentUser.isMember === true){ %>
-                <button type="button" class="btn btn-primary mt-3 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    New Listing
-                </button>                  
+            <button type="button" class="btn btn-primary mt-3 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                New Listing
+            </button>                  
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">New Radio Market Listing</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New Radio Market Listing</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                         <div class="modal-body">
-                            <form action="/radiomarket" method="POST" encType="multipart/form-data"></form>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" name="name" placeholder="Manufacturer and Model">
+                            <form action="/radiomarket" method="POST" encType="multipart/form-data">
+                                <div class="input-group">
+                                    <span class="input-group-text">Brand/Model</span>
+                                    <input class="form-control" type="text" name="name">
                                 </div>
-                                <div class="form-group">
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">Image</span>
                                     <input class="form-control" type="file" name="image">
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" name="description" placeholder="Description of Item">
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">Description</span>
+                                    <input class="form-control" type="text" name="description">
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" type="number" name="price" placeholder="Price">
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">Price</span>
+                                    <input class="form-control" type="number" name="price">
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                <div class="input-group mt-1">
+                                    <button type="submit" class="form-control btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
-                  </div>
+                    </div>
                 </div>
-              </div>
+            </div>
             <% } %>
             <br>
              <div class="row text-center" style="display:flex; flex-wrap: wrap;">
