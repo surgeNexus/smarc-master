@@ -3,6 +3,7 @@ var router = express.Router();
 var Campground = require('../models/campground');
 var moment = require('moment');
 var middleware = require('../middleware');
+const fs = require('fs');
 const { update } = require('../models/comment');
 
 //INDEX - show all campgrounds
@@ -135,10 +136,16 @@ router.put('/:id', middleware.checkCampgroundOwnership, function (req, res) {
 
 // DESTROY CAMPGROUND ROUTE
 router.delete('/:id', middleware.checkCampgroundOwnership, function (req, res) {
-  Campground.findByIdAndRemove(req.params.id, function (err) {
+  Campground.findByIdAndRemove(req.params.id, function (err, removedListing) {
     if (err) {
       res.redirect('/radiomarket');
     } else {
+      fs.unlink('./public' + removedListing.image, err => {
+        if (err) {
+          req.flash('error', 'File note deleted; codeplug removed.');
+          res.redirect('back');
+        }
+      });
       res.redirect('/radiomarket');
     }
   });
