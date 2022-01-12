@@ -13,16 +13,21 @@ middlewareObj.checkCampgroundOwnership = function (req, res, next) {
         req.flash('error', 'Item not found');
         res.redirect('back');
       } else {
-        // does user own the campground?
-        if (
+        User.findById(req.user._id,(err, foundUser) => {
+          if(err){
+            console.log(err)
+            res.redirect('back');
+          } if (
           foundCampground.author.id.equals(req.user._id) ||
-          foundUser.isAdmin.equals(true)
+          foundUser.isAdmin
         ) {
           next();
         } else {
           req.flash('error', "You don't have permission to do that");
           res.redirect('back');
         }
+        })
+        
       }
     });
   } else {
@@ -37,16 +42,20 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
         req.flash('error', 'Comment not found');
         res.redirect('back');
       } else {
-        // does user own the comment?
-        if (
-          foundComment.author.id.equals(req.user._id) ||
-          foundUser.isAdmin.equals(true)
-        ) {
-          next();
-        } else {
-          req.flash('error', "You don't have permission to do that");
-          res.redirect('back');
-        }
+        User.findById(req.user._id,(err, foundUser) => {
+          if(err){
+            console.log(err)
+            res.redirect('back');
+          } else if (
+            foundComment.author.id.equals(req.user._id) ||
+            foundUser.isAdmin
+          ) {
+            next();
+          } else {
+            req.flash('error', "You don't have permission to do that");
+            res.redirect('back');
+          }
+        });
       }
     });
   } else {
@@ -63,7 +72,7 @@ middlewareObj.checkProfileOwnership = function (req, res, next) {
         res.redirect('/');
       } else {
         // does user own the comment?
-        if (foundUser._id.equals(req.user.id) || req.user.isAdmin === true) {
+        if (foundUser._id.equals(req.user.id) || req.user.isAdmin) {
           next();
         } else {
           req.flash('error', "You don't have permission to do that");
@@ -84,9 +93,9 @@ middlewareObj.isAdmin = function (req, res, next) {
         req.flash('error', 'User not found');
         res.redirect('/');
       } else {
-        if (foundUser.isAdmin === true) {
+        if (foundUser.isAdmin) {
           next();
-        } else if (foundUser.isMember === true) {
+        } else if (foundUser.isMember) {
           req.flash('error', "You don't have permission to do that");
           res.redirect('/member');
         } else {
@@ -108,7 +117,7 @@ middlewareObj.isMember = function (req, res, next) {
         req.flash('error', 'User not found');
         res.redirect('/');
       } else {
-        if (foundUser.isMember === true) {
+        if (foundUser.isMember) {
           next();
         } else {
           req.flash('error', 'You must be a verified member to do that');
