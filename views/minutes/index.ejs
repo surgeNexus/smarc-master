@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-12">
           <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
-
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 New Minutes
             </button>
@@ -49,7 +48,7 @@
                    <div class="card card-full-height shadow-lg pt-3 pb-3">
                       <div class="caption">
                         <h4><%= minute.date %></h4>
-                        <p><%= minute.type %> Meeting</p>
+                        <p><%= minute.type %> <% if(minute.type !== "Archive"){ %> Meeting <% } %></p>
                         <a class="btn btn-sm btn-primary" role="button" data-toggle="collapse" target="_blank" href="<%= minute.docLoc %>" aria-expanded="false" aria-controls="collapseExample">
                           View Online
                         </a>
