@@ -88,14 +88,16 @@
                                             </div>
                                             <div class="form-group mt-3 text-center">
                                                 <button type="submit" class="btn btn-primary btn-md">Submit</button>
-                                                <a href="" onclick="return ConfirmDelete()" class="btn btn-md btn-danger">Delete</a>
+                                                <a onclick="return deleteForm()" class="btn btn-md btn-danger">Delete</a>
                                             </div>
+                                    </form>
+                                    <form action="/minutes/<%= minute._id %>?_method=DELETE" method="POST" hidden>
+                                      <button type="submit" id="deleteButton" class="btn btn-sm btn-danger">delete</button>
                                     </form>
                                 </div>
                             </div>
                            </div>
                         </div>
-                        <form action="/minutes/<%= minute.id %>?_method=DELETE" method="POST" hidden name="deleteForm"></form>
                       <% } %>
                    </div>
                </div>
@@ -108,14 +110,17 @@
 
 
 <script>
-    function ConfirmDelete(minute_id)
+    function ConfirmDelete()
     {
       var x = confirm("Are you sure you wish to permanently delete this?");
       if (x) {
-        document.deleteForm.submit();
         return true;
       } else {
         return false;
       }
+    }
+    function deleteForm(){
+      ConfirmDelete();
+      document.getElementById("deleteButton").click()
     }
   </script>   

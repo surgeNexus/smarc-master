@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Minutes = require('../models/minutes');
 var middleware = require('../middleware');
+var docxConverter = require('docx-pdf');
+var fs = require('fs');
 
 router.get('/', function (req, res) {
   Minutes.find({})
@@ -23,14 +25,25 @@ router.post('/', middleware.isAdmin, function (req, res) {
   var now = Date.now();
   if (req.files) {
     let doc = req.files.doc;
-    doc.mv('./public/files/documents/' + now + req.files.doc.name, function (
-      err
-    ) {
+    doc.mv('./public/files/documents/' + now + req.files.doc.name, function (err) {
       if (err) {
         console.log(err);
       }
     });
     var docLoc = '/files/documents/' + now + req.files.doc.name;
+    setTimeout(() => {
+      if(req.files.doc.name.includes('.docx')){
+        var pdfOutput = '/files/documents/' + now + req.files.doc.name.split('.')[0] + ".pdf"
+        docxConverter('../public' + docLoc, pdfOutput, function(err, result) {
+            if (err) {
+                console.log("Converting Doc to PDF  failed", err);
+            }
+            console.log("Converting Doc to PDF succesfull", result);
+        });
+        docLoc = pdfOutput;
+      }
+    }, 5000);
+    
     var newDoc = {
       date: date,
       docLoc: docLoc,
@@ -91,10 +104,9 @@ router.delete('/:id', middleware.isAdmin, function (
       fs.unlink('./public' + removedCodeplug.docLoc, err => {
         if (err) {
           req.flash('error', 'File not deleted; entry removed.');
-          res.redirect('back');
         }
       });
-      res.redirect('/codeplugs');
+      res.redirect('/minutes');
     }
   });
 });
