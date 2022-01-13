@@ -79,8 +79,10 @@
                                             <div class="input-group mt-3">
                                               <label class="input-group-text" for="">Type</label>
                                               <select name="type" class="form-select" required>
+                                                  <option>Select an Option...</option>
                                                   <option <% if(minute.date === "Staff"){ %> selected <% } %> value="Staff">Staff</option>
                                                   <option <% if(minute.date === "Club"){ %> selected <% } %> value="Club">Club</option>
+                                                  <option <% if(minute.date === "Archive"){ %> selected <% } %> value="Archive">Club</option>
                                               </select>
                                           </div>
                                             <div class="input-group mt-3">
