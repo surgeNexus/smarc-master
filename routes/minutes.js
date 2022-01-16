@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Minutes = require('../models/minutes');
 var middleware = require('../middleware');
-var docxConverter = require('docx-pdf');
 var fs = require('fs');
 
 router.get('/', function (req, res) {
@@ -31,19 +30,6 @@ router.post('/', middleware.isAdmin, function (req, res) {
       }
     });
     var docLoc = '/files/documents/' + now + req.files.doc.name;
-    setTimeout(() => {
-      if(req.files.doc.name.includes('.docx')){
-        var pdfOutput = '/files/documents/' + now + req.files.doc.name.split('.')[0] + ".pdf"
-        docxConverter('../public' + docLoc, pdfOutput, function(err, result) {
-            if (err) {
-                console.log("Converting Doc to PDF  failed", err);
-            }
-            console.log("Converting Doc to PDF succesfull", result);
-        });
-        docLoc = pdfOutput;
-      }
-    }, 5000);
-    
     var newDoc = {
       date: date,
       docLoc: docLoc,

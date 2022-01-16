@@ -15,7 +15,6 @@
     "connect-flash": "^0.1.1",
     "cron": "^1.8.2",
     "crypto": "^1.0.1",
-    "docx-pdf": "^0.0.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
