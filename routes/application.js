@@ -86,7 +86,7 @@ router.post('/', function (req, res) {
   });
 });
 
-router.get('/roster', (req, res) => {
+router.get('/roster', middleware.isAdmin, (req, res) => {
   Application.find({}, (err, foundApplications) => {
     if(err){
       req.flash('error', err.message);
@@ -99,7 +99,7 @@ router.get('/roster', (req, res) => {
   });
 });
 
-router.put('/roster/:id', (req, res) => {
+router.put('/roster/:id', middleware.isAdmin, (req, res) => {
   Application.findById(req.params.id, (err, foundApp) => {
     if(err){
       req.flash('error', err.message);
@@ -122,7 +122,7 @@ router.put('/roster/:id', (req, res) => {
   });
 });
 
-router.delete('/roster/:id', (req, res) => {
+router.delete('/roster/:id', middleware.isAdmin, (req, res) => {
   Application.findByIdAndRemove(req.params.id, (err, foundApp) => {
     if(err){
       req.flash('error', err.message);
