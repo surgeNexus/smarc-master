@@ -1,13 +1,16 @@
 <% include ../partials/header %>
 
-<div class="container mt-5">
-  <% if(currentUser && currentUser.isAdmin){ %> 
-    <div class="row">
-      <div class="col">
-        <a href="/application/roster" class="btn btn-md btn-primary">Applications/Roster</a>
-      </div>
+<div class="container">
+<% if(currentUser && currentUser.isAdmin){ %> 
+  <div class="row">
+    <div class="col">
+      <a href="/application/roster" class="btn btn-md btn-primary">Applications/Roster</a>
     </div>
-  <% } %>
+  </div>
+<% } %>
+</div>
+
+<div class="container mt-5">
     <div>
         <h1 class="text-center">SMARC Membership Application</h1>
     </div>

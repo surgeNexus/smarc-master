@@ -1,6 +1,9 @@
 
-<ul class="nav nav-tabs">
-  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/members/" ) { %>active<% } %>" href="/members">Member List</a></li>
-  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/info/netsched/" ) { %>active<% } %>" href="/info/netscript">Net Schedule</a></li>
-  <li role="presentation" class="nav-item"><a class="nav-link <% if(url === "/info/docs/" ) { %>active<% } %>" href="/info/docs">Member Documents</a></li>
+<ul class="nav nav-pills">
+  <li class="nav-item active"><a class="nav-link" href="/members">Member List</a></li>
+  <li class="nav-item active"><a class="nav-link" href="/info/docs">Member Documents</a></li>
+  <li class="nav-item active"><a class="nav-link" href="/info/netscript">Net Schedule</a></li>
+  <% if(currentUser && currentUser.isAdmin){ %>
+    <li class="nav-item active"><a class="nav-link" href="/application/roster">Applications/Roster</a></li>
+  <% } %>
 </ul>
