@@ -5,8 +5,10 @@ var User = require('../models/user');
 var middleware = require('../middleware');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+var CronJob = require('cron').CronJob;
+const { cachedDataVersionTag } = require('v8');
 
-function sendEmail(emailAddress, type, info) {
+function sendEmail(emailAddress, body) {
 var smtpTransport = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -14,33 +16,12 @@ var smtpTransport = nodemailer.createTransport({
     pass: process.env.GMAILPW
   }
 });
-if(type === "applicant"){
-  var mailOptions = {
-    to: emailAddress,
-    from: process.env.GMAILUSER,
-    subject: '[SMARC] Application Received',
-    text:
-      '' + info.firstName + ',\n\n' + '\n\n' +
-      'The Smoky Mountain Amateur Radio Club has received your membership applicaiton and the admins have been notified.\n\n' +
-      'Please ensure that you have paid Dues via one of the available methods.\n\n' +
-      'If you have questions or need help, please reach out to webmaster@w4olb.org\n\n' +
-      '\n\n' +
-      "73 de W4OLB\n"
-  };
-} else if(type === "admin"){
-  var mailOptions = {
-    to: emailAddress,
-    from: process.env.GMAILUSER,
-    subject: '[SMARC] Application Received',
-    text:
-      'SMARC Admin,\n\n' +
-      '\n\n' +
-      'An application has been received for ' + info.firstName + " " + info.lastName + ', ' + info.callsign +  '.\n\n' +
-      'you can reach them by email at ' + info.email + ' or by phone at ' + info.phone + "\n\n" +
-      '\n\n' +
-      "This is an automated message from w4olb.org\n"
-  };
-}
+var mailOptions = {
+  to: emailAddress,
+  from: process.env.GMAILUSER,
+  subject: '[SMARC] Application Received',
+  text: body
+};
 smtpTransport.sendMail(mailOptions, function (err) {
   done(err, 'done');
 });
@@ -61,19 +42,31 @@ router.post('/', function (req, res) {
       const date = today.toLocaleDateString();
       newApplicant.lastUpdated = date;
       newApplicant.save();
-      sendEmail(req.body.email, "applicant", newApplicant);
+      sendEmail(req.body.email, 
+        newApplicant.firstName + ',\n\n' + '\n\n' +
+        'The Smoky Mountain Amateur Radio Club has received your membership applicaiton and the admins have been notified.\n\n' +
+        'Please ensure that you have paid Dues via one of the available methods.\n\n' +
+        'If you have questions or need help, please reach out to webmaster@w4olb.org\n\n' +
+        '\n\n' +
+        "73 de W4OLB\n"
+      );
       User.find({}, (err, foundUsers) => {
         if(err){
           console.log(err);
         } else {
           foundUsers.forEach((u) => {
             if(u.isAdmin){
-              sendEmail(u.email, "admin", newApplicant);
+              sendEmail(u.email, 
+                u.firstName + ',\n\n' +
+                'An application has been received for ' + newApplicant.firstName + " " + newApplicant.lastName + ', ' + newApplicant.callsign +  '.\n' +
+                'you can reach them by email at ' + newApplicant.email + ' or by phone at ' + newApplicant.phone + "\n\n" +
+                "This is an automated message from w4olb.org\n"
+              );
             }
           });
         }
       });
-      if(req.body.smarcOnline){
+      if(req.body.smarcOnline === true){
         req.flash('success', "Your application has been submitted. \n\n Please allow time for your membership fee to be processed and your online account to be activated.")
         res.render('application/appRegister', {
           info: newApplicant
@@ -107,11 +100,18 @@ router.put('/roster/:id', middleware.isAdmin, (req, res) => {
     } else {
       const today = new Date();
       const date = today.toLocaleDateString();
+      const nextYear = today.getFullYear() + 1;
       foundApp.new = false;
       foundApp.status = req.body.status;
       foundApp.lastUpdated = date;
       foundApp.save();
       if(req.body.status){
+        sendEmail(foundApp.email,
+          foundApp.firstName + ',\n\n' +
+          'Congratulations! Your SMARC dues are paid for the year ' + today.getFullYear() + '! \n\n' +
+          'Dues will again become due on January 1, ' + nextYear + '. \n\n' +
+          "This is an automated message from w4olb.org\n"
+        )
         var stat = "Paid"
       } else {
         var stat = "Not Paid"
@@ -133,5 +133,33 @@ router.delete('/roster/:id', middleware.isAdmin, (req, res) => {
     }
   });
 });
+
+var job = new CronJob('0 6 1 1 *', function() {
+  Application.find({}, (err, foundApps) => {
+    if(err){
+      console.log(err);
+    } else {
+      var admins = "";
+      User.find({}, (err, foundUsers) => {
+        if(err){
+          console.log(err);
+        } else {
+          foundUsers.forEach((u) => {
+            if(u.isAdmin) {
+              admins = admins + u.username + ", "
+            }
+          });
+          foundApps.forEach((app) => {
+            if(!admins.toLocaleLowerCase().includes(app.callsign.toLowerCase()) && !app.new) {
+              app.status = false;
+              app.save();
+            };
+          });
+        }
+      });
+    }
+  });
+}, null, true, 'America/New_York');
+job.start();
 
 module.exports = router;

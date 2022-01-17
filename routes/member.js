@@ -74,7 +74,26 @@ router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
         foundUser.marketNotify = req.body.marketNotify;
         foundUser.messageNotify = req.body.messageNotify;
         foundUser.save();
-
+        foundApp.forEach((a) => {
+          Application.find({}, (err, foundApp) => {
+            if(err){
+              console.log(err.message);
+            } else {
+              foundApp.forEach((a) => {
+                if(a.callsign === foundUser.username) {
+                  a.callsign = foundUser.username;
+                  a.firstName = foundUser.firstName;
+                  a.lastName = foundUser.lastName;
+                  a.phone = foundUser.phone;
+                  a.email = foundUser.email;
+                  a.address = foundUser.address;
+                  a.arrl = foundUser.arrl;
+                  a.save();
+                }
+              })
+            }
+          })
+        })
         res.redirect('/members');
       } else {
         var now = moment();
@@ -120,9 +139,9 @@ router.put('/:id', middleware.checkProfileOwnership, function (req, res) {
               a.arrl = foundUser.arrl;
               a.save();
             }
-          })
+          });
         }
-      })
+      });
     }
   });
 });
