@@ -1,0 +1,151 @@
+<% include ../partials/header %>
+
+<div class="container-fluid mt-5">
+    <div class="row mt-3">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">New Applications</h1>
+            </div>
+        </div>
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date Modified</th>
+                <th scope="col">Name</th>
+                <th scope="col">Callsign</th>
+                <th scope="col">Class</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Dues Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% apps.forEach((app) => { %>
+                <% if(app.new){ %>
+                    <tr>
+                      <th scope="row"><%= app.lastUpdated %></th>
+                      <th><%= app.lastName %>, <%= app.firstName %></th>
+                      <td><%= app.callsign %></td>
+                      <td><%= app.class %></td>
+                      <td><%= app.address %> <%= app.city %>, <%= app.state %> <%= app.zip %></td>
+                      <td><%= app.phone %></td>
+                      <td><%= app.email %></td>
+                      <td><%= app.birthDate %></td>
+                      <td>
+                          <form action="/application/roster/<%= app._id %>?_method=PUT" method="POST">
+                              <select class="form-control" name="status" onchange="submit()">
+                                <option value="true" id="status" <% if(app.status){ %> selected <% } %> >Paid</option>
+                                <option value="false" <% if(!app.status){ %> selected <% } %> >Not Paid</option>
+                              </select>
+                          </form>
+                      </td>
+                    </tr>
+                <% } %>
+              <% }) %>
+            </tbody>
+          </table>
+    </div>
+    <div class="row mt-3">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Paid Members</h1>
+            </div>
+        </div>
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date Modified</th>
+                <th scope="col">Name</th>
+                <th scope="col">Callsign</th>
+                <th scope="col">Class</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Dues Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% apps.forEach((app) => { %>
+                <% if(app.status){ %>
+                    <tr>
+                      <th scope="row"><%= app.lastUpdated %></th>
+                      <th><%= app.lastName %>, <%= app.firstName %></th>
+                      <td><%= app.callsign %></td>
+                      <td><%= app.class %></td>
+                      <td><%= app.address %> <%= app.city %>, <%= app.state %> <%= app.zip %></td>
+                      <td><%= app.phone %></td>
+                      <td><%= app.email %></td>
+                      <td><%= app.birthDate %></td>
+                      <td>
+                          <form action="/application/roster/<%= app._id %>?_method=PUT" method="POST">
+                              <select class="form-control" name="status" onchange="submit()">
+                                <option value="true" id="status" <% if(app.status){ %> selected <% } %> >Paid</option>
+                                <option value="false" <% if(!app.status){ %> selected <% } %> >Not Paid</option>
+                              </select>
+                          </form>
+                      </td>
+                    </tr>
+                <% } %>
+              <% }) %>
+            </tbody>
+          </table>
+    </div>
+    <div class="row mt-3">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Non-Paid Members</h1>
+            </div>
+        </div>
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Date Modified</th>
+                <th scope="col">Name</th>
+                <th scope="col">Callsign</th>
+                <th scope="col">Class</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Dues Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% apps.forEach((app) => { %>
+                <% if(!app.new && !app.status){ %>
+                    <tr>
+                      <th scope="row"><%= app.lastUpdated %></th>
+                      <th><%= app.lastName %>, <%= app.firstName %></th>
+                      <td><%= app.callsign %></td>
+                      <td><%= app.class %></td>
+                      <td><%= app.address %> <%= app.city %>, <%= app.state %> <%= app.zip %></td>
+                      <td><%= app.phone %></td>
+                      <td><%= app.email %></td>
+                      <td><%= app.birthDate %></td>
+                      <td>
+                          <form action="/application/roster/<%= app._id %>?_method=PUT" method="POST">
+                              <select class="form-control" name="status" onchange="submit()">
+                                <option value="true" id="status" <% if(app.status){ %> selected <% } %> >Paid</option>
+                                <option value="false" <% if(!app.status){ %> selected <% } %> >Not Paid</option>
+                              </select>
+                          </form>
+                      </td>
+                    </tr>
+                <% } %>
+              <% }) %>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<script>
+    function submit(){
+        var myform = document.getElementById("status");
+        myform.submit();
+    }
+</script>
+
+<% include ../partials/footer %>

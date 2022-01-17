@@ -82,12 +82,12 @@ router.delete('/:id', middleware.isAdmin, function (
   req,
   res
 ) {
-  Minutes.findByIdAndRemove(req.params.id, function (err, removedCodeplug) {
+  Minutes.findByIdAndRemove(req.params.id, function (err, removedMinutes) {
     if (err) {
       req.flash('error', 'Something went wrong');
       res.redirect('back');
     } else {
-      fs.unlink('./public' + removedCodeplug.docLoc, err => {
+      fs.unlink('./public' + removedMinutes.docLoc, err => {
         if (err) {
           req.flash('error', 'File not deleted; entry removed.');
         }

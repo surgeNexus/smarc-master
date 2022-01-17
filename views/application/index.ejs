@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<div class="container mt-5">
+    <div>
+        <h1 class="text-center">SMARC Membership Application</h1>
+    </div>
+    <form action="/application" method="POST">
+        <div class="input-group mb-3 mt-5">
+            <span class="input-group-text">First Name</span>
+            <input type="text" name="firstName" class="form-control" required aria-label="firstName">
+            <span class="input-group-text">Last Name</span>
+            <input type="text" name="lastName" class="form-control" required aria-label="Server">
+          </div>
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text">Mailing Address</span>
+            <input type="text" name="address" class="form-control" required>
+            <span class="input-group-text">City</span>
+            <input type="text" name="city" class="form-control" required>
+            <span class="input-group-text">State</span>
+            <input type="text" name="state" class="form-control" required>
+            <span class="input-group-text">Zip Code</span>
+            <input type="text" name="zip" class="form-control" required>
+          </div>
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text">Phone Number</span>
+            <input type="text" name="phone" class="form-control" required>
+            <span class="input-group-text">Email Address</span>
+            <input type="text" name="email" class="form-control" required>
+          </div>
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text">Callsign</span>
+            <input type="text" name="callsign" class="form-control" required>
+            <span class="input-group-text">License Class</span>
+            <select name="class" class="form-control" required>
+                <option>Select an option...</option>
+                <option value="Technician">Technician</option>
+                <option value="General">General</option>
+                <option value="Extra">Extra</option>
+                <option value="Prospective Ham">Prospective Ham</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text">Birthday</span>
+            <input type="date" name="birthDate" class="form-control">
+          </div>
+          <div class="input-group mb-5 mt-3">
+            <span class="input-group-text">Favorite Radio Activiites</span>
+            <input type="text" name="favoriteActivities" class="form-control">
+          </div>
+          <div class="input-group mb-5 mt-3">
+            <span class="input-group-text">Apply for SMARC Online Login</span>
+            <select class="form-control" name="smarcOnline" required>
+                <option>Select an option...</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+          </div>
+          <div>
+              <button class="btn btn-primary form-control">
+                  Submit Application
+              </button>
+          </div>
+    </form>
+</div>
+
+<% include ../partials/footer %>

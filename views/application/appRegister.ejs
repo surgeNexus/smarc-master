@@ -1,0 +1,113 @@
+<% include ../partials/header %>
+
+<div class="container text-center mt-3">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 mt-3">
+            <h1>SMARC Online Account</h1>
+            <form action="/register" method="POST" class="" encType="multipart/form-data">
+                <div class="row">
+                    <div class="input-group col-xs-4">
+                        <label class="input-group-text">First Name</label>
+                        <input class="form-control" type="text" name="firstName" value="<%= info.firstName %>" required>
+                    </div>
+                    <div class="input-group col-xs-4 mt-1">
+                        <label class="input-group-text">Last Name</label>
+                        <input class="form-control" type="text" name="lastName" value="<%= info.lastName %>" required>
+                    </div>
+                    <div class="input-group col-xs-4 mt-1">
+                        <label class="input-group-text">Callsign</label>
+                        <input class="form-control" class="" oninput="this.value=this.value.toLowerCase()" type="text" name="username" value="<%= info.callsign %>" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group col-xs-6 mt-1">
+                        <label class="input-group-text">Email</label>
+                        <input class="form-control" type="email" name="email" value="<%= info.email %>" required>
+                    </div>
+                    <div class="input-group col-xs-6 mt-1">
+                        <label class="input-group-text">Phone</label>
+                        <input class="form-control" type="tel" name="phone" value="<%= info.phone %>" >
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-group col-xs-6 mt-1">
+                        <label class="input-group-text">Address</label>
+                        <input class="form-control" type="text" name="address" value="<%= info.address %>" >
+                    </div>
+                    <div class="input-group col-xs-6 mt-1">
+                        <label class="input-group-text">City, State, Zip</label>
+                        <input class="form-control" type="text" name="ctStZip" value="<%= info.city %>, <%= info.state %>, <%= info.zip %>" >
+                    </div>
+                </div>
+                <div class="input-group mt-1">
+                    <label class="input-group-text">ARRL Member?</label>
+                    <input class="form-check-input" type="radio" name="arrl" value="true" required="required"> Yes 
+                    <input class="form-check-input" type="radio" name="arrl" value="false" required="required"> No 
+                </div>
+                <div class="row mt-1">
+                    <div class="input-group col-xs-6">
+                        <label class="input-group-text">Password</label>
+                        <input class="form-control" type="password" name="password" minlength="6" equired>
+                    </div>
+                    <div class="input-group col-xs-6">
+                        <label class="input-group-text">Password</label>
+                        <input class="form-control" type="password" name="password2" minlength="6" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Profile Image</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs=12 col-md-offset-4">
+                        <input type="file" name="profileImage">
+                    </div>
+                </div>
+                <br>
+                <div class="input-group mb-5">
+                    <input class="btn btn-primary btn-md" onclick="return ConfirmSubmit()" class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">SMARC Online Membership</h1>
+                </div>
+                <div class="card-body">
+                    <h5>By joining SMARC online you gain access to the following:</h5>
+                    <br>
+                    <p>1. Our online Radio Market where you can list items wanted and for sale, and comment on items listed</p>
+                    <p>2. Online membership roster where you can view Club Member's pictures, email addresses, phone numbers, mailing addresses and 
+                    callsigns if they choose to share</p>
+                    <p>3. Meeting minutes</p>
+                    <p>4. The Net Control station schedule</p>
+                    <p>5. Our member's only forum</p>
+                    <br>
+                    <p><em>If you are a SMARC member, please allow up to 48 hours for us to verify your membership. During this time, you will be able to access
+                     the Radio Market only.</em></p>
+                </div>
+            </div>
+            
+            <br>
+            
+        </div>
+    </div>
+</div>
+<script>        
+    element.addEventListener('input',function(){this.value=this.value.toLowerCase()});​
+</script>
+<script>
+    function ConfirmSubmit()
+    {
+      var x = confirm("Please allow up to 48 hours for your membership verification to be approved. You will only have access to the Radio Market until you are verified. If you are not a SMARC member, you will only be allowed access to the radio market.");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>
+
+<% include ../partials/footer %>

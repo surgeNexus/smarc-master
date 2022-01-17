@@ -24,6 +24,7 @@ var commentRoutes = require('./routes/comments'),
   indexRoutes = require('./routes/index'),
   homeRoutes = require('./routes/home'),
   infoRoutes = require('./routes/info'),
+  applicationRoutes = require('./routes/application'),
   netschedRoutes = require('./routes/netsched'),
   skRoutes = require('./routes/sk'),
   minutesRoutes = require('./routes/minutes'),
@@ -80,6 +81,7 @@ app.use('/radiomarket', campgroundRoutes);
 app.use('/radiomarket/:id/comments', commentRoutes);
 app.use('/home', homeRoutes);
 app.use('/info', infoRoutes);
+app.use('/application', applicationRoutes);
 app.use('/netsched', netschedRoutes);
 app.use('/info/sk', skRoutes);
 app.use('/minutes', minutesRoutes);
