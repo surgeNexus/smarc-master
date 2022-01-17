@@ -122,4 +122,16 @@ router.put('/roster/:id', (req, res) => {
   });
 });
 
+router.delete('/roster/:id', (req, res) => {
+  Application.findByIdAndRemove(req.params.id, (err, foundApp) => {
+    if(err){
+      req.flash('error', err.message);
+      res.redirect('back');
+    } else {
+      req.flash('success', foundApp.callsign.toUpperCase() + "'s application has been removed.")
+      res.redirect('back');
+    }
+  });
+});
+
 module.exports = router;

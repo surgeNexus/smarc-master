@@ -13,6 +13,7 @@ var applicationSchema = mongoose.Schema({
     class: String,
     birthDate: String,
     favoriteActivities: String,
+    arrl: Boolean,
     status: { type: Boolean, default: false },
     lastUpdated: String,
     new: { type: Boolean, default: true }
