@@ -179,7 +179,6 @@
                           <form action="/application/roster/<%= app._id %>?_method=PUT" method="POST">
                             <td>
                             <select class="form-control" name="duesPaidYear">
-                              <option <% if(app.duesPaidYear == "2021"){ %> selected <% } %> value="2021">2021(REMOVE)</option>
                               <% years.forEach((y) => { %>
                                 <option <% if(app.duesPaidYear == y){ %> selected <% } %> value="<%= y %>"><%= y %></option>
                               <% }) %>

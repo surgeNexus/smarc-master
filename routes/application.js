@@ -113,11 +113,13 @@ router.put('/roster/:id', middleware.isAdmin, (req, res) => {
       foundApp.status = req.body.status;
       foundApp.lastUpdated = date;
       if(req.body.status){
+        var paidYear = req.body.duesPaidYear;
+        var yearAfterPaid = paidYear + 1
         foundApp.duesPaidYear = req.body.duesPaidYear;
         sendEmail(foundApp.email, '[SMARC] ' + today.getFullYear() + ' Dues Received',
           foundApp.firstName + ',\n\n' +
-          'Congratulations! Your SMARC dues are paid for the year ' + today.getFullYear() + '! \n\n' +
-          'Dues will again become due on January 1, ' + yearPlus(1) + '. \n\n' +
+          'Congratulations! Your SMARC dues are paid for the year ' + paidYear + '! \n\n' +
+          'Dues will again become due on January 1, ' + yearAfterPaid + '. \n\n' +
           "This is an automated message from w4olb.org\n"
         )
         var stat = "Paid"
