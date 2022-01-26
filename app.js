@@ -12,11 +12,14 @@ var express = require('express'),
   Comment = require('./models/comment'),
   User = require('./models/user'),
   roles = require('roles'),
-  fileUpload = require('express-fileupload');
+  fileUpload = require('express-fileupload'),
+  cookieParser = require('cookie-parser');
 
 var dotenv = require('dotenv');
 const message = require('./models/message');
 dotenv.config();
+
+app.use(cookieParser());
 
 //requring routes
 var commentRoutes = require('./routes/comments'),

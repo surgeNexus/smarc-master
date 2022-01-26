@@ -32,12 +32,16 @@ router.get('/', function (req, res) {
             } else {
               var today = moment().format('YYYY-MM-DD');
               var weekFrom = moment().add(7, 'd').format('YYYY-MM-DD');
-              //render show template with that campground
+              var json = JSON.stringify(req.cookies);
+              if(!req.user && !json.includes("multipleVisit")){
+                res.cookie('multipleVisit', true)
+              }
               res.render('home', {
                 foundHome: foundHome,
                 nets: foundNets,
                 today: today,
-                weekFrom: weekFrom
+                weekFrom: weekFrom,
+                cookies: req.cookies
               });
             }
           });

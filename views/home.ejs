@@ -83,12 +83,41 @@
                         <a href="https://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="https://www.hamqsl.com/solarsun.php"></a>
                     </center>
                 </div>
-                        
-                
-                
             </div>
         </div>
     </div>
 </div>
+
+<% if(!cookies.multipleVisit){ %>
+    <div class="modal fade" id="onload2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-center">Connect with SMARC!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div>
+                    <h4>If you are not a SMARC member but would like to be, please click <a href="/application">here</a>!</p>
+                  </div>
+                  <div>
+                    <h4>If you are a SMARC member and would like to register for a SMARC Online account, please click <a href="/register">here</a>!</h4>
+                  </div>
+                  <div>
+                    <h4>If you are a member and want to keep up with events, or you're not a member but still want in on the action, click <a href="/application">here</a> to join our mailing list!</h4>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <p>Sorry for the annoying popup, we don't like them either! We just want to make sure everyone can find what they're looking for. You will not see this again until you close and re-open your browser.</p>
+              </div>
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = () => {
+          $('#onload2').modal('show');
+        }
+    </script>
+<% } %>
 
 <% include partials/footer %>
