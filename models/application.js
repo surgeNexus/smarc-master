@@ -16,6 +16,7 @@ var applicationSchema = mongoose.Schema({
     arrl: Boolean,
     status: { type: Boolean, default: false },
     lastUpdated: String,
+    duesPaidYear: String,
     new: { type: Boolean, default: true }
 });
 
