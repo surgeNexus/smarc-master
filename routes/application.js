@@ -89,7 +89,7 @@ router.get('/roster', middleware.isAdmin, (req, res) => {
       function yearPlus(plus){
         return today.getFullYear() + plus;
       }
-      const years = [today.getFullYear(), yearPlus(1), yearPlus(2), yearPlus(3), yearPlus(4), yearPlus(5), "Lifetime"];
+      const years = [today.getFullYear(), yearPlus(1), yearPlus(2), yearPlus(3), yearPlus(4), yearPlus(5), "Honorary", "Military", "Lifetime"];
       res.render('application/roster', {
         apps: foundApplications,
         years: years
