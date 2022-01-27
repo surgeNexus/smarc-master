@@ -52,9 +52,6 @@
                         <a class="btn btn-sm btn-primary" role="button" data-toggle="collapse" target="_blank" href="<%= minute.docLoc %>" aria-expanded="false" aria-controls="collapseExample">
                           View Online
                         </a>
-                        <div class="head-room">
-                          <a class="" href="<%= minute.docLoc %>" download="SMARC_Minutes_<%= minute.date %>.doc">Download</a>
-                        </div>
                       </div>
                       <% if(currentUser && currentUser.isAdmin === true && currentUser.showAdmin === true) { %>
                         <button type="button" class="no-button" data-bs-toggle="modal" data-bs-target="#min<%= minute.id %>">
