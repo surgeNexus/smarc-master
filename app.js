@@ -43,11 +43,18 @@ var commentRoutes = require('./routes/comments'),
   imageStoreRoutes = require('./routes/imageStore');
   operatingEventsRoutes = require('./routes/operatingEvents');
 
+let mongoUrl = "";
+if(process.env.MONGODB){
+  mongoUrl = process.env.MONGODB
+} else {
+  mongoUrl = "mongodb://localhost:27017/smarcWbe"
+}
+
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb://localhost:27017/smarcWbe');
+mongoose.connect(mongoUrl);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');

@@ -14,7 +14,7 @@
     <div>
         <h1 class="text-center">SMARC Membership Application</h1>
     </div>
-    <form action="/application" method="POST">
+    <form action="/application" method="POST" id="appForm">
         <div class="input-group mb-3 mt-5">
             <span class="input-group-text">First Name</span>
             <input type="text" name="firstName" class="form-control" required aria-label="firstName">
@@ -72,11 +72,19 @@
             </select>
           </div>
           <div>
-              <button class="btn btn-primary form-control">
+              <button class="btn btn-primary form-control g-recaptcha" data-sitekey="6Le--7YZAAAAAJ_y6Pe06qusO5-MxR6Oxaqi743z" data-callback='onSubmit' data-action='submit'>
                   Submit Application
               </button>
           </div>
     </form>
 </div>
+
+<script>
+  function onSubmit(token) {
+    document.getElementById("appForm").submit();
+  }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
 <% include ../partials/footer %>
