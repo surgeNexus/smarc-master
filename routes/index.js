@@ -60,7 +60,7 @@ router.get('/register', function (req, res) {
 
 //handle sign up logic
 router.post('/register', function (req, res) {
-  if(!req.body.firstName.includes("http") || !req.body.lastName.includes("http") || !req.body.username.includes("http") || !req.body.address.includes("http") || !req.body.ctStZip.includes("http")){
+  if(!req.body.includes("http")){
     if (!req.files && req.body.password === req.body.password2) {
       var newUser = new User({
         username: req.body.username,
@@ -133,6 +133,9 @@ router.post('/register', function (req, res) {
       req.flash('error', 'Your passwords do not match');
       res.redirect('back');
     }
+  } else {
+    console.log("No Hit.");
+    res.redirect('http://eatshit.com');
   }
 });
 // req.flash('error', 'Your passwords do not match');
