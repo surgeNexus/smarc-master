@@ -81,8 +81,9 @@ router.post('/', function (req, res) {
       }
     });
   } else {
-    console.log("no hit")
-    res.redirect("http://yahoo.com");
+    console.log('denied');
+    req.flash("error", "Hahahaha, You've been denied. :D");
+    res.redirect('back');
   }
 });
 

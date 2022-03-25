@@ -134,8 +134,9 @@ router.post('/register', function (req, res) {
       res.redirect('back');
     }
   } else {
-    console.log("No Hit.");
-    res.redirect('http://eatshit.com');
+    console.log('denied');
+    req.flash("error", "Hahahaha, You've been denied. :D");
+    res.redirect('back');
   }
 });
 // req.flash('error', 'Your passwords do not match');
