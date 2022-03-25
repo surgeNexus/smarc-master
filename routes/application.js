@@ -35,9 +35,9 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   console.log(req.body)
   console.log(req.body.firstName);
-  if(!req.body.firstName.includes(":") || !req.body.lastName.includes(":") || !req.body.callsign.includes(":") || !req.body.favoriteActivities.includes("http" || "info") !req.body.lastName.includes("1") ||
+  if(!req.body.firstName.includes(":") || !req.body.lastName.includes(":") || !req.body.callsign.includes(":") || !req.body.favoriteActivities.includes("http" || "info") || !req.body.lastName.includes("1") ||
   !req.body.lastName.includes("2") ||!req.body.lastName.includes("3") ||!req.body.lastName.includes("4") ||!req.body.lastName.includes("5") ||!req.body.lastName.includes("6") ||
-  !req.body.lastName.includes("7") ||!req.body.lastName.includes("8") ||!req.body.lastName.includes("9") ||){
+  !req.body.lastName.includes("7") ||!req.body.lastName.includes("8") ||!req.body.lastName.includes("9")){
     Application.create(req.body, (err, newApplicant) => {
       if(err){
         req.flash('error', err.message);
