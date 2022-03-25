@@ -60,77 +60,79 @@ router.get('/register', function (req, res) {
 
 //handle sign up logic
 router.post('/register', function (req, res) {
-  if (!req.files && req.body.password === req.body.password2) {
-    var newUser = new User({
-      username: req.body.username,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phone: req.body.phone,
-      address: req.body.address,
-      ctyStZip: req.body.ctyStZip,
-      arrl: req.body.arrl,
-      acceptTOS: req.body.tos,
-      TOSDate: Date.now(),
-    });
-    User.register(newUser, req.body.password, function (err, user) {
-      if (err) {
-        console.log(err.message);
-        return res.render('register', { error: err.message });
-      }
-      passport.authenticate('local')(req, res, function () {
-        req.flash(
-          'success',
-          'Welcome to W4OLB, ' +
-            user.firstName +
-            '! Please allow up to 48 hours for your membership verification to complete.'
-        );
-        res.redirect('/radiomarket');
+  if(!req.body.firstName.includes("http") || !req.body.lastName.includes("http") || !req.body.username.includes("http") || !req.body.address.includes("http") || !req.body.ctStZip.includes("http")){
+    if (!req.files && req.body.password === req.body.password2) {
+      var newUser = new User({
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        ctyStZip: req.body.ctyStZip,
+        arrl: req.body.arrl,
+        acceptTOS: req.body.tos,
+        TOSDate: Date.now(),
       });
-    });
-  } else if (req.body.password === req.body.password2) {
-    var now = moment();
-    let doc = req.files.profileImage;
-    doc.mv(
-      './public/files/memberimages/' + now + req.files.profileImage.name,
-      function (err) {
+      User.register(newUser, req.body.password, function (err, user) {
         if (err) {
-          console.log(err);
+          console.log(err.message);
+          return res.render('register', { error: err.message });
         }
-      }
-    );
-    var docLoc = '/files/memberimages/' + now + req.files.profileImage.name;
-    var newUser = new User({
-      username: req.body.username,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phone: req.body.phone,
-      address: req.body.address,
-      ctyStZip: req.body.ctyStZip,
-      arrl: req.body.arrl,
-      profileImage: docLoc,
-      acceptTOS: req.body.tos,
-      TOSDate: Date.now()
-    });
-    User.register(newUser, req.body.password, function (err, user) {
-      if (err) {
-        console.log(err.message);
-        return res.render('register', { error: err.message });
-      }
-      passport.authenticate('local')(req, res, function () {
-        req.flash(
-          'success',
-          'Welcome to W4OLB, ' +
-            user.firstName +
-            '! Please allow up to 48 hours for your membership verification to complete.'
-        );
-        res.redirect('/radiomarket');
+        passport.authenticate('local')(req, res, function () {
+          req.flash(
+            'success',
+            'Welcome to W4OLB, ' +
+              user.firstName +
+              '! Please allow up to 48 hours for your membership verification to complete.'
+          );
+          res.redirect('/radiomarket');
+        });
       });
-    });
-  } else {
-    req.flash('error', 'Your passwords do not match');
-    res.redirect('back');
+    } else if (req.body.password === req.body.password2) {
+      var now = moment();
+      let doc = req.files.profileImage;
+      doc.mv(
+        './public/files/memberimages/' + now + req.files.profileImage.name,
+        function (err) {
+          if (err) {
+            console.log(err);
+          }
+        }
+      );
+      var docLoc = '/files/memberimages/' + now + req.files.profileImage.name;
+      var newUser = new User({
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        ctyStZip: req.body.ctyStZip,
+        arrl: req.body.arrl,
+        profileImage: docLoc,
+        acceptTOS: req.body.tos,
+        TOSDate: Date.now()
+      });
+      User.register(newUser, req.body.password, function (err, user) {
+        if (err) {
+          console.log(err.message);
+          return res.render('register', { error: err.message });
+        }
+        passport.authenticate('local')(req, res, function () {
+          req.flash(
+            'success',
+            'Welcome to W4OLB, ' +
+              user.firstName +
+              '! Please allow up to 48 hours for your membership verification to complete.'
+          );
+          res.redirect('/radiomarket');
+        });
+      });
+    } else {
+      req.flash('error', 'Your passwords do not match');
+      res.redirect('back');
+    }
   }
 });
 // req.flash('error', 'Your passwords do not match');

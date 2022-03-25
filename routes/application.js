@@ -33,7 +33,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  if(!req.body.firstName.includes("http") || !req.body.firstName.includes("http")){
+  if(!req.body.firstName.includes("http") || !req.body.lastName.includes("http") || !req.body.callsign.includes("http") || !req.body.favoriteActivities.includes("http")){
     Application.create(req.body, (err, newApplicant) => {
       if(err){
         req.flash('error', err.message);
