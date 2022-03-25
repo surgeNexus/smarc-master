@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   console.log(req.body)
   console.log(req.body.firstName);
-  if(!req.body.firstName.includes(".") || !req.body.lastName.includes(".") || !req.body.callsign.includes(".") || !req.body.favoriteActivities.includes("http" || "info")){
+  if(!req.body.firstName.includes(":") || !req.body.lastName.includes(":") || !req.body.callsign.includes(":") || !req.body.favoriteActivities.includes("http" || "info")){
     Application.create(req.body, (err, newApplicant) => {
       if(err){
         req.flash('error', err.message);
