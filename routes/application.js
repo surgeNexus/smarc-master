@@ -81,6 +81,7 @@ router.post('/', function (req, res) {
       }
     });
   } else {
+    res.redirect("http://yahoo.com");
     console.log("No Hit.")
   }
 });
