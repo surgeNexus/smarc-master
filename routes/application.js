@@ -79,6 +79,8 @@ router.post('/', function (req, res) {
         }
       }
     });
+  } else {
+    console.log("No Hit.")
   }
 });
 
