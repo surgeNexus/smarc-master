@@ -33,9 +33,8 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  console.log(req.body)
-  console.log(req.body.firstName);
-  if(!req.body.includes("http")){
+  if(!req.body.firstName.includes("http") || req.body.lastName.includes("http") || req.body.address.includes("http")
+  || req.body.ctyStZip.includes("http")){
     Application.create(req.body, (err, newApplicant) => {
       if(err){
         req.flash('error', err.message);
